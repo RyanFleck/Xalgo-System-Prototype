@@ -23,7 +23,7 @@ certificatesResolvers:
 http:
   routers:
     web-router:
-      rule: "Host(`xalgorithms.org`) || Host(`www.xalgorithms.org`)"
+      rule: "Host(`xalgorithms.org`) || Host(`xalgo-system.herokuapp.com`)"
       
       entryPoints:
         - web
@@ -33,7 +33,7 @@ http:
       service: django
 
     web-secure-router:
-      rule: "Host(`xalgorithms.org`) || Host(`www.xalgorithms.org`)"
+      rule: "Host(`xalgorithms.org`) || Host(`xalgo-system.herokuapp.com`)"
       
       entryPoints:
         - web-secure
