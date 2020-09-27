@@ -5,11 +5,7 @@ from django.test import RequestFactory
 
 from xalgo_system.users.models import User
 from xalgo_system.users.tests.factories import UserFactory
-from xalgo_system.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from xalgo_system.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 
