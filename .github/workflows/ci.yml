@@ -16,7 +16,7 @@ on:
 
 
 jobs:
-  flake8:
+  lint:
     runs-on: ubuntu-latest
     steps:
 
@@ -31,14 +31,22 @@ jobs:
       - name: Install flake8
         run: |
           python -m pip install --upgrade pip
-          pip install flake8
+          pip install flake8 black
 
       - name: Lint with flake8
-        run: flake8
+        run: flake8 .
+
+      - name: Run black formatter
+        run: black . --check
+
 
 # With no caching at all the entire ci process takes 4m 30s to complete!
-  pytest:
+  test:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "postgresql://JlieBPwWambcqHiOtqkcFMVpuWLMeKRZ:pP9iC3wiWbXBYjDDPApDnMJ2h884uSLQeQPcxaS2NLCksV94JineNKnq3Sx3gKnl@postgres/xalgo_system"
+      USE_DOCKER: "yes"
+
     steps:
 
       - name: Checkout Code Repository
@@ -53,7 +61,7 @@ jobs:
         run:  docker-compose -f local.yml up -d
 
       - name: Run Django Tests
-        run:  docker-compose -f local.yml exec -T django pytest
+        run:  docker-compose -f local.yml exec -e DATABASE_URL=${DATABASE_URL} -T django pytest
 
       - name: Tear down the Stack
-        run:  docker-compose down
+        run:  docker-compose -f local.yml down
