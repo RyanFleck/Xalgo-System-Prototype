@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=xalgo_system
+POSTGRES_USER=JlieBPwWambcqHiOtqkcFMVpuWLMeKRZ
+POSTGRES_PASSWORD=SNzEgYEjYIwoyHS3aErfyxpRWZY8iLmnhpihifWLBjjwPAatCdpFnMPAJA6aXaTt
