@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
@@ -14,6 +15,8 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
+    url(r"^rest-auth/", include("rest_auth.urls")),
+    url(r"^rest-auth/registration/", include("rest_auth.registration.urls")),
     path("users/", include("xalgo_system.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
@@ -32,6 +35,7 @@ if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
     # these url in browser to see how these error pages look like.
     urlpatterns += [
+        path("", include("xalgo_system.swagger.urls", namespace="swagger")),
         path(
             "400/",
             default_views.bad_request,
