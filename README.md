@@ -31,3 +31,4 @@ The account verification email may arrive in your junk mail:
 ## Resources
 
 1. A previous deployment experiment: <https://github.com/RyanFleck/Django-React-Heroku-Test>
+1. JWT Tutorial: <https://hackernoon.com/110percent-complete-jwt-authentication-with-django-and-react-2020-iejq34ta>
