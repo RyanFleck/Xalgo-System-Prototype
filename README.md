@@ -16,6 +16,18 @@ docker-compose -f development.yml up
 Use pre-commit to keep code quality up: `pre-commit install`
 
 
+
+
+
+## Usage
+
+Casual users can simply browse to <https://xalgo-system.herokuapp.com/>, create and verify an account, then begin testing.
+
+The account verification email may arrive in your junk mail:
+
+![](readme/junk-mail.png)
+
+
 ## Resources
 
 1. A previous deployment experiment: <https://github.com/RyanFleck/Django-React-Heroku-Test>
