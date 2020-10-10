@@ -1,1 +1,42 @@
 {% extends "base.html" %}
+
+{% block content %}
+<br />
+<h1>Welcome!</h1>
+<p>
+  This integrated system contains the backend and frontend for the
+  latest experimental revision of the <b>xalgorithms rule maker</b> (xalgo-rm).
+</p>
+<p>
+  Work on this application is funded by the
+  <a target="_blank" href="https://xalgorithms.org/">Xalgorithms Foundation</a>,
+  this application being the latest in a set of thought experiments
+  aiming to bring about the open and publicly-visible managment of
+  computational rules
+  used in law, trade, and commerce.
+</p>
+<br />
+<h3>Start Writing Rules</h3>
+<p>
+  Sign up with your email address, and begin using rule maker
+  <a href="{% url 'apps:xalgo-rm' %}">here</a>.
+</p>
+<p>
+  Currently, the application is only optimized for desktop use.
+</p>
+<br />
+<h3>View Existing Rules</h3>
+<p>
+  Feature currently under development, please check back soon.
+</p>
+<br />
+<h3>Meet the Team</h3>
+<p>
+  Xalgorithms relies on a cast of contributors from a wide variety of backgrounds,
+  who you can meet
+  <a target="_blank" href="https://xalgorithms.org/team">here</a>.
+  If you are interested in the oughtomation method,
+  or would like to contribute, please get in touch
+  <a target="_blank" href="https://xalgorithms.org">here</a>.
+</p>
+{% endblock content %}

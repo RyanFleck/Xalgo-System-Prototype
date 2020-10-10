@@ -18,4 +18,5 @@ pytz==2020.1  # https://github.com/stub42/pytz
 redis==3.5.3  # https://github.com/andymccurdy/redis-py
 whitenoise==5.2.0  # https://github.com/evansd/whitenoise
 django-rest-auth[with_social]==0.9.5 # https://github.com/Tivix/django-rest-auth
+djangorestframework-simplejwt==4.4.0
 drf-yasg==1.17.1 # https://github.com/axnsan12/drf-yasg#usage

@@ -1,5 +1,6 @@
 """Base settings to build other settings files upon."""
 import os
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -13,6 +14,13 @@ READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(ROOT_DIR / ".env"))
+
+# I've placed this early, but the production config will look for the
+# environment variable a second time and raise the alarm if it's not present.
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY",
+    default="nZEe7qM8lyvPYONpMeG6gwMFXZfSWdwcsnl69mgYav76onaT3bQvVUKTNvotMnou",
+)
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -82,6 +90,7 @@ LOCAL_APPS = [
     "xalgo_system.users.apps.UsersConfig",
     # Your stuff: custom apps go here
     "xalgo_system.react_apps.apps.ReactAppsConfig",
+    "xalgo_system.jwt_auth.apps.JWTAuthConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -289,8 +298,24 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
