@@ -24,7 +24,7 @@ http:
   routers:
     web-router:
       rule: "Host(`xalgo-system.herokuapp.com`)"
-      
+
       entryPoints:
         - web
       middlewares:
@@ -34,7 +34,7 @@ http:
 
     web-secure-router:
       rule: "Host(`xalgo-system.herokuapp.com`)"
-      
+
       entryPoints:
         - web-secure
       middlewares:
