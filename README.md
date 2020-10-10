@@ -10,8 +10,11 @@ Install _Docker Desktop_ on Windows 10/OSX, or docker and docker-compose on GNU/
 to build and run the system, including all required services, locally:
 
 ```sh
-docker-compose -f local.yml up
+docker-compose -f development.yml up
 ```
+
+Use pre-commit to keep code quality up: `pre-commit install`
+
 
 ## Resources
 
