@@ -1,4 +1,5 @@
 """Base settings to build other settings files upon."""
+import os
 from pathlib import Path
 
 import environ
@@ -34,6 +35,10 @@ USE_L10N = True
 USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
 LOCALE_PATHS = [str(ROOT_DIR / "locale")]
+
+# REACT APPS
+# ------------------------------------------------------------------------------
+RM_REACT_APP_DIR = os.path.join(ROOT_DIR, "xalgo_system_frontend")
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -74,6 +79,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "xalgo_system.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "xalgo_system.react_apps.apps.ReactAppsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -141,7 +147,11 @@ STATIC_ROOT = str(ROOT_DIR / "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR / "static")]
+STATICFILES_DIRS = [
+    str(APPS_DIR / "static"),
+    os.path.join(RM_REACT_APP_DIR, "build"),
+    os.path.join(RM_REACT_APP_DIR, "build", "static"),
+]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -163,7 +173,11 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATES-BACKEND
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
-        "DIRS": [str(APPS_DIR / "templates")],
+        "DIRS": [
+            str(APPS_DIR / "templates"),
+            os.path.join(RM_REACT_APP_DIR, "build"),
+            os.path.join(RM_REACT_APP_DIR, "build", "static"),
+        ],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
             # https://docs.djangoproject.com/en/dev/ref/templates/api/#loader-types

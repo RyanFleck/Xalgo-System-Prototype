@@ -5,15 +5,15 @@ volumes:
   local_postgres_data_backups: {}
 
 services:
-  django:
+  django-xa:
+    container_name: django-xa
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
     image: xalgo_system_local_django
-    container_name: django
     depends_on:
-      - postgres
-      - mailhog
+      - postgres-xa
+      - mailhog-xa
     volumes:
       - .:/app:z
     env_file:
@@ -23,35 +23,35 @@ services:
       - "8000:8000"
     command: /start
 
-  postgres:
+  postgres-xa:
+    container_name: postgres-xa
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
     image: xalgo_system_production_postgres
-    container_name: postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data:Z
       - local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
 
-  docs:
-    image: xalgo_system_local_docs
-    container_name: docs
-    build:
-      context: .
-      dockerfile: ./compose/local/docs/Dockerfile
-    env_file:
-      - ./.envs/.local/.django
-    volumes:
-      - ./docs:/docs:z
-      - ./config:/app/config:z
-      - ./xalgo_system:/app/xalgo_system:z
-    ports:
-      - "7000:7000"
-
-  mailhog:
-    image: mailhog/mailhog:v1.0.0
+  mailhog-xa:
     container_name: mailhog
+    image: mailhog/mailhog:v1.0.0
     ports:
       - "8025:8025"
+
+#  docs:
+#    image: xalgo_system_local_docs
+#    container_name: docs
+#    build:
+#      context: .
+#      dockerfile: ./compose/local/docs/Dockerfile
+#    env_file:
+#      - ./.envs/.local/.django
+#    volumes:
+#      - ./docs:/docs:z
+#      - ./config:/app/config:z
+#      - ./xalgo_system:/app/xalgo_system:z
+#    ports:
+#      - "7000:7000"
