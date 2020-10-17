@@ -1,0 +1,10 @@
+{% load i18n %}{% autoescape off %}
+
+Hello from the Xalgorithms Foundation!
+
+{% block content %}{% endblock %}
+
+Thank you.
+
+{{ site_domain }}
+{% endautoescape %}

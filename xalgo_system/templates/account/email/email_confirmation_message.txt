@@ -1,0 +1,17 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}
+{% autoescape off %}
+{% user_display user as user_display %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+You're receiving this message because user {{ user_display }} has provided your email address for registration.
+
+If you did not attempt to register an account with Xalgorithms Foundation, please ignore this message.
+
+To complete the registration using this email, please click here: {{ activate_url }}
+
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}

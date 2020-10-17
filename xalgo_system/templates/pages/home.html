@@ -2,27 +2,48 @@
 
 {% block content %}
 <br />
-<h1>Welcome!</h1>
+<h1>XalgoDevRM</h1>
+<br />
 <p>
-  This integrated system contains the backend and frontend for the
-  latest experimental revision of the <b>xalgorithms rule maker</b> (xalgo-rm).
+  <b>XalgoDevRM</b> is a developer-oriented local command-line application to author, publish and maintain rules and data on
+  the Internet as XRS data packages (Xalgo Rule Schema). XRS data packages can, with a parsing library, run in any
+  stand-alone developer (Dev) environment.
 </p>
 <p>
-  Work on this application is funded by the
-  <a target="_blank" href="https://xalgorithms.org/">Xalgorithms Foundation</a>,
-  this application being the latest in a set of thought experiments
-  aiming to bring about the open and publicly-visible managment of
-  computational rules
-  used in law, trade, and commerce.
+  <b>XalgoDevRM</b> is intended for deployment across a network that is also comprised of autonomous instances
+  XalgoDevRT and XalgoDevRF:
 </p>
+
+<ul>
+  <li>
+    <b>XalgoDevRT</b> is a developer-oriented library component to fetch, scrutinize, prioritize and, optionally, to
+    automate XRS data packages, including diagnostic tools.
+  </li>
+  <li>
+    <b>XalgoDevRF</b> is a developer-oriented local command-line implementation distributed metadata index to identify,
+    locate and classify in-effect and applicable XRS data packagess, including diagnostics.
+  </li>
+</ul>
+
+<p>
+  Together the operation of these XalgoDev elements are intended to enable a ‘minimum viable’ reference implementation
+  of an Internet of Rules (IoR), oriented to the needs of developers. An IoR is envisioned as a distributed, general
+  purpose method for any person to author, publish, discover, fetch, scrutinize, prioritize and optionally automate
+  normative rules on digital networks with precision, simplicity, scale, volume and speed. The purpose of an IoR is to
+  enable anyone on the network to readily discover and obtain factual knowledge of all available normative rules (MUST,
+  MAY and SHOULD, or their various synonyms and negatives) that are ‘in effect’ for their context and ‘applicable’ to
+  their particular circumstance.
+</p>
+
 <br />
 <h3>Start Writing Rules</h3>
 <p>
-  Sign up with your email address, and begin using rule maker
+  Sign up with your email address, and begin using <b>XalgoDevRM</b>
   <a href="{% url 'apps:xalgo-rm' %}">here</a>.
 </p>
 <p>
-  Currently, the application is only optimized for desktop use.
+  The current version 0.4 is only optimized for desktop use. A minor update is pending
+  that will enable use from mobile devices.
 </p>
 <br />
 <h3>View Existing Rules</h3>
