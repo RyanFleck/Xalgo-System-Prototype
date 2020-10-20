@@ -91,6 +91,7 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "xalgo_system.react_apps.apps.ReactAppsConfig",
     "xalgo_system.jwt_auth.apps.JWTAuthConfig",
+    "xalgo_system.rules.apps.RulesConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

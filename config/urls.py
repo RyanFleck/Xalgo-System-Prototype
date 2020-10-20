@@ -22,6 +22,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path("apps/", include("xalgo_system.react_apps.urls", namespace="apps")),
     path("api/", include("xalgo_system.jwt_auth.urls", namespace="jwt_auth")),
+    path("rules/", include("xalgo_system.rules.urls", namespace="rules")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS

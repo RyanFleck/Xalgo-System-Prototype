@@ -1,4 +1,5 @@
 # General
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
+DJANGO_READ_DOT_ENV_FILE=True
 IPYTHONDIR=/app/.ipython
