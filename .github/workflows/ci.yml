@@ -55,13 +55,13 @@ jobs:
         run:  docker-compose -f development.yml build
 
       - name: Make DB Migrations
-        run:  docker-compose -f development.yml run --rm django-xa python manage.py migrate
+        run:  docker-compose -f development.yml run --rm django python manage.py migrate
 
       - name: Run the Stack
         run:  docker-compose -f development.yml up -d
 
       - name: Run Django Tests
-        run:  docker-compose -f development.yml exec -e DATABASE_URL=${DATABASE_URL} -T django-xa pytest
+        run:  docker-compose -f development.yml exec -e DATABASE_URL=${DATABASE_URL} -T django pytest
 
       - name: Tear down the Stack
         run:  docker-compose -f development.yml down
