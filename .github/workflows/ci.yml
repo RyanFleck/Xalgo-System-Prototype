@@ -44,7 +44,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: "postgresql://JlieBPwWambcqHiOtqkcFMVpuWLMeKRZ:pP9iC3wiWbXBYjDDPApDnMJ2h884uSLQeQPcxaS2NLCksV94JineNKnq3Sx3gKnl@postgres/xalgo_system"
+      DATABASE_URL: "postgresql://JlieBPwWambcqHiOtqkcFMVpuWLMeKRZ:pP9iC3wiWbXBYjDDPApDnMJ2h884uSLQeQPcxaS2NLCksV94JineNKnq3Sx3gKnl@postgres-xa/xalgo_system"
       USE_DOCKER: "yes"
 
     steps:
