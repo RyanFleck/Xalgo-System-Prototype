@@ -6,7 +6,7 @@ from xalgo_system.rules.views import RuleViewSet
 app_name = "rules"
 
 router = DefaultRouter()
-router.register(r"rules", RuleViewSet, basename="rules")
+router.register(r"rule", RuleViewSet, basename="rule")
 
 urlpatterns = [
     path("", include(router.urls)),

@@ -6,3 +6,5 @@ from xalgo_system.rules.models import Rule
 class RuleSerializer(ModelSerializer):
     class Meta:
         model = Rule
+        fields = "__all__"
+        read_only_fields = ["rule_creator", "forked_from", "editors"]

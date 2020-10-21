@@ -14,3 +14,12 @@ class RuleViewSet(ModelViewSet):
 
     def get_queryset(self):
         return Rule.objects.filter(rule_creator=self.request.user)
+
+    def perform_create(self, serializer):
+        rule = serializer.save()
+        rule.rule_creator = self.request.user
+        rule.editors.add(self.request.user)
+        rule.save()
+
+
+# class QueryRulesViewSet(Mo)
