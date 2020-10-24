@@ -1,3 +1,4 @@
+import json
 from typing import Any, Dict
 
 from django.views.generic import TemplateView
@@ -56,7 +57,7 @@ class SingleRuleView(TemplateView):
         rule = Rule.objects.get(id=rule_id)
         context["rule"] = rule
         context["creator"] = rule.rule_creator
-        context["content"] = rule.primary_content
+        context["content"] = json.dumps(rule.primary_content.body, indent=2)
         return context
 
 

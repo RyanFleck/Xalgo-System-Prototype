@@ -14,3 +14,4 @@ class RuleContentSerializer(ModelSerializer):
     class Meta:
         model = RuleContent
         fields = "__all__"
+        read_only_fields = ["parent_rule"]
