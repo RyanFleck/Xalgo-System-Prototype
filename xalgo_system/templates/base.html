@@ -13,7 +13,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
 
-  <link href="{% static 'images/favicons/favicon.ico' %}" rel="icon">
+  <link href="{% static 'favicon.ico' %}" rel="icon">
+
+  <link href="{% static 'apple-touch-icon.png' %}" rel="apple-touch-icon" sizes="180x180">
+  <link href="{% static 'favicon-32x32.png' %}" rel="icon" sizes="32x32" type="image/png">
+  <link href="{% static 'favicon-16x16.png' %}" rel="icon" sizes="16x16" type="image/png">
+  <link href="{% static 'site.webmanifest' %}" rel="manifest">
 
   {% block css %}
 

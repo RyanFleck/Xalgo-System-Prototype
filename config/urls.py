@@ -31,7 +31,7 @@ urlpatterns = [
         name="statistics",
     ),
     path(
-        "rule/<uuid:id>/",
+        "rule/<uuid:rule_id>/",
         single_rule_view,
         name="view-rule",
     ),

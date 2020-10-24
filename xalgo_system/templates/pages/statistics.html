@@ -29,6 +29,7 @@
     UUID:
     </span>
     <code>{{ user.id }}</code> <br/>
+    <br />
   </li>
   {% endfor %}
 </ul>
@@ -45,13 +46,21 @@
     <a href="{% url 'view-rule' rule.id %}">View Rule</a>
     <br/>
     <span class="text-info">
+    Description:
+    </span>
+    {{ rule.description }}
+    <br />
+    <span class="text-info">
     UUID:
     </span>
     <code>{{ rule.id }}</code> <br/>
     <span class="text-info">
-    Description:
+    Creator:
     </span>
-    {{ rule.description }}
+    {{ rule.rule_creator.username }}
+    <span class="text-secondary">{{ rule.rule_creator.email }} </span>
+    <code>{{rule.rule_creator.id}} </code> <br/>
+    <br />
   </li>
   {% endfor %}
 </ol>

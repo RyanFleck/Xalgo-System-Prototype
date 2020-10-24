@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
 from xalgo_system.rules.models import Rule, RuleContent
-from xalgo_system.rules.serializers import RuleSerializer
+from xalgo_system.rules.serializers import RuleContentSerializer, RuleSerializer
 
 
 class RuleViewSet(ModelViewSet):
@@ -33,13 +33,29 @@ class RuleViewSet(ModelViewSet):
         rule.save()
 
 
+class RuleContentViewSet(ModelViewSet):
+
+    serializer_class = RuleContentSerializer
+    authentication_classes = [TokenAuthentication, SessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return RuleContent.objects.filter(parent_rule__rule_creator=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
 class SingleRuleView(TemplateView):
+    """Displays the rule info and primary content of a single rule."""
+
     template_name = "pages/rule.html"
 
-    def get_context_data(self, id: str, **kwargs: Any) -> Dict[str, Any]:
+    def get_context_data(self, rule_id: str, **kwargs: Any) -> Dict[str, Any]:
         context = super(SingleRuleView, self).get_context_data()
-        rule = Rule.objects.get(id=id)
+        rule = Rule.objects.get(id=rule_id)
         context["rule"] = rule
+        context["creator"] = rule.rule_creator
         context["content"] = rule.primary_content
         return context
 
