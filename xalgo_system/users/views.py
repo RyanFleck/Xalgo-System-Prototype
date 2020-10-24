@@ -1,9 +1,13 @@
+from typing import Any, Dict
+
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView
+from django.views.generic import DetailView, RedirectView, TemplateView, UpdateView
+
+from xalgo_system.rules.models import Rule
 
 User = get_user_model()
 
@@ -48,3 +52,18 @@ class UserRedirectView(LoginRequiredMixin, RedirectView):
 
 
 user_redirect_view = UserRedirectView.as_view()
+
+
+class SystemStatsView(TemplateView):
+    template_name = "pages/statistics.html"
+
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super(SystemStatsView, self).get_context_data()
+
+        context["users"] = User.objects.all().only("name", "email")
+        context["rules"] = Rule.objects.all().only("rule_creator")
+
+        return context
+
+
+system_stats_view = SystemStatsView.as_view()

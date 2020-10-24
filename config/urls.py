@@ -7,6 +7,8 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
+from xalgo_system.users.views import system_stats_view
+
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
@@ -21,6 +23,11 @@ urlpatterns = [
         "terms-of-service/",
         TemplateView.as_view(template_name="pages/terms_of_service.html"),
         name="terms-of-service",
+    ),
+    path(
+        "statistics/",
+        system_stats_view,
+        name="statistics",
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),

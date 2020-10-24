@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<br />
+<h1>DevRM System Statistics</h1>
+<p>
+  Listed here are links to the public rules and profiles currently stored
+  within this deployed instance of <b>XalgoDevRM</b>. Please do not attempt
+  to solicit the users listed below unnecessarily.
+</p>
+<h2>Users</h2>
+<ul>
+{% for user in users %}
+<li>
+  {{user.name}}
+  {{ user.email }}
+</li>
+{% endfor %}
+</ul>
+<h2>Rules</h2>
+{% endblock content %}
