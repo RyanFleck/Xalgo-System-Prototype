@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <br/>
-<h1>DevRM System Statistics</h1>
+<h1>System Statistics</h1>
 <p>
   Listed here are links to the public rules and profiles currently stored
   within this deployed instance of <b>XalgoDevRM</b>. Please do not attempt
@@ -42,8 +42,6 @@
     Name:
     </span>
     <b>{{ rule.name }}</b>
-    &middot;
-    <a href="{% url 'view-rule' rule.id %}">View Rule</a>
     <br/>
     <span class="text-info">
     Description:
@@ -60,6 +58,8 @@
     {{ rule.rule_creator.username }}
     <span class="text-secondary">{{ rule.rule_creator.email }} </span>
     <code>{{rule.rule_creator.id}} </code> <br/>
+    <a href="{% url 'view-rule' rule.id %}">View Rule Content</a>
+    <br />
     <br />
   </li>
   {% endfor %}
