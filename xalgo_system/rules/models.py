@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import JSONField
 from django.db.models import (
     CASCADE,
     SET_NULL,
+    CharField,
     DateTimeField,
     ForeignKey,
     ManyToManyField,
@@ -25,6 +26,10 @@ class Rule(Model):
     rule_creator = ForeignKey(
         to=User, on_delete=SET_NULL, null=True, blank=True, related_name="created_rules"
     )
+
+    # Simple Properties
+    name = CharField(max_length=200)
+    description = CharField(max_length=1000)
 
     # The set of editors can be modified by the creator.
     editors = ManyToManyField(to=User, related_name="editable_rules")

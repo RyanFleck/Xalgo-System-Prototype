@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<br />
+<br/>
 <h1>DevRM System Statistics</h1>
 <p>
   Listed here are links to the public rules and profiles currently stored
@@ -8,13 +8,51 @@
   to solicit the users listed below unnecessarily.
 </p>
 <h2>Users</h2>
+<p>All of the rule makers using the XalgoDevRM prototype:</p>
 <ul>
-{% for user in users %}
-<li>
-  {{user.name}}
-  {{ user.email }}
-</li>
-{% endfor %}
+  {% for user in users %}
+  <li>
+    <span class="text-info">
+    Name:
+    </span>
+    {% if user.name %}
+    <b>{{ user.name }}</b>
+    {% else %}
+    <b>Anonymous</b>
+    {% endif %}
+    <br/>
+    <span class="text-info">
+    Email:
+    </span>
+    <code>{{ user.email }}</code> <br/>
+    <span class="text-info">
+    UUID:
+    </span>
+    <code>{{ user.id }}</code> <br/>
+  </li>
+  {% endfor %}
 </ul>
 <h2>Rules</h2>
+<p>All of rules written within the XalgoDevRM prototype:</p>
+<ol>
+  {% for rule in rules %}
+  <li>
+    <span class="text-info">
+    Name:
+    </span>
+    <b>{{ rule.name }}</b>
+    &middot;
+    <a href="{% url 'view-rule' rule.id %}">View Rule</a>
+    <br/>
+    <span class="text-info">
+    UUID:
+    </span>
+    <code>{{ rule.id }}</code> <br/>
+    <span class="text-info">
+    Description:
+    </span>
+    {{ rule.description }}
+  </li>
+  {% endfor %}
+</ol>
 {% endblock content %}

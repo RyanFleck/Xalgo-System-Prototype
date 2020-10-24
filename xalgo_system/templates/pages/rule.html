@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ rule.name }}</h1>
+<span class="text-info">
+UUID:
+</span>
+<code>{{ rule.id }}</code> <br/>
+<span class="text-info">
+Created:
+</span>
+<b>{{ rule.created }} UTC</b> <br/>
+<span class="text-info">
+Description:
+</span>
+{{ rule.description }}
+
+<br />
+
+<span class="text-info">
+Content:
+</span>
+<pre>
+  <code>
+    {{ content.body }}
+  </code>
+</pre>
+
+
+
+{% endblock content %}

@@ -7,4 +7,4 @@ class RuleSerializer(ModelSerializer):
     class Meta:
         model = Rule
         fields = "__all__"
-        read_only_fields = ["rule_creator", "forked_from", "editors"]
+        read_only_fields = ["rule_creator", "forked_from", "editors", "primary_content"]

@@ -7,6 +7,7 @@ from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
+from xalgo_system.rules.views import single_rule_view
 from xalgo_system.users.views import system_stats_view
 
 urlpatterns = [
@@ -28,6 +29,11 @@ urlpatterns = [
         "statistics/",
         system_stats_view,
         name="statistics",
+    ),
+    path(
+        "rule/<uuid:id>/",
+        single_rule_view,
+        name="view-rule",
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
