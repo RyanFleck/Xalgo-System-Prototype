@@ -1,56 +1,53 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import GridLoader from "react-spinners/GridLoader";
 import Axios from "axios";
 import XalgoRM from "./XalgoRM";
 
-let rules = null;
-let user = null;
-
 function App() {
   const [username, setUsername] = useState(null);
   const [user, setUser] = useState(null);
-  const [rules, setRules] = useState(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    Axios.get("/rest-auth/user")
-      .then((res) => {
-        setUser(res.data);
-        setUsername(res.data.username);
-        console.log(`User ${res.data.username} is authenticated.`);
-        setReady(true);
-      })
-      .catch((err) => {
-        const status = err.response.status;
-        if (status === 403) {
-          console.log(`Failed to authenticate user: ${status}`);
-        } else {
-          console.log(`Error while getting user info: ${status}`);
-        }
-        setReady(true);
-      });
+    setTimeout(() => {
+      Axios.get("/rest-auth/user")
+        .then((res) => {
+          setUser(res.data);
+          setUsername(res.data.username);
+          console.log(`User ${res.data.username} is authenticated.`);
+          setReady(true);
+        })
+        .catch((err) => {
+          const status = err.response.status;
+          if (status === 403) {
+            console.log(`Failed to authenticate user: ${status}`);
+          } else {
+            console.log(`Error while getting user info: ${status}`);
+          }
+          setReady(true);
+        });
+    }, 1500);
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {!ready ? (
-          <div className="loading">
-            <GridLoader size={20} margin={15} />
+    <div className="application-wrapper">
+      {!ready ? (
+        <div className="loading-wrapper">
+          <div className="grid-loader">
+            <GridLoader size={20} margin={15} className="grid-loader-spinner" />
           </div>
-        ) : (
-          <div className="signed-in">
-            {username === null ? (
-              <a className="App-link" href="/accounts/login">
-                Please Log In
-              </a>
-            ) : (
-              <XalgoRM user={user} username={username} rules={rules} />
-            )}
-          </div>
-        )}
-      </header>
+        </div>
+      ) : (
+        <div className="signed-in">
+          {username === null ? (
+            <a className="App-link" href="/accounts/login">
+              Please Log In
+            </a>
+          ) : (
+            <XalgoRM user={user} username={username} />
+          )}
+        </div>
+      )}
     </div>
   );
 }
