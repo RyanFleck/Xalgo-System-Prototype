@@ -94,11 +94,7 @@ export default class Navigation extends React.Component {
         >
           <Box>
             <Flex alignItems="center">
-              <img
-                src={`${process.env.PUBLIC_URL}/static/icon.png`}
-                width="40px"
-                alt="xalgorithms logo"
-              />
+              <img src={`${process.env.PUBLIC_URL}/icon.png`} width="40px" alt="xalgorithms logo" />
               <Link to="/apps/rm" style={styleNavlink}>
                 <Text variant="formtitle" marginLeft="8px">
                   XRADS
