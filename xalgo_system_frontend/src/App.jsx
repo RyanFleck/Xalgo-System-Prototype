@@ -3,9 +3,13 @@ import GridLoader from 'react-spinners/GridLoader';
 import Axios from 'axios';
 import XalgoRM from './XalgoRM';
 
+Axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+Axios.defaults.xsrfCookieName = 'XCSRF-TOKEN';
+
 function App() {
   const [username, setUsername] = useState(null);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -14,17 +18,34 @@ function App() {
         .then((res) => {
           setUser(res.data);
           setUsername(res.data.username);
-          console.log(`User ${res.data.username} is authenticated.`);
-          setReady(true);
+          Axios.get('/apps/token/')
+            .then((res) => {
+              setToken(res.data.token);
+              console.log(`Token is ${res.data.token}`);
+              setReady(true);
+            })
+            .catch((err) => {
+              if (err.response && err.response.hasOwnProperty('status')) {
+                const status = err.response.status;
+                if (status === 403) {
+                  console.log(`Failed to get token ${status}`);
+                } else {
+                  console.log(`Error while getting token: ${status}`);
+                }
+                setReady(true);
+              }
+            });
         })
         .catch((err) => {
-          const status = err.response.status;
-          if (status === 403) {
-            console.log(`Failed to authenticate user: ${status}`);
-          } else {
-            console.log(`Error while getting user info: ${status}`);
+          if (err.response && err.response.hasOwnProperty('status')) {
+            const status = err.response.status;
+            if (status === 403) {
+              console.log(`Failed to authenticate user: ${status}`);
+            } else {
+              console.log(`Error while getting user info: ${status}`);
+            }
+            setReady(true);
           }
-          setReady(true);
         });
     }, 50);
   }, []);
@@ -44,7 +65,7 @@ function App() {
               Please Log In
             </a>
           ) : (
-            <XalgoRM user={user} username={username} />
+            <XalgoRM user={user} username={username} token={token} refresh={''} />
           )}
         </div>
       )}

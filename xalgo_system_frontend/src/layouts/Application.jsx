@@ -12,6 +12,7 @@ import Editor from './Editor';
 import Landing from './Landing';
 import Login from './Login';
 import Theme from '../components/patterns/Theme';
+import NewRule from './NewRule';
 
 // other components
 import ScrollUp from './components/ScrollUp';
@@ -61,7 +62,7 @@ export default class Application extends React.Component {
   }
 
   render() {
-    const { username, user } = this.props;
+    const { username, user, token, refresh } = this.props;
     const { authenticated, userRules, userInfo } = this.state;
     return (
       <ScrollUp>
@@ -89,13 +90,24 @@ export default class Application extends React.Component {
                 user={user}
               />
               <Editor
-                path="/editor/*"
+                path="/editor/:ruleUUID"
                 authenticated={authenticated}
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+              />
+              <NewRule
+                path="/editor"
+                authenticated={authenticated}
+                userRules={userRules}
+                userInfo={userInfo}
+                toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
+                token={token}
+                refresh={refresh}
               />
               <Login
                 path="/login"

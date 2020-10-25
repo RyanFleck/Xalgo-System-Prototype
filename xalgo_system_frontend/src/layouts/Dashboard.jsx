@@ -87,7 +87,7 @@ export default class Dashboard extends React.Component {
                   ) : (
                     <div>
                       <Flex alignitems="center">
-                        <BarLoader width={200} />
+                        <BarLoader width={320} />
                       </Flex>
                     </div>
                   )}

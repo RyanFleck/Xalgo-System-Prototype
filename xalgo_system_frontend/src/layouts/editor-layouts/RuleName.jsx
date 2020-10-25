@@ -4,12 +4,14 @@ import { toast } from 'react-toastify';
 
 // rm-components
 import Box from '../../components/layout/Box';
-import Grid from '../../components/layout/Grid';
 import Text from '../../components/primitives/Text';
 import Button from '../../components/primitives/Button';
 import Flex from '../../components/layout/Flex';
 import InputField from '../../components/patterns/InputField';
 import Input from '../../components/primitives/Input';
+import Axios from 'axios';
+
+import cookie from 'react-cookies';
 
 // style
 const inputHold = {
@@ -27,6 +29,7 @@ export default class RuleName extends React.Component {
     this.state = {
       name: '',
       description: '',
+      createEnabled: true,
     };
 
     this.saveAndRedirect = this.saveAndRedirect.bind(this);
@@ -38,28 +41,9 @@ export default class RuleName extends React.Component {
    * Set the local state from editor state.
    */
   componentDidMount() {
-    this.setNameAndDescFromProps();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.rule !== this.props.rule) {
-      this.setNameAndDescFromProps();
-    }
-  }
-
-  setNameAndDescFromProps() {
-    const { ruleName, ruleDescription } = this.props.rule.metadata;
-    if (ruleName && ruleDescription) {
-      console.log(
-        `RuleName.jsx: Loading rule info from props:\nTitle: ${ruleName}\nDescription: ${ruleDescription}`
-      );
-    } else {
-      console.log('RuleName.jsx: Name and description props delivered empty.');
-    }
-    this.setState({
-      name: ruleName,
-      description: ruleDescription,
-    });
+    console.log('All cookies:');
+    console.log(cookie.loadAll());
+    console.log(document.cookie);
   }
 
   handleNameChange(event) {
@@ -76,12 +60,41 @@ export default class RuleName extends React.Component {
   saveAndRedirect() {
     if (this.state.name && this.state.description) {
       console.log('RuleName.jsx Name saved, redirecting to editor landing.');
-      const meta = this.props.rule.metadata;
-      meta.ruleName = this.state.name;
-      meta.ruleDescription = this.state.description;
-      toast('Saved Name and Description');
-      this.props.updateRule(meta, 'metadata');
-      this.props.navigate('/editor/editor-landing');
+      console.log(`Name: ${this.state.name}\nDesc: ${this.state.description}`);
+      const token = cookie.load('csrftoken');
+      console.log(`Got token: ${this.props.token}`);
+      Axios.post(
+        '/rules/rule/',
+        {
+          name: this.state.name,
+          description: this.state.description,
+        },
+        {
+          headers: {
+            'X-CSRF-TOKEN': token,
+          },
+        }
+      )
+        .then((res) => {
+          if (res.data && res.data.id) {
+            toast(`Created rule with id ${res.data.id}`);
+          } else {
+            toast.error('Failed to create rule.');
+          }
+        })
+        .catch((err) => {
+          if (err.response && err.response.hasOwnProperty('status')) {
+            const status = err.response.status;
+            if (status === 403) {
+              console.log(`Failed to authenticate user: ${status}`);
+              console.log(err.response);
+              console.log(err.response);
+            } else {
+              console.log(`Error while getting user info: ${status}`);
+              console.log(err.response);
+            }
+          }
+        });
     } else {
       toast.error('Please enter a valid name and description for the rule.');
     }
@@ -89,35 +102,38 @@ export default class RuleName extends React.Component {
 
   render() {
     return (
-      <Grid gridTemplateColumns="50% 50%">
-        <div style={inputHold}>
-          <Flex alignItems="center" justifyContent="center">
-            <div style={widthHold}>
-              <Text variant="subtitle">Every rule begins with plain language sentences. </Text>
-              <Box m={1} />
-              <Text>
-                Use this field to write or paste the natural language statement of the rule you are
-                working on. State in a simple factual way what this rule requires, and what
-                assertions it will make.
-              </Text>
-              <Box m={2} />
-              <Text variant="formtitle">Rule Name</Text>
-              <Box m={1} />
-              <Input value={this.state.name} onChange={this.handleNameChange} />
-              <Box m={2} />
-              <Text variant="formtitle">Rule Description</Text>
-              <Box m={1} />
-              <InputField value={this.state.description} onChange={this.handleDescriptionChange} />
-              <Box m={3} />
-              <Button variant="wide" onClick={this.saveAndRedirect}>
-                Start
-              </Button>
-            </div>
-            <div style={inputHold} />
-          </Flex>
-        </div>
-        <Box borderLeft="1px solid #efefef" />
-      </Grid>
+      <div style={inputHold}>
+        <Flex alignItems="center" justifyContent="center">
+          <div style={widthHold}>
+            <Text variant="subtitle">Create a New Rule</Text>
+            <Box m={1} />
+            <Text>
+              Use these fields to write or paste the natural language statement of the rule you are
+              working on. State in a simple factual way what this rule requires, and what assertions
+              it will make.
+            </Text>
+            <Box m={1} />
+            <Text>To edit an existing rule, view your dashboard.</Text>
+            <Box m={2} />
+            <Text variant="formtitle">Rule Name</Text>
+            <Box m={1} />
+            <Input value={this.state.name} onChange={this.handleNameChange} />
+            <Box m={2} />
+            <Text variant="formtitle">Rule Description</Text>
+            <Box m={1} />
+            <InputField value={this.state.description} onChange={this.handleDescriptionChange} />
+            <Box m={3} />
+            <Button
+              variant="wide"
+              disabled={!this.state.createEnabled}
+              onClick={this.saveAndRedirect}
+            >
+              Create Your New Rule
+            </Button>
+          </div>
+          <div style={inputHold} />
+        </Flex>
+      </div>
     );
   }
 }

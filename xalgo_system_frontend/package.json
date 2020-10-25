@@ -9,11 +9,15 @@
     "@testing-library/user-event": "^7.1.2",
     "@xalgorithms/rm-components": "^0.0.12",
     "axios": "^0.21.0",
+    "js-cookie": "^2.2.1",
     "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-spinners": "^0.9.0",
     "react-toastify": "^6.0.9",
+    "universal-cookie": "^4.0.4",
     "xalgo-rule-processor": "^0.0.12"
   },
   "scripts": {
