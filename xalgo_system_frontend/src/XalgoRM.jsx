@@ -2,10 +2,10 @@ import React from 'react';
 import Application from './layouts/Application';
 import { ToastContainer, Slide } from 'react-toastify';
 
-function XalgoRM({ user, username, rules }) {
+function XalgoRM({ user, username }) {
   return (
     <div className="XalgoRM">
-      <Application user={user} username={username} rules={rules} />
+      <Application user={user} username={username} />
       <ToastContainer
         position="top-center"
         autoClose={3000}

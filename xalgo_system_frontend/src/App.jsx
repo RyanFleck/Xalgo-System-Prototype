@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import GridLoader from "react-spinners/GridLoader";
-import Axios from "axios";
-import XalgoRM from "./XalgoRM";
+import React, { useEffect, useState } from 'react';
+import GridLoader from 'react-spinners/GridLoader';
+import Axios from 'axios';
+import XalgoRM from './XalgoRM';
 
 function App() {
   const [username, setUsername] = useState(null);
@@ -10,7 +10,7 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      Axios.get("/rest-auth/user")
+      Axios.get('/rest-auth/user')
         .then((res) => {
           setUser(res.data);
           setUsername(res.data.username);
@@ -26,7 +26,7 @@ function App() {
           }
           setReady(true);
         });
-    }, 1500);
+    }, 50);
   }, []);
 
   return (

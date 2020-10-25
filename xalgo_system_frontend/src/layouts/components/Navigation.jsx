@@ -80,7 +80,7 @@ export default class Navigation extends React.Component {
   }
 
   render() {
-    const { authenticated } = this.props;
+    const { authenticated, username, user } = this.props;
     return (
       <div style={styleHold}>
         <Grid
@@ -175,7 +175,16 @@ export default class Navigation extends React.Component {
                   </Button>
                 </Flex>
                 <Box p={2}></Box>
-                <Text color="error">Log Out</Text>
+                <Text>{username}</Text>
+                <Text>{user.email}</Text>
+                <Box p={2}></Box>
+                <a href={`/user/${username}`} style={{ textDecoration: 'none', color: 'black' }}>
+                  <Text>Profile</Text>
+                </a>
+                <Box p={1}></Box>
+                <a href="/accounts/logout" style={{ textDecoration: 'none' }}>
+                  <Text color="error">Log Out</Text>
+                </a>
               </Box>
             </Modal>
           </Box>

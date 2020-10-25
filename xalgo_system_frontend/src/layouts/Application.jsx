@@ -61,11 +61,12 @@ export default class Application extends React.Component {
   }
 
   render() {
+    const { username, user } = this.props;
     const { authenticated, userRules, userInfo } = this.state;
     return (
       <ScrollUp>
         <Theme>
-          <Navigation authenticated={authenticated} />
+          <Navigation authenticated={authenticated} username={username} user={user} />
 
           <Box style={baseBoxStyle}>
             <Router primary={false} basepath="/apps/rm">
@@ -75,6 +76,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
               <Browse
                 path="/browse"
@@ -82,6 +85,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
               <Editor
                 path="/editor/*"
@@ -89,6 +94,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
               <Login
                 path="/login"
@@ -96,6 +103,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
               <Query
                 path="/query"
@@ -103,6 +112,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
               <Dashboard
                 path="/dashboard"
@@ -110,6 +121,8 @@ export default class Application extends React.Component {
                 userRules={userRules}
                 userInfo={userInfo}
                 toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
               />
             </Router>
           </Box>
