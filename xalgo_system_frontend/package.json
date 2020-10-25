@@ -13,6 +13,7 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "react-spinners": "^0.9.0",
+    "react-toastify": "^6.0.9",
     "xalgo-rule-processor": "^0.0.12"
   },
   "scripts": {
