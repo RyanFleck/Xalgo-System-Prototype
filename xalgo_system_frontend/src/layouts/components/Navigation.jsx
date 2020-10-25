@@ -94,7 +94,13 @@ export default class Navigation extends React.Component {
         >
           <Box>
             <Flex alignItems="center">
-              <img src={`${process.env.PUBLIC_URL}/icon.png`} width="40px" alt="xalgorithms logo" />
+              <img
+                src={
+                  'https://raw.githubusercontent.com/RyanFleck/Xalgo-System-Prototype/master/xalgo_system_frontend/public/Icon.png'
+                }
+                width="40px"
+                alt="xalgorithms logo"
+              />
               <Link to="/apps/rm" style={styleNavlink}>
                 <Text variant="formtitle" marginLeft="8px">
                   XRADS
@@ -178,7 +184,7 @@ export default class Navigation extends React.Component {
                 <Text>{username}</Text>
                 <Text>{user.email}</Text>
                 <Box p={2}></Box>
-                <a href={`/user/${username}`} style={{ textDecoration: 'none', color: 'black' }}>
+                <a href={`/users/${username}`} style={{ textDecoration: 'none', color: 'black' }}>
                   <Text>Profile</Text>
                 </a>
                 <Box p={1}></Box>
