@@ -20,7 +20,7 @@ export default class Landing extends React.Component {
   }
 
   render() {
-    const { user, username } = this.props;
+    const { user } = this.props;
     return (
       <ScrollUp>
         <Grid height="80vh" gridTemplateColumns="400px auto">
@@ -38,6 +38,7 @@ export default class Landing extends React.Component {
               <Text color="primary">
                 <a
                   target="_blank"
+                  rel="noopener noreferrer"
                   href="https://github.com/RyanFleck/Xalgo-System-Prototype/issues"
                 >
                   Xalgo-System-Prototype/issues
