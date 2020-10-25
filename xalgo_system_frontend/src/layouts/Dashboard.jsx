@@ -31,7 +31,6 @@ export default class Dashboard extends React.Component {
     Axios.get('/rules/rule')
       .then((res) => {
         this.setState({ rules: res.data, ready: true });
-        console.log(res.data);
       })
       .catch((err) => {
         const status = err.response.status;
@@ -74,7 +73,6 @@ export default class Dashboard extends React.Component {
                   {this.state.ready ? (
                     <div>
                       {this.state.rules.map((e, i) => {
-                        console.log(e);
                         return (
                           <Card
                             key={i}
