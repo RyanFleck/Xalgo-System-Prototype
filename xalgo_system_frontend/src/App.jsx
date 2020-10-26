@@ -21,7 +21,6 @@ function App() {
           Axios.get('/apps/token/')
             .then((res) => {
               setToken(res.data.token);
-              console.log(`Token is ${res.data.token}`);
               setReady(true);
             })
             .catch((err) => {

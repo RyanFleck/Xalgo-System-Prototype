@@ -79,6 +79,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
               <Browse
                 path="/browse"
@@ -88,6 +90,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
               <Editor
                 path="/editor/:ruleUUID"
@@ -97,6 +101,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
               <NewRule
                 path="/editor"
@@ -117,6 +123,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
               <Query
                 path="/query"
@@ -126,6 +134,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
               <Dashboard
                 path="/dashboard"
@@ -135,6 +145,8 @@ export default class Application extends React.Component {
                 toggleAuth={this.toggleLoggedin}
                 username={username}
                 user={user}
+                token={token}
+                refresh={refresh}
               />
             </Router>
           </Box>
