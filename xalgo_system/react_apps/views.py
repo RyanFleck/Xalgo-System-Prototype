@@ -28,7 +28,15 @@ class XalgoRMView(View, LoginRequiredMixin):
         try:
 
             with open(self.index_file_path) as f:
-                return HttpResponse(f.read())
+                file = f.read()
+                response = HttpResponse(file)
+                print(response)
+                print(response.cookies)
+                token = get_token(request)
+                response["csrfcookie"] = token
+                print(response.has_header("csrfcookie"))
+                print(f"Token: {token}")
+                return response
         except FileNotFoundError:
             raise Exception(
                 "The production build of this react app could not be found."

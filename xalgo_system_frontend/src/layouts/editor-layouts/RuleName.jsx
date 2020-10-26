@@ -12,6 +12,8 @@ import Input from '../../components/primitives/Input';
 import Axios from 'axios';
 
 import cookie from 'react-cookies';
+import { navigate } from '@reach/router';
+import { Link } from '@reach/router';
 
 // style
 const inputHold = {
@@ -59,9 +61,7 @@ export default class RuleName extends React.Component {
    */
   saveAndRedirect() {
     if (this.state.name && this.state.description) {
-      console.log('RuleName.jsx Name saved, redirecting to editor landing.');
       console.log(`Name: ${this.state.name}\nDesc: ${this.state.description}`);
-      const token = cookie.load('csrftoken');
       console.log(`Got token: ${this.props.token}`);
       Axios.post(
         '/rules/rule/',
@@ -71,13 +71,15 @@ export default class RuleName extends React.Component {
         },
         {
           headers: {
-            'X-CSRF-TOKEN': token,
+            'X-CSRFToken': this.props.token,
           },
         }
       )
         .then((res) => {
           if (res.data && res.data.id) {
-            toast(`Created rule with id ${res.data.id}`);
+            const msg = `Created rule with id ${res.data.id}`;
+            toast(msg);
+            navigate(`/apps/rm/editor/${res.data.id}`);
           } else {
             toast.error('Failed to create rule.');
           }
@@ -113,7 +115,9 @@ export default class RuleName extends React.Component {
               it will make.
             </Text>
             <Box m={1} />
-            <Text>To edit an existing rule, view your dashboard.</Text>
+            <Text>
+              To edit an existing rule, view your <Link to="/apps/rm/dashboard">dashboard</Link>.
+            </Text>
             <Box m={2} />
             <Text variant="formtitle">Rule Name</Text>
             <Box m={1} />
