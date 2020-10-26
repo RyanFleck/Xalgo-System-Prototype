@@ -54,9 +54,9 @@ export default class Dashboard extends React.Component {
                     <Text variant="formtitle">Editor</Text>
                     <Box p={2} />
                     <Box>
-                      <Link to="">
-                        <Text color="primary">Create Rule</Text>
-                      </Link>
+                      <Text color="primary">
+                        <Link to="/apps/rm/editor">Create Rule</Link>
+                      </Text>
                     </Box>
                     <Box marginTop={2}>
                       <Text color="textb">Create Table</Text>
