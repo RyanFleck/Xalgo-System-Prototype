@@ -14,6 +14,11 @@ import Axios from 'axios';
 
 import { navigate } from '@reach/router';
 import { generateNewRule } from 'xalgo-rule-processor/dist/rule';
+import axiosRetry from 'axios-retry';
+import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
+import { RuleSchema } from 'xalgo-rule-processor/dist/schema';
+
+axiosRetry(Axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 
 // style
 const inputHold = {
@@ -104,11 +109,18 @@ export default class RuleName extends React.Component {
           body.metadata.rule.description = this.state.description;
           body.metadata.rule.version = res.data.primary_content;
           body.path = res.data.id;
+          let body_enforced = body;
+          try {
+            body_enforced = enforceSchemaWithTables(RuleSchema, body);
+          } catch (e) {
+            toast.error('Rule did not pass schema checks.');
+            body_enforced = body;
+          }
           toast(msg);
           Axios.patch(
             `/rules/content/${res.data.primary_content}/`,
             {
-              body: body,
+              body: body_enforced,
             },
             {
               headers: {
@@ -120,7 +132,7 @@ export default class RuleName extends React.Component {
               const msg = `Created rule content version with id ${res.data.id}`;
               console.log(res.data);
               toast(msg);
-              navigate(`/apps/rm/editor/${res.data.id}`);
+              navigate(`/apps/rm/dashboard/`);
             } else {
               toast.error('Failed to create rule content.');
             }

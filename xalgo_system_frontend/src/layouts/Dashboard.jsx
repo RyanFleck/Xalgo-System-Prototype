@@ -89,7 +89,17 @@ export default class Dashboard extends React.Component {
   getRules() {
     Axios.get('/rules/rule')
       .then((res) => {
-        this.setState({ rules: res.data, ready: true });
+        const rules = res.data.sort((a, b) => {
+          let date_a = Date.parse(a.modified);
+          let date_b = Date.parse(b.modified);
+          const older = date_b - date_a;
+          console.log(`Comparing ${date_a} to ${date_b}, is older: ${older}`);
+          return older;
+        });
+        console.log('Sorted rules:');
+        console.log(rules);
+
+        this.setState({ rules: rules, ready: true });
       })
       .catch((err) => {
         const status = err.response.status;

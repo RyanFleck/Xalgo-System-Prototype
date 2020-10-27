@@ -6,6 +6,11 @@ import XalgoRM from './XalgoRM';
 Axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 Axios.defaults.xsrfCookieName = 'XCSRF-TOKEN';
 
+if (!process.env.HEROKU) {
+  console.log('Deployed locally, use :8000 proxy.');
+  // Axios.defaults.baseURL = 'http://localhost:8000';
+}
+
 function App() {
   const [username, setUsername] = useState(null);
   const [user, setUser] = useState(null);
