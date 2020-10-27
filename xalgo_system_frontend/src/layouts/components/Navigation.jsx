@@ -50,32 +50,18 @@ export default class Navigation extends React.Component {
       isToggleAccount: false,
     };
     this.handleModal = this.handleModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.handleAccount = this.handleAccount.bind(this);
-    this.closeAccount = this.closeAccount.bind(this);
   }
 
   handleModal() {
     this.setState((state) => ({
-      isToggleOn: !false,
-    }));
-  }
-
-  closeModal() {
-    this.setState((state) => ({
-      isToggleOn: false,
+      isToggleOn: !state.isToggleOn,
     }));
   }
 
   handleAccount() {
     this.setState((state) => ({
-      isToggleAccount: !false,
-    }));
-  }
-
-  closeAccount() {
-    this.setState((state) => ({
-      isToggleAccount: false,
+      isToggleAccount: !state.isToggleAccount,
     }));
   }
 
@@ -172,11 +158,11 @@ export default class Navigation extends React.Component {
           <Box borderBottom="1px solid #efefef" />
           <Box borderBottom="1px solid #efefef" />
           <Box borderBottom="1px solid #efefef">
-            <Modal isOpen={!!this.state.isToggleAccount}>
+            <Modal isOpen={this.state.isToggleAccount}>
               <Box p={4} borderLeft="1px solid #efefef" bg="#fff">
                 <Flex justifyContent="space-between">
                   <Text variant="formtitle">Account Settings</Text>
-                  <Button variant="invisible" onClick={this.closeAccount}>
+                  <Button variant="invisible" onClick={this.handleAccount}>
                     <Icon name="ex" fill="text" />
                   </Button>
                 </Flex>
@@ -210,7 +196,7 @@ export default class Navigation extends React.Component {
               >
                 <Flex justifyContent="space-between">
                   <Text variant="sectiontitle">Upload Table</Text>
-                  <Button variant="invisible" onClick={this.closeModal}>
+                  <Button variant="invisible" onClick={this.handleModal}>
                     <Icon name="ex" />
                   </Button>
                 </Flex>
