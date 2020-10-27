@@ -249,7 +249,7 @@ export default class EditorV2 extends React.Component {
     console.error("This is a toy editor, you're not deleting anything.");
   }
 
-  persistRuleToStorage() {
+  persistRuleToStorage(showmsg = false) {
     console.log('Editor.jsx: Persisting rule to storage...');
     Axios.patch(
       `/rules/content/${this.state.primary_content_uuid}/`,
@@ -261,9 +261,14 @@ export default class EditorV2 extends React.Component {
           'X-CSRFToken': this.props.token,
         },
       }
-    ).then((res) => {
-      console.log('Data pushed.');
-    });
+    )
+      .then((res) => {
+        console.log('Data pushed.');
+        if (showmsg) toast(`Content UUID ${res.data.id} was saved successfully.`);
+      })
+      .catch((err) => {
+        toast.error(`The rule was not saved, please reload.`);
+      });
   }
 
   /**
@@ -314,6 +319,23 @@ export default class EditorV2 extends React.Component {
 
     return (
       <div>
+        <div
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            right: 0,
+            height: '100px',
+            width: '200px',
+          }}
+        >
+          <Button
+            onClick={() => {
+              this.persistRuleToStorage(true);
+            }}
+          >
+            Save Rule
+          </Button>
+        </div>
         <EditorLeft
           title={rule.metadata.rule.title}
           description={rule.metadata.rule.description}
