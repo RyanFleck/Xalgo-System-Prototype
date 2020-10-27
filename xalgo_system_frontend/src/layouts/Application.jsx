@@ -8,7 +8,7 @@ import Box from '../components/layout/Box';
 // Pages
 import Browse from './Browse';
 import Dashboard from './Dashboard';
-import Editor from './Editor';
+import EditorV1 from './EditorV1';
 import Landing from './Landing';
 import Login from './Login';
 import Theme from '../components/patterns/Theme';
@@ -93,7 +93,7 @@ export default class Application extends React.Component {
                 token={token}
                 refresh={refresh}
               />
-              <Editor
+              <EditorV1
                 path="/editor/:ruleUUID"
                 authenticated={authenticated}
                 userRules={userRules}
