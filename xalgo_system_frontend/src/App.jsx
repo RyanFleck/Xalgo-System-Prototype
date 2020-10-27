@@ -60,9 +60,21 @@ function App() {
       ) : (
         <div className="signed-in">
           {username === null ? (
-            <a className="App-link" href="/accounts/login">
-              Please Log In
-            </a>
+            <div>
+              <h1>
+                <b>428</b> Precondition Required: Log In.
+              </h1>
+              <p>
+                <a className="App-link" href="/accounts/login">
+                  Please Log In.
+                </a>
+                {' If using the development React build, go to '}
+                <a className="App-link" href="http://localhost:8000/accounts/login">
+                  localhost:8000/accounts/login
+                </a>
+                {' instead.'}
+              </p>
+            </div>
           ) : (
             <XalgoRM user={user} username={username} token={token} refresh={''} />
           )}

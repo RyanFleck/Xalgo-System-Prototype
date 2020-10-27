@@ -10,6 +10,15 @@ import Button from '../../components/primitives/Button';
 import Flex from '../../components/layout/Flex';
 import InputField from '../../components/patterns/InputField';
 import Input from '../../components/primitives/Input';
+<<<<<<< HEAD
+=======
+import Axios from 'axios';
+
+import cookie from 'react-cookies';
+import { navigate } from '@reach/router';
+import { Link } from '@reach/router';
+import { generateNewRule } from 'xalgo-rule-processor/dist/rule';
+>>>>>>> d76e3397523ebf0489d43eebae4727d0ba414d73
 
 // style
 const inputHold = {
@@ -75,6 +84,7 @@ export default class RuleName extends React.Component {
    */
   saveAndRedirect() {
     if (this.state.name && this.state.description) {
+<<<<<<< HEAD
       console.log('RuleName.jsx Name saved, redirecting to editor landing.');
       const meta = this.props.rule.metadata;
       meta.ruleName = this.state.name;
@@ -82,6 +92,55 @@ export default class RuleName extends React.Component {
       toast('Saved Name and Description');
       this.props.updateRule(meta, 'metadata');
       this.props.navigate('/editor/editor-landing');
+=======
+      console.log(`Name: ${this.state.name}\nDesc: ${this.state.description}`);
+      console.log(`Got token: ${this.props.token}`);
+      Axios.post(
+        '/rules/rule/',
+        {
+          name: this.state.name,
+          description: this.state.description,
+        },
+        {
+          headers: {
+            'X-CSRFToken': this.props.token,
+          },
+        }
+      ).then((res) => {
+        if (res.data && res.data.id) {
+          const msg = `Created rule with id ${res.data.id}`;
+          console.log(res.data);
+          const body = generateNewRule();
+          body.metadata.rule.title = this.state.name;
+          body.metadata.rule.description = this.state.description;
+          body.metadata.rule.version = res.data.primary_content;
+          body.path = res.data.id;
+          toast(msg);
+          Axios.patch(
+            `/rules/content/${res.data.primary_content}/`,
+            {
+              body: body,
+            },
+            {
+              headers: {
+                'X-CSRFToken': this.props.token,
+              },
+            }
+          ).then((res) => {
+            if (res.data && res.data.id) {
+              const msg = `Created rule content version with id ${res.data.id}`;
+              console.log(res.data);
+              toast(msg);
+              navigate(`/apps/rm/editor/${res.data.id}`);
+            } else {
+              toast.error('Failed to create rule content.');
+            }
+          });
+        } else {
+          toast.error('Failed to create rule.');
+        }
+      });
+>>>>>>> d76e3397523ebf0489d43eebae4727d0ba414d73
     } else {
       toast.error('Please enter a valid name and description for the rule.');
     }
