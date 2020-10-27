@@ -10,15 +10,10 @@ import Button from '../../components/primitives/Button';
 import Flex from '../../components/layout/Flex';
 import InputField from '../../components/patterns/InputField';
 import Input from '../../components/primitives/Input';
-<<<<<<< HEAD
-=======
 import Axios from 'axios';
 
-import cookie from 'react-cookies';
 import { navigate } from '@reach/router';
-import { Link } from '@reach/router';
 import { generateNewRule } from 'xalgo-rule-processor/dist/rule';
->>>>>>> d76e3397523ebf0489d43eebae4727d0ba414d73
 
 // style
 const inputHold = {
@@ -84,15 +79,6 @@ export default class RuleName extends React.Component {
    */
   saveAndRedirect() {
     if (this.state.name && this.state.description) {
-<<<<<<< HEAD
-      console.log('RuleName.jsx Name saved, redirecting to editor landing.');
-      const meta = this.props.rule.metadata;
-      meta.ruleName = this.state.name;
-      meta.ruleDescription = this.state.description;
-      toast('Saved Name and Description');
-      this.props.updateRule(meta, 'metadata');
-      this.props.navigate('/editor/editor-landing');
-=======
       console.log(`Name: ${this.state.name}\nDesc: ${this.state.description}`);
       console.log(`Got token: ${this.props.token}`);
       Axios.post(
@@ -140,7 +126,6 @@ export default class RuleName extends React.Component {
           toast.error('Failed to create rule.');
         }
       });
->>>>>>> d76e3397523ebf0489d43eebae4727d0ba414d73
     } else {
       toast.error('Please enter a valid name and description for the rule.');
     }
