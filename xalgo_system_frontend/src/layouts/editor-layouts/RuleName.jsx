@@ -14,6 +14,7 @@ import Axios from 'axios';
 import cookie from 'react-cookies';
 import { navigate } from '@reach/router';
 import { Link } from '@reach/router';
+import { generateNewRule } from 'xalgo-rule-processor/dist/rule';
 
 // style
 const inputHold = {
@@ -74,29 +75,40 @@ export default class RuleName extends React.Component {
             'X-CSRFToken': this.props.token,
           },
         }
-      )
-        .then((res) => {
-          if (res.data && res.data.id) {
-            const msg = `Created rule with id ${res.data.id}`;
-            toast(msg);
-            navigate(`/apps/rm/editor/${res.data.id}`);
-          } else {
-            toast.error('Failed to create rule.');
-          }
-        })
-        .catch((err) => {
-          if (err.response && err.response.hasOwnProperty('status')) {
-            const status = err.response.status;
-            if (status === 403) {
-              console.log(`Failed to authenticate user: ${status}`);
-              console.log(err.response);
-              console.log(err.response);
-            } else {
-              console.log(`Error while getting user info: ${status}`);
-              console.log(err.response);
+      ).then((res) => {
+        if (res.data && res.data.id) {
+          const msg = `Created rule with id ${res.data.id}`;
+          console.log(res.data);
+          const body = generateNewRule();
+          body.metadata.rule.title = this.state.name;
+          body.metadata.rule.description = this.state.description;
+          body.metadata.rule.version = res.data.primary_content;
+          body.path = res.data.id;
+          toast(msg);
+          Axios.patch(
+            `/rules/content/${res.data.primary_content}/`,
+            {
+              body: body,
+            },
+            {
+              headers: {
+                'X-CSRFToken': this.props.token,
+              },
             }
-          }
-        });
+          ).then((res) => {
+            if (res.data && res.data.id) {
+              const msg = `Created rule content version with id ${res.data.id}`;
+              console.log(res.data);
+              toast(msg);
+              navigate(`/apps/rm/editor/${res.data.id}`);
+            } else {
+              toast.error('Failed to create rule content.');
+            }
+          });
+        } else {
+          toast.error('Failed to create rule.');
+        }
+      });
     } else {
       toast.error('Please enter a valid name and description for the rule.');
     }
