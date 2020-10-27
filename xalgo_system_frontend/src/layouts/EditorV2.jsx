@@ -24,7 +24,21 @@ import {
   GuideLine,
 } from '../components';
 
-import { BlankRows, NameDescription, Metadata, RuleAuthor, RuleManager, InputSources, RuleMaintainer, DataSource, Time, StandardRoleName, InvolvedProduct, OutputPurpose, QualitativeWeights } from './editor-components';
+import {
+  BlankRows,
+  NameDescription,
+  Metadata,
+  RuleAuthor,
+  RuleManager,
+  InputSources,
+  RuleMaintainer,
+  DataSource,
+  Time,
+  StandardRoleName,
+  InvolvedProduct,
+  OutputPurpose,
+  QualitativeWeights,
+} from './editor-components';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -87,7 +101,7 @@ const emptyRule = generateNewRule();
  * The Editor component is the parent of all editing views, and is the
  * master source of information regarding the state of the rule.
  */
-export default class Editor extends React.Component {
+export default class EditorV2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -286,7 +300,6 @@ export default class Editor extends React.Component {
 
           <Box p={4}>
             <div style={fullheight}>
-
               {/* Rule Name */}
               {/* Rule Name */}
               {/* Rule Name */}
@@ -344,7 +357,7 @@ export default class Editor extends React.Component {
                 <Addbutton content="Standard Role Name" />
                 <InvolvedProduct />
                 <Addbutton content="Involved Product or Service" />
-              </GuideLine>  
+              </GuideLine>
 
               {/* Input filters */}
               {/* Input filters */}
@@ -352,7 +365,6 @@ export default class Editor extends React.Component {
               {/* Input filters */}
               {/* Input filters */}
               {/* Input filters */}
-
 
               {/* Input Output Table */}
               {/* Input Output Table */}
@@ -394,7 +406,7 @@ export default class Editor extends React.Component {
                         </Box>
                         <div style={rowWidth}>
                           <Button variant="invisible" onClick={this.addCase}>
-                            <Icon name="add" fill="#A3D8BE"/>
+                            <Icon name="add" fill="#A3D8BE" />
                           </Button>
                         </div>
                       </Flex>
@@ -493,7 +505,6 @@ export default class Editor extends React.Component {
               <GuideLine>
                 <QualitativeWeights />
               </GuideLine>
-
             </div>
           </Box>
           {/* End of the editor */}

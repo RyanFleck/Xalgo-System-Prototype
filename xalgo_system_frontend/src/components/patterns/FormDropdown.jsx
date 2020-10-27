@@ -28,9 +28,9 @@ function FormDropdown({ name, description, label, value, errormessage, options =
       </Flex>
       <Box padding={1} />
       <Dropdown>{renderOptions()}</Dropdown>
-      
-      {errormessage 
-        ? <div><Box padding={1} /><ErrorMessage message={errormessage}/></div> 
+
+      {errormessage
+        ? <div><Box padding={1} /><ErrorMessage message={errormessage}/></div>
         : <Modal/>
       }
     </Stack>

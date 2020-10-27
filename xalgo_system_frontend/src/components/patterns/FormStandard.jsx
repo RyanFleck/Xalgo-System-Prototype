@@ -26,8 +26,8 @@ function FormStandard({
         </Button>
       </Flex>
       <Box padding={1} />
-      {errormessage 
-        ? 
+      {errormessage
+        ?
           <Input
           value={value}
           onChange={onChange}
@@ -42,7 +42,7 @@ function FormStandard({
           onBlur={onBlur}
           placeholder={placeholder}
           />
-      } 
+      }
       {errormessage ? <ErrorMessage message={errormessage}/> : <Modal/>}
     </Stack>
   );

@@ -9,6 +9,7 @@ import Box from '../components/layout/Box';
 import Browse from './Browse';
 import Dashboard from './Dashboard';
 import EditorV1 from './EditorV1';
+import EditorV2 from './EditorV2';
 import Landing from './Landing';
 import Login from './Login';
 import Theme from '../components/patterns/Theme';
@@ -94,6 +95,17 @@ export default class Application extends React.Component {
                 refresh={refresh}
               />
               <EditorV1
+                path="/editor/v1/:ruleUUID"
+                authenticated={authenticated}
+                userRules={userRules}
+                userInfo={userInfo}
+                toggleAuth={this.toggleLoggedin}
+                username={username}
+                user={user}
+                token={token}
+                refresh={refresh}
+              />
+              <EditorV2
                 path="/editor/:ruleUUID"
                 authenticated={authenticated}
                 userRules={userRules}

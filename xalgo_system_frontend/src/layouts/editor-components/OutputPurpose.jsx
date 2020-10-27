@@ -80,7 +80,7 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
         <Box padding={1} />
         <FormDropdown
           name="What is the nature of this rule?"
-          description="Is this a directly implemented rule, a desription of a rule to be conformed with, or an empirical 
+          description="Is this a directly implemented rule, a desription of a rule to be conformed with, or an empirical
             fact about a rule?"
           options={[
             { value: 'imperative', label: 'imperative' },
