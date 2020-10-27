@@ -33,10 +33,6 @@ const holdModal = {
   boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.25)',
 };
 
-const holdwide = {
-  width: '100%',
-};
-
 const horizontalRule = {
   position: 'sticky',
   borderLeft: '1px solid #E7E7E7',
