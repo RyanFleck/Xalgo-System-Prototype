@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormStandard, Text, description } from '../../components';
+import { Box, GuideLine, FormStandard, Text } from '../../components';
 
 function NameDescription({ rule, updateRule, active }) {
   // 0. Fill out the section name.
