@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-import { navigate } from '@reach/router';
+// import { navigate } from '@reach/router';
 
 import {
   deepCopy,
@@ -276,7 +276,7 @@ export default class EditorV2 extends React.Component {
     Axios.patch(
       `/rules/content/${this.state.primary_content_uuid}/`,
       {
-        body: this.state.rule,
+        body: body_enforced,
       },
       {
         headers: {
