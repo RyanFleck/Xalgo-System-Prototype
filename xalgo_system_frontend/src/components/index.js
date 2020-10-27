@@ -35,6 +35,7 @@ export { default as SentenceDisplay } from './patterns/SentenceDisplay.jsx';
 export { default as ErrorMessage } from './patterns/ErrorMessage.jsx';
 export {default as IdDisplay } from './patterns/IdDisplay';
 export { default as SubButton } from './patterns/SubButton';
+export {default as GuideLine } from './patterns/GuideLine.jsx';
 
 // Layouts
 export { default as Box } from './layout/Box.jsx';

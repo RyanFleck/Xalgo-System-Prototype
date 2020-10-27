@@ -3,8 +3,7 @@ import { deepCopy } from 'xalgo-rule-processor';
 import { isArray } from 'xalgo-rule-processor/dist/types';
 import { toast } from 'react-toastify';
 
-import { Text, Badge, Box, Flex, Button } from '..';
-import { IEdit, ITrash } from '../icons';
+import { Text, Box, Flex, Button, Icon, Badge } from '..';
 
 const ruleLeft = {
   borderLeft: '1px solid #E7E7E7',
@@ -12,7 +11,7 @@ const ruleLeft = {
 };
 
 const halfWidth = {
-  minWidth: '400px',
+  minWidth: '500px',
 };
 
 const bottomLine = {
@@ -50,7 +49,47 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
     <div style={bottomLine}>
       <Flex alignItems="center">
         <div style={halfWidth}>
-          <Text color="textb">{sentence}</Text>
+          <Flex>
+            <Button
+              variant="invisible"
+              onClick={() => {
+                const ruleCopy = deepCopy(rule);
+                if (
+                  inputCondition &&
+                  isArray(ruleCopy.input_conditions) &&
+                  ruleCopy.input_conditions.length > 1
+                ) {
+                  console.log('Removing input condition...');
+                  ruleCopy.input_conditions.splice(index, 1);
+                  updateRule(ruleCopy);
+                } else if (
+                  isArray(ruleCopy.output_assertions) &&
+                  ruleCopy.output_assertions.length > 1
+                ) {
+                  console.log('Removing output assertion...');
+                  ruleCopy.output_assertions.splice(index, 1);
+                  updateRule(ruleCopy);
+                } else {
+                  toast.error(
+                    'A rule must have at least one input condition and output assertion.'
+                  );
+                }
+              }}
+            >
+              <Icon name="ex" fill="#ED9C91" />
+            </Button>
+            <Box padding={2} />
+            <Text color="textb">{sentence}</Text>
+            <Box padding={2} />
+            <Button
+              variant="invisible"
+              onClick={() => {
+                editRow(index);
+              }}
+            >
+              <Icon name="edit" fill="textb" size={14} />
+            </Button>
+          </Flex>
         </div>
         <Box>
           <Flex>
@@ -63,6 +102,7 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
               } else if (rowValue.value.toLowerCase() === 'b') {
                 variant = 'both';
               }
+
 
               return (
                 <div style={ruleLeft} key={i}>
@@ -91,48 +131,14 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
                     ) : (
                       <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
                     )}
+
                   </Button>
                 </div>
               );
             })}
-            <div style={ruleLeft} />
+            <div style={ruleLeft}></div>
           </Flex>
         </Box>
-        <Button
-          variant="invisible"
-          onClick={() => {
-            editRow(index);
-          }}
-        >
-          <IEdit />
-        </Button>
-        <Box p={1} />
-        <Button
-          variant="invisible"
-          onClick={() => {
-            const ruleCopy = deepCopy(rule);
-            if (
-              inputCondition &&
-              isArray(ruleCopy.input_conditions) &&
-              ruleCopy.input_conditions.length > 1
-            ) {
-              console.log('Removing input condition...');
-              ruleCopy.input_conditions.splice(index, 1);
-              updateRule(ruleCopy);
-            } else if (
-              isArray(ruleCopy.output_assertions) &&
-              ruleCopy.output_assertions.length > 1
-            ) {
-              console.log('Removing output assertion...');
-              ruleCopy.output_assertions.splice(index, 1);
-              updateRule(ruleCopy);
-            } else {
-              toast.error('A rule must have at least one input condition and output assertion.');
-            }
-          }}
-        >
-          <ITrash />
-        </Button>
       </Flex>
     </div>
   );

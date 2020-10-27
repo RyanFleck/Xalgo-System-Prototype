@@ -19,20 +19,12 @@ import {
   Button,
   Addbutton,
   InputOutputRow,
-  FormStandard,
-  FormSlider,
-  FormStandardDropdown,
-  FormDropdown,
-  FormStandardDouble,
-  InvolvedParty,
   SentenceEditor,
   Icon,
-  FormDropdownDouble,
+  GuideLine,
 } from '../components';
 
-import { BlankRows, RuleNameSection, MetadataManagementSection } from './editor-components';
-
-import TwoFieldModule from '../components/patterns/TwoFieldModule';
+import { BlankRows, NameDescription, Metadata, RuleAuthor, RuleManager, InputSources, RuleMaintainer, DataSource, Time, StandardRoleName, InvolvedProduct, OutputPurpose, QualitativeWeights } from './editor-components';
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -59,7 +51,7 @@ const ruleLeftalt = {
 };
 
 const halfWidth = {
-  minWidth: '400px',
+  minWidth: '500px',
 };
 
 const bottomLine = {
@@ -236,7 +228,7 @@ export default class Editor extends React.Component {
   render() {
     const {
       rule,
-      sampleInvolvedParties,
+      //SampleInvolvedParties,
       active,
       modalOpen,
       modalEditingIndex,
@@ -294,175 +286,65 @@ export default class Editor extends React.Component {
 
           <Box p={4}>
             <div style={fullheight}>
+
+              {/* Rule Name */}
+              {/* Rule Name */}
               {/* Rule Name */}
 
-              <RuleNameSection rule={rule} updateRule={this.updateRule} active={active} />
+              <Text variant="formtitle">About the Rule</Text>
+              <GuideLine>
+                <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
+                <Metadata />
+              </GuideLine>
 
-              {/* Metadata Management */}
-              {/* Metadata Management */}
-              {/* Metadata Management */}
-              {/* Metadata Management */}
-              {/* Metadata Management */}
-              {/* Metadata Management */}
+              {/* Rule Manager */}
+              {/* Rule Manager */}
+              {/* Rule Manager */}
+              {/* Rule Manager */}
 
-              <MetadataManagementSection rule={rule} updateRule={this.updateRule} active={active} />
+              <Text variant="formtitle">Management, Authorship & Maintenance</Text>
+              <GuideLine>
+                <RuleManager />
+                <Addbutton content="Rule Manager" />
+                <RuleAuthor />
+                <Addbutton content="Rule Author" />
+                <RuleMaintainer />
+                <Addbutton content="Rule Maintainer" />
+              </GuideLine>
 
+              {/* Daata Sources */}
+              {/* Daata Sources */}
+              {/* Daata Sources */}
 
-              {/* Input sources */}
-              {/* Input sources */}
-              {/* Input sources */}
-              {/* Input sources */}
-              {/* Input sources */}
-              {/* Input sources */}
+              <Text variant="formtitle">Data Sources</Text>
+              <GuideLine>
+                <InputSources />
+                <Addbutton content="Input Source" />
+              </GuideLine>
 
-              <Text variant="heading">Input: Sources</Text>
-              <Box padding={1} />
-              <Box>
-                <div>
-                  <Box
-                    p={2}
-                    m={0}
-                    width={1}
-                    bg="bg"
-                    border="1px solid"
-                    borderColor="oline"
-                    borderRadius="base"
-                  >
-                    <FormStandard
-                      name="Field Name"
-                      description="hello world is asking the following things"
-                    />
-                    <FormStandard
-                      name="Target  Value"
-                      description="hello world is asking the following things"
-                    />
-                    <Box padding={1} />
-                    <Addbutton />
-                    <Box padding={3} />
-                    <FormStandardDropdown
-                      name="Unique Identifier"
-                      description="Text input description."
-                      nameTwo="Standard Role Name"
-                      descriptionTwo="Dropdown input description."
-                      options={[
-                        { value: 'justice', label: 'Justice' },
-                        { value: 'peace', label: 'Peace' },
-                        { value: 'no justice', label: 'No Justice' },
-                        { value: 'no peace', label: 'No Peace' },
-                      ]}
-                    />
-                  </Box>
-                  <Box padding={1} />
-                  <Box
-                    p={2}
-                    m={0}
-                    width={1}
-                    bg="bg"
-                    border="1px solid"
-                    borderColor="oline"
-                    borderRadius="base"
-                  >
-                    <Addbutton />
-                  </Box>
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">
-                    <Box />
-                    {/* the modal button will go here */}
-                  </Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
+              {/* Input: contexts */}
+              {/* Input: contexts */}
+              {/* Input: contexts */}
 
-              {/* Input Contexts */}
-              {/* Input Contexts */}
-              {/* Input Contexts */}
-              {/* Input Contexts */}
-              {/* Input Contexts */}
-              {/* Input Contexts */}
+              <Text variant="formtitle">Input: Contexts</Text>
+              <GuideLine>
+                <DataSource />
+                <Addbutton content="Data Source" />
+                <Time />
+                <Time />
+              </GuideLine>
 
-              <Text variant="heading">Input: Contexts</Text>
+              {/* Input: filters */}
+              {/* Input: filters */}
+              {/* Input: filters */}
 
-              <Box>
-                <div>
-                  <Box padding={1} />
-                  <TwoFieldModule
-                    title="Jurisdictions"
-                    fielda="Country Jurisdiction"
-                    descriptiona="Detail Lorem Ipsum"
-                    fieldb="Sub-Country Jurisdiction"
-                    descriptionb="Detail Lorem Ipsum"
-                  />
-                  <Box
-                    p={2}
-                    m={0}
-                    width={1}
-                    bg="bg"
-                    border="1px solid"
-                    borderColor="oline"
-                    borderRadius="base"
-                  >
-                    <Addbutton onClick={() => {}} content="Add Jurisdiction" />
-                  </Box>
-                  <Box padding={1} />
-                  <FormStandardDouble
-                    name="Start Date and Time "
-                    description="hello world is asking the following things"
-                    nameTwo="End Date and Time"
-                    descriptionTwo="hello world is asking the following things"
-                  />
-                  <Box padding={1} />
-                  <FormDropdown
-                    name="Time Zone"
-                    description="hello world is asking the following things"
-                    options={[
-                      { value: 'UTC−12:00', label: 'UTC−12:00' },
-                      { value: 'UTC−11:00', label: 'UTC−11:00' },
-                      { value: 'UTC−10:00', label: 'UTC−10:00' },
-                      { value: 'UTC−09:30', label: 'UTC−09:30' },
-                      { value: 'UTC−09:00', label: 'UTC−09:00' },
-                      { value: 'UTC−08:00', label: 'UTC−08:00' },
-                      { value: 'UTC−07:00', label: 'UTC−07:00' },
-                      { value: 'UTC−06:00', label: 'UTC−06:00' },
-                      { value: 'UTC−05:00', label: 'UTC−05:00' },
-                      { value: 'UTC−04:00', label: 'UTC−04:00' },
-                      { value: 'UTC−03:30', label: 'UTC−03:30' },
-                      { value: 'UTC−03:00', label: 'UTC−03:00' },
-                      { value: 'UTC−02:00', label: 'UTC−02:00' },
-                      { value: 'UTC−01:00', label: 'UTC−01:00' },
-                      { value: 'UTC±00:00', label: 'UTC±00:00' },
-                      { value: 'UTC+01:00', label: 'UTC+01:00' },
-                      { value: 'UTC+02:00', label: 'UTC+02:00' },
-                      { value: 'UTC+03:00', label: 'UTC+03:00' },
-                      { value: 'UTC+03:30', label: 'UTC+03:30' },
-                      { value: 'UTC+04:00', label: 'UTC+04:00' },
-                      { value: 'UTC+04:30', label: 'UTC+04:30' },
-                      { value: 'UTC+05:00', label: 'UTC+05:00' },
-                      { value: 'UTC+05:30', label: 'UTC+05:30' },
-                      { value: 'UTC+05:45', label: 'UTC+05:45' },
-                      { value: 'UTC+06:00', label: 'UTC+06:00' },
-                      { value: 'UTC+06:30', label: 'UTC+06:30' },
-                      { value: 'UTC+07:00', label: 'UTC+07:00' },
-                      { value: 'UTC+08:00', label: 'UTC+08:00' },
-                      { value: 'UTC+08:45', label: 'UTC+08:45' },
-                      { value: 'UTC+09:00', label: 'UTC+09:00' },
-                      { value: 'UTC+09:30', label: 'UTC+09:30' },
-                      { value: 'UTC+10:00', label: 'UTC+10:00' },
-                      { value: 'UTC+10:30', label: 'UTC+10:30' },
-                      { value: 'UTC+11:00', label: 'UTC+11:00' },
-                      { value: 'UTC+12:00', label: 'UTC+12:00' },
-                      { value: 'UTC+12:45', label: 'UTC+12:45' },
-                      { value: 'UTC+13:00', label: 'UTC+13:00' },
-                      { value: 'UTC+14:00', label: 'UTC+14:00' },
-                    ]}
-                  />
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">
-                    <Box />
-                    {/* the modal button will go here */}
-                  </Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
+              <Text variant="formtitle">Input: Filters</Text>
+              <GuideLine>
+                <StandardRoleName />
+                <Addbutton content="Standard Role Name" />
+                <InvolvedProduct />
+                <Addbutton content="Involved Product or Service" />
+              </GuideLine>  
 
               {/* Input filters */}
               {/* Input filters */}
@@ -471,68 +353,6 @@ export default class Editor extends React.Component {
               {/* Input filters */}
               {/* Input filters */}
 
-              <Text variant="heading">Input: Filters</Text>
-              <Box padding={1} />
-              <Box>
-                <div>
-                  {sampleInvolvedParties.map((val, key) => (
-                    <InvolvedParty key={key} />
-                  ))}
-                  <Box
-                    p={2}
-                    m={0}
-                    width={1}
-                    bg="bg"
-                    border="1px solid"
-                    borderColor="oline"
-                    borderRadius="base"
-                  >
-                    <Addbutton
-                      onClick={() => {
-                        const parties = sampleInvolvedParties;
-                        const last = parties[parties.length];
-                        parties.push(last + 1);
-                        this.setState({ sampleInvolvedParties: parties });
-                      }}
-                      content="Add Involved Party"
-                    />
-                  </Box>
-                  <Box padding={1} />
-                  <TwoFieldModule
-                    title="Involved Product or Service"
-                    fielda="UNSPSC Product or Service Name"
-                    descriptiona="Detail Lorem Ipsum"
-                    fieldb="UNSPSC Product or Service Code"
-                    descriptionb="Detail Lorem Ipsum"
-                  />
-                  <Box padding={1} />
-                  <Box
-                    p={2}
-                    m={0}
-                    width={1}
-                    bg="bg"
-                    border="1px solid"
-                    borderColor="oline"
-                    borderRadius="base"
-                  >
-                    <Addbutton
-                      onClick={() => {
-                        const parties = sampleInvolvedParties;
-                        const last = parties[parties.length];
-                        parties.push(last + 1);
-                        this.setState({ sampleInvolvedParties: parties });
-                      }}
-                      content="Add Involved Party"
-                    />
-                  </Box>
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">
-                    <Box />
-                    {/* the modal button will go here */}
-                  </Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
 
               {/* Input Output Table */}
               {/* Input Output Table */}
@@ -541,123 +361,114 @@ export default class Editor extends React.Component {
               {/* Input Output Table */}
               {/* Input Output Table */}
 
-              <Text variant="heading">Input Tables</Text>
-              <Box>
-                <div style={overflowTable}>
-                  <div style={bottomLine}>
-                    <Flex alignItems="center">
-                      <div style={halfWidth}>
-                        <Flex>
-                          <Text variant="formtitle">When</Text>
-                          <Box padding={1} />
-                          <Text>Input Conditions</Text>
-                        </Flex>
-                      </div>
-                      <Box>
-                        <Flex>
-                          {/* Input Conditions/Output Assertions Case Headings */}
-                          {rule.input_conditions[0].cases.map((rowValue, i) => {
-                            return (
-                              <div style={ruleLeft} key={i}>
-                                <Button
-                                  variant="invisible"
-                                  onClick={() => {
-                                    toast('Unimplemented.');
-                                  }}
-                                >
-                                  <ColumnLabel rowLabel={rowValue.case || '?'} />
-                                </Button>
-                              </div>
-                            );
-                          })}
-                          <div style={ruleLeftalt} />
-                        </Flex>
-                      </Box>
-                      <div style={rowWidth}>
-                        <Button variant="invisible" onClick={this.addCase}>
-                          <Icon
-                            name="additional"
-                            fill="#345FF9"
-                            size={32}
-                            viewbox_x={32}
-                            viewbox_y={32}
-                          />
-                        </Button>
-                      </div>
-                    </Flex>
-                  </div>
-
-                  {/* Input Conditions Data */}
-                  {rule.input_conditions.map((val, key) => (
-                    <Box key={key}>
-                      <InputOutputRow
-                        rowData={val}
-                        rule={rule}
-                        updateRule={this.updateRule}
-                        editRow={this.editInputCondition}
-                        index={key}
-                        inputCondition
-                      />
-                    </Box>
-                  ))}
-
-                  <Flex alignItems="center">
-                    <div style={halfWidth}>
-                      <Addbutton
-                        onClick={() => {
-                          /* This function must add a new Input Condition */
-                          this.updateRule(addNewInputCondition(rule));
-                        }}
-                      />
+              <Text variant="formtitle">Input Output Filters</Text>
+              <GuideLine>
+                <Box>
+                  <div style={overflowTable}>
+                    <div style={bottomLine}>
+                      <Flex alignItems="center">
+                        <div style={halfWidth}>
+                          <Flex>
+                            <Text>Input Conditions</Text>
+                          </Flex>
+                        </div>
+                        <Box>
+                          <Flex>
+                            {/* Input Conditions/Output Assertions Case Headings */}
+                            {rule.input_conditions[0].cases.map((rowValue, i) => {
+                              return (
+                                <div style={ruleLeft} key={i}>
+                                  <Button
+                                    variant="invisible"
+                                    onClick={() => {
+                                      toast('Unimplemented.');
+                                    }}
+                                  >
+                                    <ColumnLabel rowLabel={rowValue.case || '?'} />
+                                  </Button>
+                                </div>
+                              );
+                            })}
+                            <div style={ruleLeftalt} />
+                          </Flex>
+                        </Box>
+                        <div style={rowWidth}>
+                          <Button variant="invisible" onClick={this.addCase}>
+                            <Icon name="add" fill="#A3D8BE"/>
+                          </Button>
+                        </div>
+                      </Flex>
                     </div>
-                    <BlankRows rule={rule} ruleLeft={ruleLeft} />
-                    <div style={rowWidth} />
-                  </Flex>
-                  <Flex alignItems="center">
-                    <div style={halfWidth} />
-                    <BlankRows rule={rule} ruleLeft={ruleLeft} />
-                  </Flex>
-                  <div style={bottomLine}>
+
+                    {/* Input Conditions Data */}
+                    {rule.input_conditions.map((val, key) => (
+                      <Box key={key}>
+                        <InputOutputRow
+                          rowData={val}
+                          rule={rule}
+                          updateRule={this.updateRule}
+                          editRow={this.editInputCondition}
+                          index={key}
+                          inputCondition
+                        />
+                      </Box>
+                    ))}
+
                     <Flex alignItems="center">
                       <div style={halfWidth}>
-                        <Flex>
-                          <Text variant="formtitle">Then</Text>
-                          <Box padding={1} />
-                          <Text>Output Assertions</Text>
-                        </Flex>
+                        <Addbutton
+                          onClick={() => {
+                            /* This function must add a new Input Condition */
+                            this.updateRule(addNewInputCondition(rule));
+                          }}
+                        />
+                      </div>
+                      <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                      <div style={rowWidth} />
+                    </Flex>
+                    <Flex alignItems="center">
+                      <div style={halfWidth} />
+                      <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                    </Flex>
+                    <div style={bottomLine}>
+                      <Flex alignItems="center">
+                        <div style={halfWidth}>
+                          <Flex>
+                            <Text>Output Assertions</Text>
+                          </Flex>
+                        </div>
+                        <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                      </Flex>
+                    </div>
+                    {rule.output_assertions.map((val, key) => (
+                      <Box key={key}>
+                        <InputOutputRow
+                          rowData={val}
+                          rule={rule}
+                          updateRule={this.updateRule}
+                          editRow={this.editOutputAssertion}
+                          index={key}
+                          inputCondition={false}
+                        />
+                      </Box>
+                    ))}
+                    <Flex alignItems="center">
+                      <div style={halfWidth}>
+                        <Addbutton
+                          onClick={() => {
+                            /* Must add a new output assertion. */
+                            this.updateRule(addNewOutputAssertion(rule));
+                          }}
+                        />
                       </div>
                       <BlankRows rule={rule} ruleLeft={ruleLeft} />
                     </Flex>
+                    <Box padding={1} />
+                    <Box padding={1} />
+                    <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
                   </div>
-                  {rule.output_assertions.map((val, key) => (
-                    <Box key={key}>
-                      <InputOutputRow
-                        rowData={val}
-                        rule={rule}
-                        updateRule={this.updateRule}
-                        editRow={this.editOutputAssertion}
-                        index={key}
-                        inputCondition={false}
-                      />
-                    </Box>
-                  ))}
-                  <Flex alignItems="center">
-                    <div style={halfWidth}>
-                      <Addbutton
-                        onClick={() => {
-                          /* Must add a new output assertion. */
-                          this.updateRule(addNewOutputAssertion(rule));
-                        }}
-                      />
-                    </div>
-                    <BlankRows rule={rule} ruleLeft={ruleLeft} />
-                  </Flex>
-                  <Box padding={1} />
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
+                </Box>
+              </GuideLine>
 
               {/* output purpose */}
               {/* output purpose */}
@@ -666,65 +477,10 @@ export default class Editor extends React.Component {
               {/* output purpose */}
               {/* output purpose */}
 
-              <Text variant="heading">Output Purpose</Text>
-              <Box>
-                <div>
-                  <FormDropdownDouble
-                    name="Who has responsibility for conformance?"
-                    description="Who has responsibility for conformance?"
-                    options={[
-                      { value: 'rule-maker', label: 'rule-maker' },
-                      { value: 'rule-taker', label: 'rule-taker' },
-                      { value: 'third-party', label: 'third-party' },
-                    ]}
-                    nameTwo="What is the primary verb?"
-                    descriptionTwo="What is the primary normative (deontic; modal) verb?"
-                    optionsTwo={[
-                      { valueTwo: 'must', labelTwo: 'must' },
-                      { valueTwo: 'may', labelTwo: 'may' },
-                      { valueTwo: 'should', labelTwo: 'should' },
-                    ]}
-                  />
-                  <Box padding={1} />
-                  <FormDropdownDouble
-                    name="What is the nature of the primary verb"
-                    description="Is the primary modal verb stated in the affirmative; negative or as a question?"
-                    options={[
-                      { value: 'affirmative', label: 'affirmative' },
-                      { value: 'negative', label: 'negative' },
-                      { value: 'interrogative', label: 'interrogative' },
-                    ]}
-                    nameTwo="What is the primary action verb?"
-                    descriptionTwo="What is the primary action verb?"
-                    optionsTwo={[
-                      { valueTwo: 'be', labelTwo: 'be' },
-                      { valueTwo: 'do', labelTwo: 'do' },
-                      { valueTwo: 'have', labelTwo: 'have' },
-                    ]}
-                  />
-                  <Box padding={1} />
-                  <FormDropdownDouble
-                    name="What is the type of philosophical rationale?"
-                    description="What is the principal type of philosophical rationale for this rule?"
-                    options={[
-                      { value: 'logical', label: 'logical' },
-                      { value: 'practical', label: 'practical' },
-                      { value: 'ethical', label: 'ethical' },
-                    ]}
-                    nameTwo="What is the nature of this rule?"
-                    descriptionTwo="Is this a directly implemented rule, a desription of a rule to be conformed with, or an empirical
-                    fact about a rule?"
-                    optionsTwo={[
-                      { valueTwo: 'imperative', labelTwo: 'imperative' },
-                      { valueTwo: 'declarative', labelTwo: 'declarative' },
-                      { valueTwo: 'empirical', labelTwo: 'empirical' },
-                    ]}
-                  />
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
+              <Text variant="formtitle">Output</Text>
+              <GuideLine>
+                <OutputPurpose />
+              </GuideLine>
 
               {/* Qualitative wieghts */}
               {/* Qualitative wieghts */}
@@ -733,67 +489,11 @@ export default class Editor extends React.Component {
               {/* Qualitative wieghts */}
               {/* Qualitative wieghts */}
 
-              <Text variant="heading">Output: Qualitative Weights</Text>
+              <Text variant="formtitle">Qualitative Weights</Text>
+              <GuideLine>
+                <QualitativeWeights />
+              </GuideLine>
 
-              <Box>
-                <div>
-                  <FormDropdown
-                    name="Select the rule group that most applies."
-                    description="hello world is asking the following things"
-                    options={[
-                      {
-                        value: 'Informal Custom or Preference',
-                        label: 'Informal Custom or Preference',
-                      },
-                      {
-                        value: 'Formal Custom Without Legal Standing',
-                        label: 'Formal Custom Without Legal Standing',
-                      },
-                      {
-                        value: 'Guideline, Instruction, or Policy',
-                        label: 'Guideline, Instruction, or Policy',
-                      },
-                      { value: 'Code of Conduct', label: 'Code of Conduct' },
-                      { value: 'Regulation or Directive', label: 'Regulation or Directive' },
-                      { value: 'Common Law or Case Law', label: 'Common Law or Case Law' },
-                      { value: 'Statute or Legislation', label: 'Statute or Legislation' },
-                      { value: 'International Law', label: 'International Law' },
-                      { value: 'Operational Patern', label: 'Operational Patern' },
-                    ]}
-                  />
-                  <Box padding={2} />
-                  <FormSlider
-                    name="Character of this Obligation"
-                    description="lorem ipsum"
-                    labela="Basic Coherence"
-                    labelb="Strongly Beneficial"
-                    labelc="Absolutely Essential"
-                  />
-                  <Box padding={2} />
-                  <FormSlider
-                    name="Enforcement Measures in Place"
-                    description="lorem ipsum"
-                    labela="Minor Penalties"
-                    labelb="Significant Penalties"
-                    labelc="Major Penalties"
-                  />
-                  <Box padding={2} />
-                  <FormSlider
-                    name="Consequences of Non-Conformance "
-                    description="lorem ipsum"
-                    labela="Preference Only"
-                    labelb="Significant Effects"
-                    labelc="Enormous Impacts"
-                  />
-                  <Box p={1} />
-                  <Box padding={1} />
-                  <Flex justifyContent="flex-end">
-                    <Box />
-                    {/* the modal button will go here */}
-                  </Flex>
-                </div>
-              </Box>
-              <Box padding={2} />
             </div>
           </Box>
           {/* End of the editor */}

@@ -1,3 +1,15 @@
 export { default as BlankRows } from './BlankRows.jsx';
 export { default as RuleNameSection } from './RuleNameSection.jsx';
 export { default as MetadataManagementSection } from './MetadataManagementSection.jsx';
+export {default as RuleManager } from './RuleManager.jsx';
+export {default as NameDescription } from './NameDescription.jsx';
+export {default as RuleAuthor } from './RuleAuthor';
+export {default as RuleMaintainer } from './RuleMaintainer';
+export {default as InputSources } from './InputSources';
+export {default as DataSource } from './DataSource';
+export {default as Time } from './Time';
+export {default as StandardRoleName } from './StandardRoleName';
+export {default as InvolvedProduct } from './InvolvedProduct';
+export {default as OutputPurpose } from './OutputPurpose';
+export {default as QualitativeWeights} from './QualitativeWeights';
+export {default as Metadata } from './Metadata';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Dropdown, Box, Button, Text, Flex, Modal, Infobox, IInfo, ErrorMessage } from '..';
 
-function FormDropdown({ name, description, label, value, options = [], errormessage }) {
+function FormDropdown({ name, description, label, value, errormessage, options = [] }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const renderOptions = () => {
@@ -16,10 +16,10 @@ function FormDropdown({ name, description, label, value, options = [], errormess
     <Stack gap={4}>
       <Modal isOpen={isOpen}>
         <Infobox content={description} onClick={() => setIsOpen(false)} />
+        <Box padding={1} />
       </Modal>
-      <Box padding={1} />
       <Flex alignItems="center">
-        <Text>{name}</Text>
+        <Text color="textb">{name}</Text>
         <Button variant="invisible" onClick={() => setIsOpen(true)}>
           <Flex alignItems="flex-bottom" m="4px">
             <IInfo />
@@ -28,8 +28,11 @@ function FormDropdown({ name, description, label, value, options = [], errormess
       </Flex>
       <Box padding={1} />
       <Dropdown>{renderOptions()}</Dropdown>
-      <Box padding={1} />
-      {errormessage ? <ErrorMessage message={errormessage} /> : <Modal />}
+      
+      {errormessage 
+        ? <div><Box padding={1} /><ErrorMessage message={errormessage}/></div> 
+        : <Modal/>
+      }
     </Stack>
   );
 }

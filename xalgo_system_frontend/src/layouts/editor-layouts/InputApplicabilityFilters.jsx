@@ -37,7 +37,7 @@ export default class InputApplicabilityFilters extends React.Component {
           <EditorLeft title={this.props.rule.metadata.ruleName} />
         </Box>
         <Box p={4}>
-          <div style={fullheight}>
+          <div style={fullheight}> 
             {sampleInvolvedParties.map((val, key) => (
               <InvolvedParty key={key} />
             ))}

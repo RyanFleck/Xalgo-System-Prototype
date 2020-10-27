@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box } from '..';
 
 const guide = {
   borderLeft: '1px solid #E7E7E7',
