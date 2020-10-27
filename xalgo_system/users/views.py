@@ -60,7 +60,7 @@ class SystemStatsView(TemplateView):
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super(SystemStatsView, self).get_context_data()
 
-        context["users"] = User.objects.all().only("name", "email")
+        context["users"] = User.objects.all().only("username", "email")
         context["rules"] = Rule.objects.all().only("rule_creator")
 
         return context
