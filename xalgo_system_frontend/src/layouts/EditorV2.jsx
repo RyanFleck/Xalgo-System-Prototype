@@ -279,6 +279,7 @@ export default class EditorV2 extends React.Component {
           deleteFunction={this.deleteRule}
           resetFunction={this.resetRule}
         >
+        </EditorLeft>
           {this.state.rule_loaded ? (
             <div>
               {/* Modal used by input/output tables. */}
@@ -540,7 +541,6 @@ export default class EditorV2 extends React.Component {
               </div>
             </div>
           )}
-        </EditorLeft>
       </div>
     );
   }

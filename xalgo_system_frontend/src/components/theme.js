@@ -29,7 +29,6 @@ const textStyles = {
     fontFamily: 'body',
     fontSize: 'md',
     lineHeight: 'body',
-    color: 'text',
   },
   sectiontitle: {
     fontWeight: 'bold',

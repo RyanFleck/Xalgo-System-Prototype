@@ -52,7 +52,10 @@ export default class RuleName extends React.Component {
   }
 
   setNameAndDescFromProps() {
-    const { ruleName, ruleDescription } = this.props.rule.metadata;
+    //const { ruleName, ruleDescription } = this.props.rule.metadata;
+    const ruleName = 'Rule Name';
+    const ruleDescription = 'test';
+
     if (ruleName && ruleDescription) {
       console.log(
         `RuleName.jsx: Loading rule info from props:\nTitle: ${ruleName}\nDescription: ${ruleDescription}`

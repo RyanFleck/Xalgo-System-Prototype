@@ -82,7 +82,7 @@ const Button = styled.button(
         py: 0,
         width: '100%',
         '&:hover:not(:disabled), &:active:not(:disabled)': {
-          background: '#F9FBFE',
+          background: 'none',
           cursor: 'pointer',
           boxShadow: 'none',
         },

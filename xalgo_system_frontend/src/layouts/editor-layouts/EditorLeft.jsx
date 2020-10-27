@@ -18,8 +18,19 @@ const helpAlign = {
 };
 
 const holdTop = {
-  position: 'sticky',
+  position: 'fixed',
   top: '90px',
+  right: '0px',
+};
+
+const holdModal = {
+  position: 'fixed',
+  top: '120px',
+  right: '72px',
+  background: '#1E2033',
+  borderRadius: '8px',
+  border: '1px solid #E7E7E7',
+  boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.25)',
 };
 
 const holdwide = {
@@ -29,13 +40,12 @@ const holdwide = {
 const horizontalRule = {
   position: 'sticky',
   borderLeft: '1px solid #E7E7E7',
-  height: '100vh',
   zIndex: '-1',
   top: '90px',
 };
 
 // Primary Component
-function EditorLeft({ title, description, children, deleteFunction, resetFunction }) {
+function EditorLeft({ title, description, deleteFunction, resetFunction }) {
 
   // To set one of these panels as open by default, start with the state true.
   const [isOpen, setIsOpen] = React.useState(false); // Settings
@@ -43,10 +53,9 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
   const [isOpenc, setIsOpenc] = React.useState(false); // Description
 
   return (
-    <div width="100vw" overflow="none">
-      <Flex>
+    <div style={holdTop}>
         <div>
-          <div style={holdTop}>
+          <div >
             <Box>
               <Box paddingRight={4} paddingLeft={4} paddingTop={4}>
                 <Button variant="invisible" onClick={() => setIsOpen(!isOpen)}>
@@ -75,27 +84,6 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
                   </Box>
                 </Button>
               </Box>
-              <Box paddingRight={4} paddingLeft={4} paddingTop={4}>
-                <Button variant="invisible" onClick={() => setIsOpenc(!isOpenc)}>
-                  <Box width="18px" height="16px">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.19 8.12">
-                      <title>name and description</title>
-                      <path
-                        d="M11.19,1.49H5.69a.5.5,0,0,1-.5-.5.5.5,0,0,1,.5-.5h5.5a.5.5,0,0,1,.5.5A.51.51,0,0,1,11.19,1.49Z"
-                        transform="translate(-0.5 -0.49)"
-                      />
-                      <path
-                        d="M11.19,5.05H1a.5.5,0,0,1,0-1H11.19a.5.5,0,0,1,0,1Z"
-                        transform="translate(-0.5 -0.49)"
-                      />
-                      <path
-                        d="M11.19,8.61H1a.5.5,0,0,1-.5-.5.5.5,0,0,1,.5-.5H11.19a.51.51,0,0,1,.5.5A.5.5,0,0,1,11.19,8.61Z"
-                        transform="translate(-0.5 -0.49)"
-                      />
-                    </svg>
-                  </Box>
-                </Button>
-              </Box>
             </Box>
           </div>
         </div>
@@ -103,23 +91,23 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
           <div style={horizontalRule} />
         </div>
         <div>
-          <div style={holdTop}>
+          <div style={holdModal}>
             <Modal isOpen={isOpen}>
               <Box width="450px">
-                <Box p={4}>
+                <Box p={3}>
                   <Flex justifyContent="space-between">
-                    <Text variant="formtitle">Settings</Text>
+                    <Text color="#fff" variant="formtitle" >Settings</Text>
                     <Button variant="invisible" onClick={() => setIsOpen(!isOpen)}>
-                      <Icon name="close" />
+                      <Icon name="ex" fill="#fff"/>
                     </Button>
                   </Flex>
-                  <Box p={2} />
+                  <Box p={1} />
                   <Button variant="invisiblewide">
                     <div style={helpAlign}>
                       <div style={littlePadding} />
                       <Flex justifyContent="space-between">
                         <Flex alignItems="center">
-                          <Text color="textb">Download Rule as SVG</Text>
+                          <Text color="oline">Download Rule as JSON</Text>
                         </Flex>
                         <Box />
                         <Flex alignItems="center" />
@@ -161,27 +149,18 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
         </div>
         <div />
         <div>
-          <div style={holdTop}>
-            <Modal isOpen={isOpen}>
-              <div>
-                <div style={horizontalRule} />
-              </div>
-            </Modal>
-          </div>
-        </div>
-        <div>
-          <div style={holdTop}>
+          <div style={holdModal}>
             <Modal isOpen={isOpenb}>
               <Box width="450px">
-                <Box p={4}>
+                <Box p={3}>
                   <Flex justifyContent="space-between">
-                    <Text variant="formtitle">Guide</Text>
+                    <Text color="#fff" variant="formtitle">Guide</Text>
                     <Button variant="invisible" onClick={() => setIsOpenb(!isOpenb)}>
-                      <Icon name="close" />
+                      <Icon name="ex" fill="#fff"/>
                     </Button>
                   </Flex>
                   <Box p={2} />
-                  <Text>
+                  <Text color="oline">
                     Any rule can be expressed in terms of its input conditions, and its output
                     assertions. Please state each condition of this rule, and each assertion of this
                     rule, as a simple factual sentence. Each sentence should be phrased in a manner
@@ -190,15 +169,6 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
                   </Text>
                 </Box>
               </Box>
-            </Modal>
-          </div>
-        </div>
-        <div>
-          <div style={holdTop}>
-            <Modal isOpen={!isOpenb}>
-              <div>
-                <div style={horizontalRule} />
-              </div>
             </Modal>
           </div>
         </div>
@@ -220,17 +190,6 @@ function EditorLeft({ title, description, children, deleteFunction, resetFunctio
             </Modal>
           </div>
         </div>
-        <div>
-          <div style={holdTop}>
-            <Modal isOpen={isOpenc}>
-              <div>
-                <div style={horizontalRule} />
-              </div>
-            </Modal>
-          </div>
-        </div>
-        <div style={holdwide}>{children}</div>
-      </Flex>
     </div>
   );
 }
