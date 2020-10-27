@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import Axios from 'axios';
 import axiosRetry from 'axios-retry';
 
+import { navigate } from '@reach/router';
+
 import {
   deepCopy,
   generateNewRule,
@@ -44,6 +46,7 @@ import {
 import { ClockLoader } from 'react-spinners';
 import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
 import { RuleSchema } from 'xalgo-rule-processor/dist/schema';
+import { objectEmpty } from 'xalgo-rule-processor/dist/utilities';
 
 axiosRetry(Axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 
@@ -179,6 +182,10 @@ export default class EditorV2 extends React.Component {
           console.log(keys);
 
           console.log('Checking rule body...');
+          if (objectEmpty(content_data.body)) {
+            toast('Body is empty, adding blank rule content.');
+          }
+
           let body_enforced = content_data.body;
           try {
             body_enforced = enforceSchemaWithTables(RuleSchema, content_data.body);
@@ -186,7 +193,7 @@ export default class EditorV2 extends React.Component {
             toast.error(
               'Rule did not pass schema checks. Please delete the rule or contact the administrators.'
             );
-            body_enforced = content_data.body;
+            navigate(`/apps/rm/dashboard/`);
           }
 
           this.setState(
