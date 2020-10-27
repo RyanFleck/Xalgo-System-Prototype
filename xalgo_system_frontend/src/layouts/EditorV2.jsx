@@ -190,10 +190,10 @@ export default class EditorV2 extends React.Component {
           try {
             body_enforced = enforceSchemaWithTables(RuleSchema, content_data.body);
           } catch (e) {
-            toast.error(
-              'Rule did not pass schema checks. Please delete the rule or contact the administrators.'
-            );
-            navigate(`/apps/rm/dashboard/`);
+            toast.warning('Warning: Rule did not pass schema checks.');
+            console.error(e);
+            // navigate(`/apps/rm/dashboard/`);
+            body_enforced = content_data.body;
           }
 
           this.setState(
@@ -227,9 +227,19 @@ export default class EditorV2 extends React.Component {
       newRuleContent.input_conditions[0].cases[0].case = alphabet.charAt(0);
     }
 
+    let body_enforced = newRuleContent;
+    try {
+      body_enforced = enforceSchemaWithTables(RuleSchema, body_enforced);
+    } catch (e) {
+      toast.warning('Warning: Rule did not pass schema checks.');
+      console.error(e);
+      // navigate(`/apps/rm/dashboard/`);
+      body_enforced = newRuleContent;
+    }
+
     // Finally, save.
-    this.setState({ active: false, rule: newRuleContent }, () => {
-      console.log('Editor.jsx: Updated content from local storage.');
+    this.setState({ active: false, rule: body_enforced }, () => {
+      console.log('Editor.jsx: Updated content.');
       this.setState({ active: true, modalOpen: false }, () => {
         this.persistRuleToStorage();
       });
@@ -251,6 +261,18 @@ export default class EditorV2 extends React.Component {
 
   persistRuleToStorage(showmsg = false) {
     console.log('Editor.jsx: Persisting rule to storage...');
+
+    // Attempt to enforce schema.
+    let body_enforced = this.state.rule;
+    try {
+      body_enforced = enforceSchemaWithTables(RuleSchema, body_enforced);
+    } catch (e) {
+      toast.warning('Warning: Rule did not pass schema checks.');
+      console.error(e);
+      // navigate(`/apps/rm/dashboard/`);
+      body_enforced = this.state.rule;
+    }
+
     Axios.patch(
       `/rules/content/${this.state.primary_content_uuid}/`,
       {
