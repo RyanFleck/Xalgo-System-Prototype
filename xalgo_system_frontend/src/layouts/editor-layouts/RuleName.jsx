@@ -46,33 +46,6 @@ export default class RuleName extends React.Component {
   /**
    * Set the local state from editor state.
    */
-  componentDidMount() {
-    this.setNameAndDescFromProps();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.rule !== this.props.rule) {
-      this.setNameAndDescFromProps();
-    }
-  }
-
-  setNameAndDescFromProps() {
-    //const { ruleName, ruleDescription } = this.props.rule.metadata;
-    const ruleName = 'Rule Name';
-    const ruleDescription = 'test';
-
-    if (ruleName && ruleDescription) {
-      console.log(
-        `RuleName.jsx: Loading rule info from props:\nTitle: ${ruleName}\nDescription: ${ruleDescription}`
-      );
-    } else {
-      console.log('RuleName.jsx: Name and description props delivered empty.');
-    }
-    this.setState({
-      name: ruleName,
-      description: ruleDescription,
-    });
-  }
 
   handleNameChange(event) {
     this.setState({ name: event.target.value });
@@ -162,11 +135,19 @@ export default class RuleName extends React.Component {
               <Box m={2} />
               <Text variant="formtitle">Rule Name</Text>
               <Box m={1} />
-              <Input value={this.state.name} onChange={this.handleNameChange} />
+              <Input
+                value={this.state.name}
+                onChange={this.handleNameChange}
+                placeholder="A short and self-explanatory title"
+              />
               <Box m={2} />
               <Text variant="formtitle">Rule Description</Text>
               <Box m={1} />
-              <InputField value={this.state.description} onChange={this.handleDescriptionChange} />
+              <InputField
+                value={this.state.description}
+                onChange={this.handleDescriptionChange}
+                placeholder="A brief description of the new rule's purpose and outputs"
+              />
               <Box m={3} />
               <Button variant="wide" onClick={this.saveAndRedirect}>
                 Start

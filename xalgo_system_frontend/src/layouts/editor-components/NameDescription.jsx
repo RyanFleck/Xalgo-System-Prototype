@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormStandard, Text } from '../../components';
+import { Box, GuideLine, FormStandard, Text, description } from '../../components';
 
 function NameDescription({ rule, updateRule, active }) {
-    // 0. Fill out the section name.
+  // 0. Fill out the section name.
   const sectionName = 'Rule Information';
   //const sectionDesc = 'Begin your rule by providing a title and concise description.';
   const [modified, setModified] = useState(false);
@@ -28,13 +28,25 @@ function NameDescription({ rule, updateRule, active }) {
       <Text>Name & Description</Text>
       <Box padding={1} />
       <GuideLine>
-        <FormStandard name="Rule Name" description={RuleSchema.metadata.rule.__description} value={title}
+        <FormStandard
+          name="Rule Name"
+          description={RuleSchema.metadata.rule.__description}
+          value={title}
           onChange={(e) => {
             setTitle(e.target.value);
             setModified(true);
-          }}/>
+          }}
+        />
         <Box padding={1} />
-        <FormStandard name="Rele Description" description={RuleSchema.metadata.rule.__description} />
+        <FormStandard
+          name="Rule Description"
+          description={RuleSchema.metadata.rule.__description}
+          value={desc}
+          onChange={(e) => {
+            setDesc(e.target.value);
+            setModified(true);
+          }}
+        />
       </GuideLine>
       <Box padding={1} />
     </div>
