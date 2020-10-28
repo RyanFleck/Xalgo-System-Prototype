@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { deepCopy } from 'xalgo-rule-processor';
-import { Box, Text, Flex, Button, Dropdown, Option, Input, Infobox, Modal, InputField } from '..';
+import { Box, Text, Flex, Button, Dropdown, Option, Input, Modal, InputField } from '..';
 
 const fillBox = {
   borderBottom: '1px solid #696969',
@@ -157,7 +157,8 @@ export default function SentenceEditor(props) {
       </Box>
 
       <Box padding={2} />
-      <Button variant="blue"
+      <Button
+        variant="blue"
         onClick={() => {
           const ruleCopy = deepCopy(rule);
 
