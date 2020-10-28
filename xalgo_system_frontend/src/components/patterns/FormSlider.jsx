@@ -31,7 +31,7 @@ function FormSlider({ name, description, labela, labelb, labelc, value, onChange
         type="range"
         min={(0).toString()}
         max={(99).toString()}
-        value={value ? value.toString() : 0}
+        value={value ? value.toString() : '0'}
         onChange={(x) => {
           console.log(`Value is now ${x.target.value}`);
           onChange(x.target.value);
