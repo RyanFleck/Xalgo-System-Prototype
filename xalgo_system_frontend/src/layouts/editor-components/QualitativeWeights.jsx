@@ -4,26 +4,53 @@ import { Box, GuideLine, FormSlider, FormDropdown, Text } from '../../components
 
 function QualitativeWeights({ rule, updateRule, active, section }) {
   // 0. Fill out the section name.
-  const sectionName = 'Rule Information';
+  const sectionName = 'Qualitative Weights';
   // const sectionDesc = 'Begin your rule by providing a title and concise description.';
-  const [modified] = useState(false);
+  const [modified, setModified] = useState(false);
 
   // 1. Set a state for each element that must be filled.
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  // const [title, setTitle] = useState('');
+
+  const [character, setCharacter] = useState(0);
+  const [enforcement, setEnforcement] = useState(0);
+  const [consequences, setConsequences] = useState(0);
 
   // Don't touch this.
   if (active && !modified) {
     console.log(`${sectionName} section is being edited.`);
 
     // 2. Ensure each field is set according to the current rule state.
-    if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
-    if (desc !== rule.metadata.rule.description) setDesc(rule.metadata.rule.description);
+    // if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
+    if (character !== rule.output_weight.character_of_obligation) {
+      console.log(`Setting character to ${rule.output_weight.character_of_obligation}`);
+      setCharacter(rule.output_weight.character_of_obligation);
+    }
+    if (enforcement !== rule.output_weight.enforcement_measures) {
+      console.log(`Setting enforcement to ${rule.output_weight.character_of_obligation}`);
+      setEnforcement(rule.output_weight.enforcement_measures);
+    }
+    if (consequences !== rule.output_weight.consequences) {
+      console.log(`Setting consequences to ${rule.output_weight.consequences}`);
+      setConsequences(rule.output_weight.consequences);
+    }
+  }
+
+  function saveContent() {
+    console.log(`Saving ${sectionName} to state.`);
+    // rule.metadata.rule.title = title;
+    console.log(
+      `Saving character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
+    );
+    rule.output_weight.character_of_obligation = character;
+    rule.output_weight.enforcement_measures = enforcement;
+    rule.output_weight.consequences = consequences;
+    updateRule(rule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <Box padding={1} />
       <Text>Section Name</Text>
       <Box padding={1} />
@@ -59,6 +86,11 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
           labela="Basic Coherence"
           labelb="Strongly Beneficial"
           labelc="Absolutely Essential"
+          value={character}
+          onChange={(e) => {
+            setModified(true);
+            setCharacter(parseInt(e));
+          }}
         />
         <Box padding={2} />
         <FormSlider
@@ -67,6 +99,11 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
           labela="Minor Penalties"
           labelb="Significant Penalties"
           labelc="Major Penalties"
+          value={enforcement}
+          onChange={(e) => {
+            setModified(true);
+            setEnforcement(parseInt(e));
+          }}
         />
         <Box padding={2} />
         <FormSlider
@@ -75,6 +112,11 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
           labela="Preference Only"
           labelb="Significant Effects"
           labelc="Enormous Impacts"
+          value={consequences}
+          onChange={(e) => {
+            setModified(true);
+            setConsequences(parseInt(e));
+          }}
         />
       </GuideLine>
       <Box padding={1} />
