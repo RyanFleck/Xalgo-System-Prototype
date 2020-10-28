@@ -2,7 +2,7 @@
 import React from 'react';
 import Box from '../components/layout/Box';
 import Grid from '../components/layout/Grid';
-import { Link } from '@reach/router';
+//import { Link } from '@reach/router';
 
 // components
 import ScrollUp from './components/ScrollUp';
