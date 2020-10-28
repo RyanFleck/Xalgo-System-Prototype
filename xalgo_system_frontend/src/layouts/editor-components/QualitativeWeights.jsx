@@ -13,7 +13,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
 
   const [character, setCharacter] = useState(0);
   const [enforcement, setEnforcement] = useState(0);
-  const [conseqences, setConsequences] = useState(0);
+  const [consequences, setConsequences] = useState(0);
 
   // Don't touch this.
   if (active && !modified) {
@@ -29,19 +29,23 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
       console.log(`Setting enforcement to ${rule.output_weight.character_of_obligation}`);
       setEnforcement(rule.output_weight.enforcement_measures);
     }
-    if (conseqences !== rule.output_weight.conseqences) {
-      console.log(`Setting consequences to ${rule.output_weight.conseqences}`);
-      setConsequences(rule.output_weight.conseqences);
+    if (consequences !== rule.output_weight.consequences) {
+      console.log(`Setting consequences to ${rule.output_weight.consequences}`);
+      setConsequences(rule.output_weight.consequences);
     }
   }
 
   function saveContent() {
     console.log(`Saving ${sectionName} to state.`);
     // rule.metadata.rule.title = title;
+    console.log(
+      `Saving character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
+    );
     rule.output_weight.character_of_obligation = character;
     rule.output_weight.enforcement_measures = enforcement;
-    rule.output_weight.consequences = conseqences;
+    rule.output_weight.consequences = consequences;
     updateRule(rule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
@@ -108,7 +112,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
           labela="Preference Only"
           labelb="Significant Effects"
           labelc="Enormous Impacts"
-          value={conseqences}
+          value={consequences}
           onChange={(e) => {
             setModified(true);
             setConsequences(parseInt(e));
