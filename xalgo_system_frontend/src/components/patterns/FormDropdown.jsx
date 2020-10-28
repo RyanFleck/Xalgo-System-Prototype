@@ -1,7 +1,7 @@
 import React from 'react';
 import { Stack, Dropdown, Box, Button, Text, Flex, Modal, Infobox, IInfo, ErrorMessage } from '..';
 
-function FormDropdown({ name, description, label, value, errormessage, options = [] }) {
+function FormDropdown({ name, description, label, value, errormessage, options = [], onChange }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const renderOptions = () => {
@@ -27,12 +27,18 @@ function FormDropdown({ name, description, label, value, errormessage, options =
         </Button>
       </Flex>
       <Box padding={1} />
-      <Dropdown>{renderOptions()}</Dropdown>
+      <Dropdown value={value} onChange={onChange}>
+        {renderOptions()}
+      </Dropdown>
 
-      {errormessage
-        ? <div><Box padding={1} /><ErrorMessage message={errormessage}/></div>
-        : <Modal/>
-      }
+      {errormessage ? (
+        <div>
+          <Box padding={1} />
+          <ErrorMessage message={errormessage} />
+        </div>
+      ) : (
+        <Modal />
+      )}
     </Stack>
   );
 }

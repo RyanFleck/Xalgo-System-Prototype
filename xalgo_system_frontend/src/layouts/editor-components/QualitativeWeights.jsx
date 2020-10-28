@@ -11,6 +11,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
   // 1. Set a state for each element that must be filled.
   // const [title, setTitle] = useState('');
 
+  const [ruleGroup, setRuleGroup] = useState('');
   const [character, setCharacter] = useState(0);
   const [enforcement, setEnforcement] = useState(0);
   const [consequences, setConsequences] = useState(0);
@@ -21,6 +22,10 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
 
     // 2. Ensure each field is set according to the current rule state.
     // if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
+    if (ruleGroup !== rule.output_weight.rule_group) {
+      console.log(`Setting character to ${rule.output_weight.rule_group}`);
+      setRuleGroup(rule.output_weight.rule_group);
+    }
     if (character !== rule.output_weight.character_of_obligation) {
       console.log(`Setting character to ${rule.output_weight.character_of_obligation}`);
       setCharacter(rule.output_weight.character_of_obligation);
@@ -39,8 +44,10 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
     console.log(`Saving ${sectionName} to state.`);
     // rule.metadata.rule.title = title;
     console.log(
-      `Saving character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
+      `Saving weights => group: ${ruleGroup} character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
     );
+    rule.output_weight.rule_group = ruleGroup;
+
     rule.output_weight.character_of_obligation = character;
     rule.output_weight.enforcement_measures = enforcement;
     rule.output_weight.consequences = consequences;
@@ -78,6 +85,13 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
             { value: 'International Law', label: 'International Law' },
             { value: 'Operational Patern', label: 'Operational Patern' },
           ]}
+          value={ruleGroup}
+          onChange={(e) => {
+            setModified(true);
+            console.log(`Setting rule group to ${e.target.value}`);
+            console.log(e);
+            setRuleGroup(e.target.value);
+          }}
         />
         <Box padding={2} />
         <FormSlider
