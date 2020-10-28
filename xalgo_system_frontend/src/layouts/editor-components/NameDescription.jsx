@@ -21,9 +21,16 @@ function NameDescription({ rule, updateRule, active }) {
     if (desc !== rule.metadata.rule.description) setDesc(rule.metadata.rule.description);
   }
 
+  function saveContent() {
+    console.log(`Saving ${sectionName} to state.`);
+    rule.metadata.rule.title = title;
+    rule.metadata.rule.description = desc;
+    updateRule(rule);
+  }
+
   // 3. Return a rendering of the component.
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <Box padding={1} />
       <Text>Name & Description</Text>
       <Box padding={1} />
