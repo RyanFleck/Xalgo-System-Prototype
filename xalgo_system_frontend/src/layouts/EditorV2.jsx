@@ -30,7 +30,7 @@ import {
 
 import {
   BlankRows,
-  //NameDescription,
+  NameDescription,
   Metadata,
   RuleAuthor,
   RuleManager,
@@ -386,7 +386,7 @@ export default class EditorV2 extends React.Component {
                 <Text variant="formtitle">About the Rule</Text>
                 <Box p={2}></Box>
                 <GuideLine>
-                  {/*<NameDescription rule={rule} updateRule={this.updateRule} active={active} />*/}
+                  <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
                   <Metadata />
                 </GuideLine>
 
@@ -424,13 +424,15 @@ export default class EditorV2 extends React.Component {
                 {/* Input: contexts */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Where and when this Rule is Asserted to be in Effect</Text>
+                <Text variant="formtitle">
+                  Where and when this Rule is Asserted to be in Effect
+                </Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <DataSource />
                   <Addbutton content="Data Source" />
-                  <Time label="Start Time"/>
-                  <Time label="End Time"/>
+                  <Time label="Start Time" />
+                  <Time label="End Time" />
                 </GuideLine>
 
                 {/* Input: filters */}
@@ -438,7 +440,9 @@ export default class EditorV2 extends React.Component {
                 {/* Input: filters */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">External Data Values for which this Rule is Deemed to be Applicable</Text>
+                <Text variant="formtitle">
+                  External Data Values for which this Rule is Deemed to be Applicable
+                </Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <StandardRoleName />
