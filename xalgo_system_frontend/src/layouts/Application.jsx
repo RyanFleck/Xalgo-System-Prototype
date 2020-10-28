@@ -27,8 +27,9 @@ import Footer from './components/Footer';
 
 const baseBoxStyle = {
   minHeight: '100vh',
-  margin: 0,
-  paddingTop: 90,
+  marginTop: '73px',
+  left: '0px',
+  width: '100%',
 };
 
 // Primary Component

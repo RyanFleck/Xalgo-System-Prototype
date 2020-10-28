@@ -10,14 +10,14 @@ const Button = styled.button(
   css({
     boxSizing: 'border-box',
     display: 'inline-block',
-    px: 4,
-    py: 2,
-    textAlign: 'center',
+    px: 1,
+    py: '4px',
+    textAlign: 'left',
     border: 'thin',
     color: 'primary',
     borderColor: 'primary',
     backgroundColor: 'bg',
-    borderRadius: 'round',
+    borderRadius: '3px',
     fontFamily: 'body',
     fontSize: 'md',
     textDecoration: 'none',
@@ -26,22 +26,20 @@ const Button = styled.button(
     // We can't use :enabled here because it doesn't work with <a>
     '&:hover:not(:disabled), &:active:not(:disabled)': {
       color: 'primary',
-      background: 'radial-gradient(371.11% 371.11% at 50% 66.67%, #FFFFFF 11.2%, #0258FF 100%)',
       cursor: 'pointer',
-      boxShadow: '0px 1px 4px #ADC5F3',
+      outline: 'none',
     },
 
     '&:focus': {
       color: 'primary',
       borderColor: 'bg',
       backgroundColor: 'bg',
-      // borderColor: 'accent',
+      outline: 'none',
     },
 
     '&:disabled': {
       color: 'lgrey',
       borderColor: 'oline',
-      boxShadow: '0px 4px 4px #E0E0E0',
     },
   }),
   variant({
@@ -52,11 +50,10 @@ const Button = styled.button(
       },
       secondary: {
         backgroundColor: 'bg',
-        boxShadow: '0px 4px 4px #ADC5F3',
       },
       wide: {
+        background: 'none',
         width: '100%',
-        boxShadow: '0px 4px 4px #ADC5F3',
       },
       invisible: {
         borderRadius: 'base',
@@ -71,6 +68,7 @@ const Button = styled.button(
           cursor: 'pointer',
           boxShadow: 'none',
           color: 'text',
+          borderColor: 'none',
         },
       },
       invisiblewide: {
@@ -82,11 +80,28 @@ const Button = styled.button(
         py: 0,
         width: '100%',
         '&:hover:not(:disabled), &:active:not(:disabled)': {
-          background: 'none',
           cursor: 'pointer',
           boxShadow: 'none',
         },
       },
+      error: {
+        backgroundColor: '#D0F3E2',
+        borderColor: '#D0F3E2',
+        width: '100%',
+        textAlign: 'center',
+        color: '#439D72',
+      },
+      blue: {
+        backgroundColor: 'primary',
+        textAlign: 'center',
+        width: '100%',
+        color: '#fff',
+        '&:hover:not(:disabled), &:active:not(:disabled)': {
+          cursor: 'pointer',
+          boxShadow: 'none',
+          color: '#DBEAFF',
+        },
+      }
     },
   })
 );

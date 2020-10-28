@@ -11,8 +11,17 @@ html {
   height: 100vh;
 }
 
+body {    
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+  text-decoration: none;
 }
 
 .loading-wrapper {

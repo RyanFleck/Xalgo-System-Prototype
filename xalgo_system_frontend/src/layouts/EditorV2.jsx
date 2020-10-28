@@ -331,29 +331,13 @@ export default class EditorV2 extends React.Component {
 
     return (
       <div>
-        <div
-          style={{
-            position: 'fixed',
-            bottom: 0,
-            right: 0,
-            height: '100px',
-            width: '200px',
-          }}
-        >
-          <Button
-            onClick={() => {
-              this.persistRuleToStorage(true);
-            }}
-          >
-            Save Rule
-          </Button>
-        </div>
         <EditorLeft
           title={rule.metadata.rule.title}
           description={rule.metadata.rule.description}
           deleteFunction={this.deleteRule}
           resetFunction={this.resetRule}
-        ></EditorLeft>
+          saveFunction={this.persistRuleToStorage}
+        />
         {this.state.rule_loaded ? (
           <div>
             {/* Modal used by input/output tables. */}
@@ -404,6 +388,7 @@ export default class EditorV2 extends React.Component {
                 {/* Rule Name */}
 
                 <Text variant="formtitle">About the Rule</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
                   <Metadata />
@@ -414,7 +399,9 @@ export default class EditorV2 extends React.Component {
                 {/* Rule Manager */}
                 {/* Rule Manager */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Management, Authorship & Maintenance</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <RuleManager />
                   <Addbutton content="Rule Manager" />
@@ -428,7 +415,9 @@ export default class EditorV2 extends React.Component {
                 {/* Daata Sources */}
                 {/* Daata Sources */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Data Sources</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <InputSources />
                   <Addbutton content="Input Source" />
@@ -438,7 +427,9 @@ export default class EditorV2 extends React.Component {
                 {/* Input: contexts */}
                 {/* Input: contexts */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Input: Contexts</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <DataSource />
                   <Addbutton content="Data Source" />
@@ -450,7 +441,9 @@ export default class EditorV2 extends React.Component {
                 {/* Input: filters */}
                 {/* Input: filters */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Input: Filters</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <StandardRoleName />
                   <Addbutton content="Standard Role Name" />
@@ -458,13 +451,6 @@ export default class EditorV2 extends React.Component {
                   <Addbutton content="Involved Product or Service" />
                 </GuideLine>
 
-                {/* Input filters */}
-                {/* Input filters */}
-                {/* Input filters */}
-                {/* Input filters */}
-                {/* Input filters */}
-                {/* Input filters */}
-
                 {/* Input Output Table */}
                 {/* Input Output Table */}
                 {/* Input Output Table */}
@@ -472,7 +458,9 @@ export default class EditorV2 extends React.Component {
                 {/* Input Output Table */}
                 {/* Input Output Table */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Input Output Filters</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <Box>
                     <div style={overflowTable}>
@@ -588,7 +576,9 @@ export default class EditorV2 extends React.Component {
                 {/* output purpose */}
                 {/* output purpose */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Output</Text>
+                <Box p={2}></Box>
                 <GuideLine>
                   <OutputPurpose />
                 </GuideLine>
@@ -600,10 +590,12 @@ export default class EditorV2 extends React.Component {
                 {/* Qualitative wieghts */}
                 {/* Qualitative wieghts */}
 
+                <Box p={2}></Box>
                 <Text variant="formtitle">Qualitative Weights</Text>
                 <GuideLine>
                   <QualitativeWeights />
                 </GuideLine>
+                <Box p={2}></Box>
               </div>
             </Box>
             {/* End of the editor */}

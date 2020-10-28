@@ -5,10 +5,13 @@ import Grid from '../components/layout/Grid';
 import Card from '../components/patterns/Card';
 import Flex from '../components/layout/Flex';
 
+import Intro from './components/Intro';
+
+
 // rm-components
 import Text from '../components/primitives/Text';
 import ScrollUp from './components/ScrollUp';
-import { Link } from '@reach/router';
+//import { Link } from '@reach/router';
 import Axios from 'axios';
 import BarLoader from 'react-spinners/BarLoader';
 import FileSaver from 'file-saver';
@@ -112,30 +115,14 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+    const { user } = this.props;
     return (
       <ScrollUp>
         <div style={hold}>
-          <Grid gridTemplateRows="auto" height="90vh">
+          <Grid gridTemplateRows="auto" height="100vh">
             <Box>
-              <Grid gridTemplateColumns="400px auto 400px" height="100%">
-                <Box borderRight="1px solid #efefef">
-                  <Box p={4}>
-                    <Text variant="formtitle">Editor</Text>
-                    <Box p={2} />
-                    <Box>
-                      <Text color="primary">
-                        <Link to="/apps/rm/editor">Create Rule</Link>
-                      </Text>
-                    </Box>
-                    <Box marginTop={2}>
-                      <Text color="textb">Create Table</Text>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box p={4} borderRight="1px solid #efefef">
-                  <Box p={1} />
-                  <Text>Graphics showing rule ussage will go here in the future</Text>
-                </Box>
+              <Grid gridTemplateColumns="500px auto" height="100%">
+                <Intro name={ user.email }/>
                 <Box p={4} height="auto">
                   <Text variant="formtitle">My Rules</Text>
                   <Box p={2} />
