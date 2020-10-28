@@ -609,7 +609,7 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <Text variant="formtitle">Qualitative Weights</Text>
                 <GuideLine>
-                  <QualitativeWeights />
+                  <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
                 </GuideLine>
                 <Box p={2}></Box>
               </div>

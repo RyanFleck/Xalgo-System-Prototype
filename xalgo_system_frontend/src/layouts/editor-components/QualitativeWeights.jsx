@@ -47,7 +47,6 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
       `Saving weights => group: ${ruleGroup} character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
     );
     rule.output_weight.rule_group = ruleGroup;
-
     rule.output_weight.character_of_obligation = character;
     rule.output_weight.enforcement_measures = enforcement;
     rule.output_weight.consequences = consequences;
