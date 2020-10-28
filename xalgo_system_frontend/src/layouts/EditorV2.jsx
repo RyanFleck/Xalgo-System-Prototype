@@ -222,13 +222,12 @@ export default class EditorV2 extends React.Component {
       \nContent:\n${prettyJSON(newRuleContent)}`
     );
 
-    if (newRuleContent.input_conditions.length === 0) {
+    if (newRuleContent.input_conditions.length === 0)
       newRuleContent = addNewInputCondition(newRuleContent);
-    }
 
-    if (newRuleContent.output_assertions.length === 0) {
+    if (newRuleContent.output_assertions.length === 0)
       newRuleContent = addNewOutputAssertion(newRuleContent);
-    }
+
     // Perform checks on rule to ensure content is good.
     if (newRuleContent.input_conditions[0].cases[0].case === '') {
       console.log('Adding a case to the cases.');
