@@ -433,8 +433,8 @@ export default class EditorV2 extends React.Component {
                 <GuideLine>
                   <DataSource />
                   <Addbutton content="Data Source" />
-                  <Time />
-                  <Time />
+                  <Time label="Start Time"/>
+                  <Time label="End Time"/>
                 </GuideLine>
 
                 {/* Input: filters */}
