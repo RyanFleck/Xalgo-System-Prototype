@@ -30,7 +30,10 @@ function InputSources({ rule, updateRule, active }) {
         <FormDropdown
           name="Document Type"
           description="hello world is asking the following things"
-          options={[{ value: 'lookup.xalgo', label: 'lookup.xalgo' }]}
+          options={[
+            { value: 'is.xalgo', label: 'is.xalgo' },
+            { value: 'lookup.xalgo', label: 'lookup.xalgo' }
+          ]}
         />
         <Box padding={1} />
         <FormStandard name="Unique Identifier" description={RuleSchema.metadata.rule.__description} />
