@@ -27,13 +27,14 @@ const Button = styled.button(
     '&:hover:not(:disabled), &:active:not(:disabled)': {
       color: 'primary',
       cursor: 'pointer',
+      outline: 'none',
     },
 
     '&:focus': {
       color: 'primary',
       borderColor: 'bg',
       backgroundColor: 'bg',
-      // borderColor: 'accent',
+      outline: 'none',
     },
 
     '&:disabled': {
@@ -67,6 +68,7 @@ const Button = styled.button(
           cursor: 'pointer',
           boxShadow: 'none',
           color: 'text',
+          borderColor: 'none',
         },
       },
       invisiblewide: {
@@ -78,7 +80,6 @@ const Button = styled.button(
         py: 0,
         width: '100%',
         '&:hover:not(:disabled), &:active:not(:disabled)': {
-          background: '#F9FBFE',
           cursor: 'pointer',
           boxShadow: 'none',
         },

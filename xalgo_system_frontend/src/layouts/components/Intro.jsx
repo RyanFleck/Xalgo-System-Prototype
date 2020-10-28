@@ -37,7 +37,7 @@ function Intro({name}) {
                         href="https://github.com/RyanFleck/Xalgo-System-Prototype/issues"
                         >
                         <Button variant="error">
-                            Provide feedback, or report bug
+                            Provide feedback, or report a bug
                         </Button>
                         </a>
                     </Text>
