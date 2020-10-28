@@ -24,12 +24,12 @@ function DataSource({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div>
-      <SubButton content="Data Sources" />
+      <SubButton content="Jurisdictions" />
       <Box padding={1} />
       <GuideLine>
-        <FormStandard name="Jurisdiction" description={RuleSchema.metadata.rule.__description} />
+        <FormStandard name="Country Jurisdiction" description={RuleSchema.metadata.rule.__description} />
         <Box padding={1} />
-        <FormStandard name="Sub-Jurisdiction" description={RuleSchema.metadata.rule.__description} />
+        <FormStandard name="Sub-Country Jurisdiction" description={RuleSchema.metadata.rule.__description} />
       </GuideLine>
       <Box padding={1} />
     </div>
