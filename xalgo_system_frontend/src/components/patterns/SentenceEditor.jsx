@@ -57,16 +57,14 @@ export default function SentenceEditor(props) {
   return (
     <Box>
       {modalEditingInput ? (
-        <Text variant="heading">Modify Input Condition</Text>
+        <Text variant="formtitle">Modify Input Condition</Text>
       ) : (
-        <Text variant="heading">Modify Output Assertion</Text>
+        <Text variant="formtitle">Modify Output Assertion</Text>
       )}
       <Box padding={2} />
       <Box>
         <Flex justifyContent="space-between">
           <Flex>
-            <Text color="primary">A</Text>
-            <Box padding={1} />
             <Text>The</Text>
             <SentenceConstructorField contentField={participle} />
             <SentenceConstructorField contentField={attribute} />
@@ -78,8 +76,6 @@ export default function SentenceEditor(props) {
           </Flex>
         </Flex>
         <Modal isOpen>
-          <Box padding={1} />
-          <Infobox content="lorem ipsum" />
           <Box padding={1} />
           <Flex alignItems="center">
             <Text>The</Text>
@@ -161,7 +157,7 @@ export default function SentenceEditor(props) {
       </Box>
 
       <Box padding={2} />
-      <Button
+      <Button variant="blue"
         onClick={() => {
           const ruleCopy = deepCopy(rule);
 

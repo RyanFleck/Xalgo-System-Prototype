@@ -30,7 +30,7 @@ import {
 
 import {
   BlankRows,
-  NameDescription,
+  //NameDescription,
   Metadata,
   RuleAuthor,
   RuleManager,
@@ -350,11 +350,6 @@ export default class EditorV2 extends React.Component {
                       <Box padding="0.2em" />
                       <Text variant="formtitle">{rule.metadata.rule.name}</Text>
                     </div>
-                    <Flex>
-                      <Text color="publish">Publish</Text>
-                      <Box p={1} />
-                      <Text color="primary">Save and Exit</Text>
-                    </Flex>
                   </Flex>
                 </Box>
                 <div style={modalhold}>
@@ -391,7 +386,7 @@ export default class EditorV2 extends React.Component {
                 <Text variant="formtitle">About the Rule</Text>
                 <Box p={2}></Box>
                 <GuideLine>
-                  <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
+                  {/*<NameDescription rule={rule} updateRule={this.updateRule} active={active} />*/}
                   <Metadata />
                 </GuideLine>
 
@@ -417,7 +412,7 @@ export default class EditorV2 extends React.Component {
                 {/* Daata Sources */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Origins of data that this rule depends upon</Text>
+                <Text variant="formtitle">Origins of Data that this Rule Depends Upon</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <InputSources />
@@ -429,15 +424,13 @@ export default class EditorV2 extends React.Component {
                 {/* Input: contexts */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">
-                  Where and when this rule is asserted to be in effect
-                </Text>
+                <Text variant="formtitle">Where and when this Rule is Asserted to be in Effect</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <DataSource />
                   <Addbutton content="Data Source" />
-                  <Time label="Start Time" />
-                  <Time label="End Time" />
+                  <Time label="Start Time"/>
+                  <Time label="End Time"/>
                 </GuideLine>
 
                 {/* Input: filters */}
@@ -445,9 +438,7 @@ export default class EditorV2 extends React.Component {
                 {/* Input: filters */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">
-                  External data values for which this rule is deemed to be applicable
-                </Text>
+                <Text variant="formtitle">External Data Values for which this Rule is Deemed to be Applicable</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <StandardRoleName />
@@ -582,7 +573,7 @@ export default class EditorV2 extends React.Component {
                 {/* output purpose */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Output attributes</Text>
+                <Text variant="formtitle">Output Attributes</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <OutputPurpose />
@@ -598,7 +589,7 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <Text variant="formtitle">Qualitative Weights</Text>
                 <GuideLine>
-                  <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
+                  <QualitativeWeights />
                 </GuideLine>
                 <Box p={2}></Box>
               </div>
