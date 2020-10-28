@@ -27,8 +27,6 @@ function StandardRoleName({ rule, updateRule, active }) {
       <SubButton content="Standard Role Name" />
       <Box padding={1} />
       <GuideLine>
-        <FormStandard name="Standard Industry Name" description={RuleSchema.metadata.rule.__description} />
-        <Box padding={1} />
         <FormStandard name="ISIC Industry Code" description={RuleSchema.metadata.rule.__description} />
         <Box padding={1} />
         <FormStandard name="ISIC Industry Name" description={RuleSchema.metadata.rule.__description} />

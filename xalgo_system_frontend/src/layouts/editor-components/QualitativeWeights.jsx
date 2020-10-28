@@ -58,7 +58,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
   return (
     <div onMouseLeave={saveContent}>
       <Box padding={1} />
-      <Text>Section Name</Text>
+      <Text>Qualitative Weights</Text>
       <Box padding={1} />
       <GuideLine>
         <FormDropdown

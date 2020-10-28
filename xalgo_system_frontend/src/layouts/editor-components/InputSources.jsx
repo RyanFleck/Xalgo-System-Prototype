@@ -24,7 +24,7 @@ function InputSources({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div>
-      <SubButton content="Input Sources" />
+      <SubButton content="Input Source" />
       <Box padding={1} />
       <GuideLine>
         <FormDropdown

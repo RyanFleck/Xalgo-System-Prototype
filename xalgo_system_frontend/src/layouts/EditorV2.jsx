@@ -446,7 +446,7 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <GuideLine>
                   <DataSource />
-                  <Addbutton content="Data Source" />
+                  <Addbutton content="Jurisdiction" />
                   <Time label="Start Time" />
                   <Time label="End Time" />
                 </GuideLine>
@@ -597,18 +597,6 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <GuideLine>
                   <OutputPurpose />
-                </GuideLine>
-
-                {/* Qualitative wieghts */}
-                {/* Qualitative wieghts */}
-                {/* Qualitative wieghts */}
-                {/* Qualitative wieghts */}
-                {/* Qualitative wieghts */}
-                {/* Qualitative wieghts */}
-
-                <Box p={2}></Box>
-                <Text variant="formtitle">Qualitative Weights</Text>
-                <GuideLine>
                   <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
                 </GuideLine>
                 <Box p={2}></Box>

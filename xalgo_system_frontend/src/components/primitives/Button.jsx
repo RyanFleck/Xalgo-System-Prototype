@@ -90,6 +90,12 @@ const Button = styled.button(
         width: '100%',
         textAlign: 'center',
         color: '#439D72',
+        '&:hover:not(:disabled), &:active:not(:disabled)': {
+          cursor: 'pointer',
+          boxShadow: 'none',
+          backgroundColor: '#A3D8BE',
+          color: '#439D72',
+        },
       },
       blue: {
         backgroundColor: 'primary',
