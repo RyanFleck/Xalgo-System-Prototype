@@ -41,7 +41,7 @@ import {
   StandardRoleName,
   InvolvedProduct,
   OutputPurpose,
-  // QualitativeWeights,
+  QualitativeWeights,
 } from './editor-components';
 import { ClockLoader } from 'react-spinners';
 import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
@@ -138,6 +138,8 @@ export default class EditorV2 extends React.Component {
     this.editInputCondition = this.editInputCondition.bind(this);
     this.editOutputAssertion = this.editOutputAssertion.bind(this);
     this.addCase = this.addCase.bind(this);
+
+    this.enforceRuleJSONSchema = this.enforceRuleJSONSchema.bind(this);
   }
 
   componentDidMount() {
@@ -149,6 +151,20 @@ export default class EditorV2 extends React.Component {
    * Class Functions, mostly for editing rule state
    * ==============================================
    */
+
+  enforceRuleJSONSchema(new_rule_body, warn = false) {
+    try {
+      console.log('Enforcing rule schema...');
+      let enforced_body = enforceSchemaWithTables(RuleSchema, new_rule_body);
+      return enforced_body;
+    } catch (e) {
+      if (warn) {
+        toast.warning('Warning: Rule did not pass schema checks.');
+      }
+      console.error(e);
+      return new_rule_body;
+    }
+  }
 
   getRuleFromStorage() {
     console.log(`Loading rule ${this.props.ruleUUID} using editor version v0.4-2`);
@@ -186,15 +202,7 @@ export default class EditorV2 extends React.Component {
             toast('Body is empty, adding blank rule content.');
           }
 
-          let body_enforced = content_data.body;
-          try {
-            body_enforced = enforceSchemaWithTables(RuleSchema, content_data.body);
-          } catch (e) {
-            toast.warning('Warning: Rule did not pass schema checks.');
-            console.error(e);
-            // navigate(`/apps/rm/dashboard/`);
-            body_enforced = content_data.body;
-          }
+          let body_enforced = this.enforceRuleJSONSchema(content_data.body);
 
           this.setState(
             { rule_loaded: true, uuid: this.props.ruleUUID, primary_content_uuid: res.data.id },
@@ -227,15 +235,7 @@ export default class EditorV2 extends React.Component {
       newRuleContent.input_conditions[0].cases[0].case = alphabet.charAt(0);
     }
 
-    let body_enforced = newRuleContent;
-    try {
-      body_enforced = enforceSchemaWithTables(RuleSchema, body_enforced);
-    } catch (e) {
-      toast.warning('Warning: Rule did not pass schema checks.');
-      console.error(e);
-      // navigate(`/apps/rm/dashboard/`);
-      body_enforced = newRuleContent;
-    }
+    let body_enforced = this.enforceRuleJSONSchema(newRuleContent);
 
     // Finally, save.
     this.setState({ active: false, rule: body_enforced }, () => {
@@ -261,18 +261,8 @@ export default class EditorV2 extends React.Component {
 
   persistRuleToStorage(showmsg = false) {
     console.log('Editor.jsx: Persisting rule to storage...');
-
-    // Attempt to enforce schema.
-    let body_enforced = this.state.rule;
-    try {
-      body_enforced = enforceSchemaWithTables(RuleSchema, body_enforced);
-    } catch (e) {
-      toast.warning('Warning: Rule did not pass schema checks.');
-      console.error(e);
-      // navigate(`/apps/rm/dashboard/`);
-      body_enforced = this.state.rule;
-    }
-
+    let body_enforced = this.enforceRuleJSONSchema(this.state.rule, showmsg);
+    console.log(body_enforced);
     Axios.patch(
       `/rules/content/${this.state.primary_content_uuid}/`,
       {
@@ -611,7 +601,9 @@ export default class EditorV2 extends React.Component {
                 {/* Qualitative wieghts */}
 
                 <Text variant="formtitle">Qualitative Weights</Text>
-                <GuideLine>{/* <QualitativeWeights /> */}</GuideLine>
+                <GuideLine>
+                  <QualitativeWeights />
+                </GuideLine>
               </div>
             </Box>
             {/* End of the editor */}

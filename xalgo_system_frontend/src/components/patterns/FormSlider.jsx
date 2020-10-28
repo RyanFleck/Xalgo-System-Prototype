@@ -4,6 +4,7 @@ import { IInfo } from '../icons';
 
 function FormSlider({ name, description, labela, labelb, labelc }) {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [value, setValue] = React.useState(0);
 
   return (
     <Stack gap={4}>
@@ -26,7 +27,18 @@ function FormSlider({ name, description, labela, labelb, labelc }) {
         <Text color="textb">{labelc}</Text>
       </Flex>
       <Box padding={1} />
-      <Input variant="secondary" type="range" min="0" max="99" value="0" step="1" />
+      <Input
+        variant="secondary"
+        type="range"
+        min={(0).toString()}
+        max={(99).toString()}
+        value={value.toString()}
+        onChange={(x) => {
+          console.log(`Value is now ${x.target.value}`);
+          setValue(parseInt(x.target.value));
+        }}
+        step={1}
+      />
     </Stack>
   );
 }

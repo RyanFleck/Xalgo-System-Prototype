@@ -11371,10 +11371,10 @@ xalgo-rule-processor@^0.0.12:
   dependencies:
     chalk "^4.0.0"
 
-xalgo-rule-processor@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/xalgo-rule-processor/-/xalgo-rule-processor-0.0.15.tgz#a874f9b31c823945b61de3e9a404639db992aebe"
-  integrity sha512-e5MTW/6rZ7wFWqtgP1+5HOjaChM9Xy7veI6pgAxYbYyPvBxkEi/hHa6JWzjHlSEzSP97umxs4xrlUW4KWV4O6Q==
+xalgo-rule-processor@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/xalgo-rule-processor/-/xalgo-rule-processor-0.0.16.tgz#d1ac0f062ed378ae92b32d75f8af73f6495a1497"
+  integrity sha512-bnjFrV1DRyLS3iuqPNTiaNjbS16X4IcVuzhIxBiI8YtTvI+4lliMjLCOrl10VW6b/Pbs0e+51AttFl9/9FRbmg==
   dependencies:
     chalk "^4.0.0"
 

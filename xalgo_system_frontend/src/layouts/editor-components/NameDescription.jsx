@@ -29,8 +29,8 @@ function NameDescription({ rule, updateRule, active }) {
       <Box padding={1} />
       <GuideLine>
         <FormStandard
-          name="Rule Name"
-          description={RuleSchema.metadata.rule.__description}
+          name="Rule Title"
+          description={RuleSchema.metadata.rule.__title}
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -46,6 +46,7 @@ function NameDescription({ rule, updateRule, active }) {
             setDesc(e.target.value);
             setModified(true);
           }}
+          longInput
         />
       </GuideLine>
       <Box padding={1} />
