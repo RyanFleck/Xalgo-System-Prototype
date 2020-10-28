@@ -415,7 +415,7 @@ export default class EditorV2 extends React.Component {
                 {/* Daata Sources */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Data Sources</Text>
+                <Text variant="formtitle">Origins of data that this rule depends upon</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <InputSources />
@@ -427,7 +427,7 @@ export default class EditorV2 extends React.Component {
                 {/* Input: contexts */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Input: Contexts</Text>
+                <Text variant="formtitle">Where and when this rule is asserted to be in effect</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <DataSource />
@@ -441,7 +441,7 @@ export default class EditorV2 extends React.Component {
                 {/* Input: filters */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Input: Filters</Text>
+                <Text variant="formtitle">External data values for which this rule is deemed to be applicable</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <StandardRoleName />
@@ -458,7 +458,7 @@ export default class EditorV2 extends React.Component {
                 {/* Input Output Table */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Input Output Filters</Text>
+                <Text variant="formtitle">Input Output Table</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <Box>
@@ -576,7 +576,7 @@ export default class EditorV2 extends React.Component {
                 {/* output purpose */}
 
                 <Box p={2}></Box>
-                <Text variant="formtitle">Output</Text>
+                <Text variant="formtitle">Output attributes</Text>
                 <Box p={2}></Box>
                 <GuideLine>
                   <OutputPurpose />
