@@ -19,8 +19,10 @@ const helpAlign = {
 
 const holdTop = {
   position: 'fixed',
-  top: '90px',
+  top: '75px',
   right: '0px',
+  background: '#F9F8F4',
+  height: '100vh',
 };
 
 const holdModal = {
@@ -41,7 +43,7 @@ const horizontalRule = {
 };
 
 // Primary Component
-function EditorLeft({ title, description, deleteFunction, resetFunction }) {
+function EditorLeft({ description, deleteFunction, resetFunction, saveFunction }) {
 
   // To set one of these panels as open by default, start with the state true.
   const [isOpen, setIsOpen] = React.useState(false); // Settings
@@ -53,6 +55,16 @@ function EditorLeft({ title, description, deleteFunction, resetFunction }) {
         <div>
           <div >
             <Box>
+              <Box paddingRight={4} paddingLeft={4} paddingTop={4}>
+                <Button variant="invisible"
+                  onClick={saveFunction}
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14.5" height="15" viewBox="0 0 14.5 15">
+                    <title>save</title>
+                    <path d="M1.5,1.5A.5.5,0,0,1,2,1H4.78V4.78a1,1,0,0,0,1,1h3.5a1,1,0,0,0,1-1V1h.77a.5.5,0,0,1,.38.17l2.44,2.72a.51.51,0,0,1,.13.34V13a.5.5,0,0,1-.5.5H12.25V9.75a1,1,0,0,0-1-1h-7a1,1,0,0,0-1,1V13.5H2a.5.5,0,0,1-.5-.5ZM7.38,4.78h1.9V1H7.38ZM6.38,1h-.6V4.78h.6Zm2.9-1H2A1.5,1.5,0,0,0,.5,1.5V13A1.5,1.5,0,0,0,2,14.5H3.38a1,1,0,0,0,.87.5h7a1,1,0,0,0,.87-.5H13.5A1.5,1.5,0,0,0,15,13V4.23a1.56,1.56,0,0,0-.38-1L12.17.5A1.49,1.49,0,0,0,11.05,0Zm-5,9.75h7V14h-7Z" transform="translate(-0.5)" fill-rule="evenodd"/>
+                  </svg>
+                </Button>
+              </Box>
               <Box paddingRight={4} paddingLeft={4} paddingTop={4}>
                 <Button variant="invisible" onClick={() => setIsOpen(!isOpen)}>
                   <Box width="18px" height="16px">

@@ -9,15 +9,6 @@ import Grid from '../../components/layout/Grid';
 import Box from '../../components/layout/Box';
 import Button from '../../components/primitives/Button';
 
-
-const top = {
-  paddingTop: '6px',
-};
-
-const margin = {
-  paddingTop: '2px',
-}
-
 const cc = {
   backgroundColor: "#494D59",
   padding: '12px 2em 12px 2em',
@@ -28,35 +19,29 @@ const smalltext = {
   color: '#fff',
 }
 
+const footer = {
+  position: 'relative',
+  zIndex: '5',
+}
+
 // Primary Component
 export default class Footer extends React.Component {
   render() {
     return (
-      <div>
-        <Box px={4} py={4} backgroundColor="#DBEAFF"> 
+      <div style={footer}>
+        <Box px={4} py={2} backgroundColor="#439D72"> 
           <Grid gridTemplateColumns="auto 180px" gridGap="2.5%">
             <Flex alignItems="center">
-              <Icon name="info" fill="#204EF0"/>
-              <Text color="primary">This prototype is under construction.</Text>
+              <Icon name="info" fill="#D0F3E2"/>
+              <Text color="#D0F3E2">This prototype is under construction.</Text>
             </Flex>
-            <a
+                <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://github.com/RyanFleck/Xalgo-System-Prototype/issues"
                 >
-                  <Button variant="wide">
-                    <Grid gridTemplateColumns="auto 18px" width="100%">
-                      <div>
-                        <div style={margin}>
-                        </div>
-                        <Text color="primary">
+                  <Button variant="error">
                           Provide Feedback
-                        </Text>
-                      </div>
-                      <div style={top}>
-                        <Icon name="expand" fill="#204EF0"/>
-                      </div>
-                    </Grid>
                   </Button>
                 </a>
 
@@ -65,9 +50,15 @@ export default class Footer extends React.Component {
         <Box p={4} backgroundColor="#1E2033"> 
           <Grid gridTemplateColumns="auto 180px 180px" gridGap="2.5%">
             <div>
-              <Text color="oline">
-                Xalgorithms Foundation
-              </Text>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://xalgorithms.org/"
+              >
+                <Text color="oline">
+                  Xalgorithms Foundation
+                </Text>
+              </a>
             </div>
             <div>
               <Text color="oline">
@@ -78,12 +69,24 @@ export default class Footer extends React.Component {
               </Text>
             </div>
             <div>
-              <Text color="oline">
-                Source Code
-              </Text>
-              <Text color="oline">
-                Developer Docs
-              </Text>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/RyanFleck/Xalgo-System-Prototype"
+              >
+                <Text color="oline">
+                  Source Code
+                </Text>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://development.xalgorithms.org/"
+              >
+                <Text color="oline">
+                  Developer Docs
+                </Text>
+              </a>
             </div>
           </Grid>
           <Box p={4}></Box>

@@ -341,29 +341,13 @@ export default class EditorV2 extends React.Component {
 
     return (
       <div>
-        <div
-          style={{
-            position: 'fixed',
-            bottom: 0,
-            right: 0,
-            height: '100px',
-            width: '200px',
-          }}
-        >
-          <Button
-            onClick={() => {
-              this.persistRuleToStorage(true);
-            }}
-          >
-            Save Rule
-          </Button>
-        </div>
         <EditorLeft
           title={rule.metadata.rule.title}
           description={rule.metadata.rule.description}
           deleteFunction={this.deleteRule}
           resetFunction={this.resetRule}
-        ></EditorLeft>
+          saveFunction={this.persistRuleToStorage}
+        />
         {this.state.rule_loaded ? (
           <div>
             {/* Modal used by input/output tables. */}

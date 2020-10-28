@@ -84,10 +84,22 @@ const Button = styled.button(
         },
       },
       error: {
-        background: 'none',
-        borderColor: 'error',
+        backgroundColor: '#D0F3E2',
+        borderColor: '#D0F3E2',
         width: '100%',
-        textAlign: 'left',
+        textAlign: 'center',
+        color: '#439D72',
+      },
+      blue: {
+        backgroundColor: 'primary',
+        textAlign: 'center',
+        width: '100%',
+        color: '#fff',
+        '&:hover:not(:disabled), &:active:not(:disabled)': {
+          cursor: 'pointer',
+          boxShadow: 'none',
+          color: '#DBEAFF',
+        },
       }
     },
   })

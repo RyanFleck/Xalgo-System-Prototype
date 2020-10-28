@@ -26,7 +26,7 @@ const inputHold = {
 };
 
 const widthHold = {
-  width: '80%',
+  width: '500px',
 };
 
 // Primary Component
@@ -121,19 +121,18 @@ export default class RuleName extends React.Component {
 
   render() {
     return (
-      <Grid gridTemplateColumns="50% 50%">
+      <Grid gridTemplateColumns="100% 0">
         <div style={inputHold}>
           <Flex alignItems="center" justifyContent="center">
             <div style={widthHold}>
-              <Text variant="subtitle">Every rule begins with plain language sentences. </Text>
+              <Text variant="formtitle">Every rule begins with a name. </Text>
               <Box m={1} />
-              <Text>
-                Use this field to write or paste the natural language statement of the rule you are
-                working on. State in a simple factual way what this rule requires, and what
+              <Text color="textb">
+                Use this space to give your rule a name. After that, describe in a simple factual way a summary of this rule, what data this rule requires, and what
                 assertions it will make.
               </Text>
               <Box m={2} />
-              <Text variant="formtitle">Rule Name</Text>
+              <Text>Rule Name</Text>
               <Box m={1} />
               <Input
                 value={this.state.name}
@@ -141,7 +140,7 @@ export default class RuleName extends React.Component {
                 placeholder="A short and self-explanatory title"
               />
               <Box m={2} />
-              <Text variant="formtitle">Rule Description</Text>
+              <Text>Rule Description</Text>
               <Box m={1} />
               <InputField
                 value={this.state.description}
@@ -149,7 +148,7 @@ export default class RuleName extends React.Component {
                 placeholder="A brief description of the new rule's purpose and outputs"
               />
               <Box m={3} />
-              <Button variant="wide" onClick={this.saveAndRedirect}>
+              <Button variant="blue" onClick={this.saveAndRedirect}>
                 Start
               </Button>
             </div>
