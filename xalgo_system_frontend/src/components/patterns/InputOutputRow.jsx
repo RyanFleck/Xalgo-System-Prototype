@@ -94,7 +94,7 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
         <Box>
           <Flex>
             {rowData.cases.map((rowValue, i) => {
-              let variant = 'blue';
+              let variant = inputCondition ? 'both' : 'lightblue';
               if (rowValue.value.toLowerCase() === 't') {
                 variant = 'blue';
               } else if (rowValue.value.toLowerCase() === 'f') {
@@ -102,7 +102,6 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
               } else if (rowValue.value.toLowerCase() === 'b') {
                 variant = 'both';
               }
-
 
               return (
                 <div style={ruleLeft} key={i}>
@@ -131,7 +130,6 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
                     ) : (
                       <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
                     )}
-
                   </Button>
                 </div>
               );
