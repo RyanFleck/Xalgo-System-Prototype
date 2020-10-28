@@ -172,6 +172,13 @@ export default class EditorV2 extends React.Component {
     let rule_data = {};
     let content_data = {};
 
+    function ruleDownloadError(error) {
+      console.error(error);
+      toast.error(
+        'You may not have access to this rule, or it does not exist within the database.'
+      );
+    }
+
     // Wait 100ms to ensure rule can be pulled from DB.
     setTimeout(() => {
       console.log('Fetching rule from backend...');
@@ -181,38 +188,46 @@ export default class EditorV2 extends React.Component {
         headers: {
           'X-CSRFToken': this.props.token,
         },
-      }).then((res) => {
-        console.log('Got rule from UUID:');
-        rule_data = res.data;
-        console.log(rule_data);
-        // Second request to get rule body (stored as primary_content in rule)
-        Axios.get(`/rules/content/${rule_data.primary_content}/`, {
-          headers: {
-            'X-CSRFToken': this.props.token,
-          },
-        }).then((res) => {
-          content_data = res.data;
-          console.log('Got body from content UUID:');
-          console.log(content_data.body);
-          const keys = Object.keys(content_data.body);
-          console.log('Rule has keys:');
-          console.log(keys);
+      })
+        .then((res) => {
+          console.log('Got rule from UUID:');
+          rule_data = res.data;
+          console.log(rule_data);
+          // Second request to get rule body (stored as primary_content in rule)
+          Axios.get(`/rules/content/${rule_data.primary_content}/`, {
+            headers: {
+              'X-CSRFToken': this.props.token,
+            },
+          })
+            .then((res) => {
+              content_data = res.data;
+              console.log('Got body from content UUID:');
+              console.log(content_data.body);
+              const keys = Object.keys(content_data.body);
+              console.log('Rule has keys:');
+              console.log(keys);
 
-          console.log('Checking rule body...');
-          if (objectEmpty(content_data.body)) {
-            toast('Body is empty, adding blank rule content.');
-          }
+              console.log('Checking rule body...');
+              if (objectEmpty(content_data.body)) {
+                toast('Body is empty, adding blank rule content.');
+              }
 
-          let body_enforced = this.enforceRuleJSONSchema(content_data.body);
+              let body_enforced = this.enforceRuleJSONSchema(content_data.body);
 
-          this.setState(
-            { rule_loaded: true, uuid: this.props.ruleUUID, primary_content_uuid: res.data.id },
-            () => {
-              this.updateRule(body_enforced);
-            }
-          );
+              this.setState(
+                { rule_loaded: true, uuid: this.props.ruleUUID, primary_content_uuid: res.data.id },
+                () => {
+                  this.updateRule(body_enforced);
+                }
+              );
+            })
+            .catch((e) => {
+              ruleDownloadError(e);
+            });
+        })
+        .catch((e) => {
+          ruleDownloadError(e);
         });
-      });
     }, 100);
   }
 
@@ -281,6 +296,7 @@ export default class EditorV2 extends React.Component {
       })
       .catch((err) => {
         toast.error(`The rule was not saved, please reload.`);
+        console.error(err);
       });
   }
 
