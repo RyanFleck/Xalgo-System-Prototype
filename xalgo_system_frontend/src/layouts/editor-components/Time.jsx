@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
 import { Box, GuideLine, FormStandard, Flex, Dropdown, Text, FormDropdown } from '../../components';
 
-function Time({ rule, updateRule, active, section }) {
+function Time({ rule, updateRule, active, section, label }) {
   // 0. Fill out the section name.
   const sectionName = 'Rule Information';
   // const sectionDesc = 'Begin your rule by providing a title and concise description.';
@@ -25,15 +25,16 @@ function Time({ rule, updateRule, active, section }) {
   return (
     <div>
       <Box padding={1} />
-      <Text>Name & Description</Text>
+      <Text>{label}</Text>
       <Box padding={1} />
       <GuideLine>
-        <FormStandard name="Start Date" description={RuleSchema.metadata.rule.__description} />
+        <FormStandard name="Date" description={RuleSchema.metadata.rule.__description} />
         <Box padding={1} />
         <Flex alignItems="center">
           <Text color="textb">Hour</Text>
           <Box padding={1} />
           <Dropdown>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -62,6 +63,7 @@ function Time({ rule, updateRule, active, section }) {
           <Text color="textb">Minute</Text>
           <Box padding={1} />
           <Dropdown>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -89,11 +91,44 @@ function Time({ rule, updateRule, active, section }) {
             <option>25</option>
             <option>26</option>
             <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+            <option>32</option>
+            <option>33</option>
+            <option>34</option>
+            <option>35</option>
+            <option>36</option>
+            <option>37</option>
+            <option>38</option>
+            <option>39</option>
+            <option>40</option>
+            <option>41</option>
+            <option>42</option>
+            <option>43</option>
+            <option>44</option>
+            <option>45</option>
+            <option>46</option>
+            <option>47</option>
+            <option>48</option>
+            <option>49</option>
+            <option>50</option>
+            <option>51</option>
+            <option>52</option>
+            <option>53</option>
+            <option>54</option>
+            <option>55</option>
+            <option>56</option>
+            <option>57</option>
+            <option>58</option>
+            <option>59</option>
           </Dropdown>
           <Box padding={1} />
           <Text color="textb">Second</Text>
           <Box padding={1} />
           <Dropdown>
+          <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -117,6 +152,42 @@ function Time({ rule, updateRule, active, section }) {
             <option>21</option>
             <option>22</option>
             <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+            <option>31</option>
+            <option>32</option>
+            <option>33</option>
+            <option>34</option>
+            <option>35</option>
+            <option>36</option>
+            <option>37</option>
+            <option>38</option>
+            <option>39</option>
+            <option>40</option>
+            <option>41</option>
+            <option>42</option>
+            <option>43</option>
+            <option>44</option>
+            <option>45</option>
+            <option>46</option>
+            <option>47</option>
+            <option>48</option>
+            <option>49</option>
+            <option>50</option>
+            <option>51</option>
+            <option>52</option>
+            <option>53</option>
+            <option>54</option>
+            <option>55</option>
+            <option>56</option>
+            <option>57</option>
+            <option>58</option>
+            <option>59</option>
           </Dropdown>
         </Flex>
         <Box padding={1} />

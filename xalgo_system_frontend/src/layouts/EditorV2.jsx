@@ -30,7 +30,7 @@ import {
 
 import {
   BlankRows,
-  NameDescription,
+  //NameDescription,
   Metadata,
   RuleAuthor,
   RuleManager,
@@ -389,7 +389,7 @@ export default class EditorV2 extends React.Component {
                 <Text variant="formtitle">About the Rule</Text>
                 <Box p={2}></Box>
                 <GuideLine>
-                  <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
+                  {/*<NameDescription rule={rule} updateRule={this.updateRule} active={active} />*/}
                   <Metadata />
                 </GuideLine>
 
@@ -432,8 +432,8 @@ export default class EditorV2 extends React.Component {
                 <GuideLine>
                   <DataSource />
                   <Addbutton content="Data Source" />
-                  <Time />
-                  <Time />
+                  <Time label="Start Time"/>
+                  <Time label="End Time"/>
                 </GuideLine>
 
                 {/* Input: filters */}
