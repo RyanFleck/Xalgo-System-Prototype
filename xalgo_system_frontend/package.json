@@ -22,7 +22,7 @@
     "react-toastify": "^6.0.9",
     "slugify": "^1.4.5",
     "universal-cookie": "^4.0.4",
-    "xalgo-rule-processor": "^0.0.16"
+    "xalgo-rule-processor": "^0.0.17"
   },
   "scripts": {
     "start": "react-scripts start",
