@@ -143,6 +143,7 @@ export default class EditorV2 extends React.Component {
   }
 
   componentDidMount() {
+    console.log('Starting Editor V2');
     this.getRuleFromStorage();
   }
 
@@ -246,16 +247,17 @@ export default class EditorV2 extends React.Component {
   }
 
   resetRule() {
-    toast.warning('Rule reset');
-    this.updateRule(deepCopy(emptyRule));
-    this.props.navigate('/editor');
+    if (window.confirm(`Are you sure you'd like to RESET Rule ${this.state.uuid}?`)) {
+      this.updateRule(deepCopy(emptyRule));
+      toast.warning('Rule reset!');
+      this.props.navigate(`/apps/rm/editor/${this.state.uuid}`);
+    }
   }
 
   deleteRule() {
-    toast.warning('Rule Delete');
-    this.updateRule(deepCopy(emptyRule));
-    this.props.navigate('/dashboard');
-    console.error("This is a toy editor, you're not deleting anything.");
+    if (window.confirm(`Are you sure you'd like to DELETE Rule ${this.state.uuid}?`)) {
+      toast.error('Unimplemented.');
+    }
   }
 
   persistRuleToStorage(showmsg = false) {

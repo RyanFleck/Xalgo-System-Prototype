@@ -70,6 +70,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
               value: 'Informal Custom or Preference',
               label: 'Informal Custom or Preference',
             },
+            { value: 'Operational Patern', label: 'Operational Patern' },
             {
               value: 'Formal Custom Without Legal Standing',
               label: 'Formal Custom Without Legal Standing',
@@ -83,7 +84,6 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
             { value: 'Common Law or Case Law', label: 'Common Law or Case Law' },
             { value: 'Statute or Legislation', label: 'Statute or Legislation' },
             { value: 'International Law', label: 'International Law' },
-            { value: 'Operational Patern', label: 'Operational Patern' },
           ]}
           value={ruleGroup}
           onChange={(e) => {
