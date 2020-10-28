@@ -2,9 +2,8 @@ import React from 'react';
 import { Input, Stack, Box, Button, Text, Flex, Modal, Infobox } from '..';
 import { IInfo } from '../icons';
 
-function FormSlider({ name, description, labela, labelb, labelc }) {
+function FormSlider({ name, description, labela, labelb, labelc, value, onChange }) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [value, setValue] = React.useState(0);
 
   return (
     <Stack gap={4}>
@@ -32,10 +31,10 @@ function FormSlider({ name, description, labela, labelb, labelc }) {
         type="range"
         min={(0).toString()}
         max={(99).toString()}
-        value={value.toString()}
+        value={value ? value.toString() : 0}
         onChange={(x) => {
           console.log(`Value is now ${x.target.value}`);
-          setValue(parseInt(x.target.value));
+          onChange(x.target.value);
         }}
         step={1}
       />

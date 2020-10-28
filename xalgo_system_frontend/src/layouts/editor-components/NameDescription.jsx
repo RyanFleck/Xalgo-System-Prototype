@@ -26,6 +26,7 @@ function NameDescription({ rule, updateRule, active }) {
     rule.metadata.rule.title = title;
     rule.metadata.rule.description = desc;
     updateRule(rule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
