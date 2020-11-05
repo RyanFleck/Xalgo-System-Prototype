@@ -69,7 +69,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
               value: 'Informal Custom or Preference',
               label: 'Informal Custom or Preference',
             },
-            { value: 'Operational Patern', label: 'Operational Patern' },
+            { value: 'Operational Pattern', label: 'Operational Patern' },
             {
               value: 'Formal Custom Without Legal Standing',
               label: 'Formal Custom Without Legal Standing',

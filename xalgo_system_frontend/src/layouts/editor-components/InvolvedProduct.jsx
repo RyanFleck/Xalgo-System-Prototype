@@ -27,9 +27,9 @@ function StandardRoleName({ rule, updateRule, active }) {
       <SubButton content="Involved Product or Service" />
       <Box padding={1} />
       <GuideLine>
-        <FormStandard name="UNSPSC Product or Service Name" description={RuleSchema.metadata.rule.__description} />
-        <Box padding={1} />
         <FormStandard name="UNSPSC Product or Service Code" description={RuleSchema.metadata.rule.__description} />
+        <Box padding={1} />
+        <FormStandard name="UNSPSC Product or Service Name" description={RuleSchema.metadata.rule.__description} />
       </GuideLine>
       <Box padding={1} />
     </div>
