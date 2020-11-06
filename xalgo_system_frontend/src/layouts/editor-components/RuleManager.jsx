@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, FormStandard, IdDisplay, Text, Flex, Icon, Button } from '../../components';
+import { Box, FormStandard, IdDisplay, Text, Flex, Icon, Button, InfoRow } from '../../components';
 
 function RuleManager() {
 
@@ -19,6 +19,29 @@ function RuleManager() {
     boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.25)',
     padding: '1em',
   };
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setModal(false);
+        }
+      }
+
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   return (
     <div>
@@ -45,21 +68,24 @@ function RuleManager() {
               <Text variant="formtitle">Rule Manager</Text>
               <div>
                 <Button variant="invisible" onClick={() => setModal(true)}>
-                  <Icon name="info" fill="text"/>
+                  <Icon name="toggle" fill="text"/>
                 </Button>
                 {modal ? (
-                  <div style={float}>
+                  <div style={float} ref={wrapperRef}>
                     <div style={dark}>
                       <div>
-                        <Button variant="invisible" onClick={() => setIsOpen(true)}>
-                          <Flex justifyContent="space-between">
+                        <Button variant="invisible" onClick={() => {
+                          setIsOpen(true);
+                          setModal(false);
+                        }}>
+                          <Flex justifyContent="space-between" width="120px">
                             <Text color="#fff">Edit</Text>
                             <Icon name="edit" fill="#fff"/>
                           </Flex>
                         </Button>
                         <Box p={1}/>
                         <Button variant="invisible">
-                          <Flex justifyContent="space-between">
+                          <Flex justifyContent="space-between" width="120px">
                             <Text color="error">Delete</Text>
                             <Box p={1}/>
                             <Icon name="trash" fill="#ED9C91"/>
@@ -74,9 +100,9 @@ function RuleManager() {
               </div>
             </Flex>
             <Box padding={1} />
-            <Text>test</Text>
-            <Box padding={1} />
-            <Text>test</Text>
+            <InfoRow color="#F9F8F4" label="ID" content="Vqp4nv8eGprI"/>
+            <InfoRow color="#fff" label="Name" content="Calvin"/>
+            <InfoRow color="#F9F8F4" label="Email" content="hello@calvin.ooo"/>
           </Box>
       )}
     </div>
