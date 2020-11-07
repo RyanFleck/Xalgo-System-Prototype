@@ -415,11 +415,11 @@ export default class EditorV2 extends React.Component {
                 <Text variant="formtitle">Management, Authorship & Maintenance</Text>
                 <Box p={2}></Box>
                 <GuideLine>
-                  <RuleManager />
-                  <Addbutton rule={rule} updateRule={this.updateRule} active={active} content="Rule Manager" />
-                  <RuleAuthor />
+                  <RuleManager rule={rule} updateRule={this.updateRule} active={active} />
+                  <Addbutton  content="Rule Manager" />
+                  <RuleAuthor rule={rule} updateRule={this.updateRule} active={active} />
                   <Addbutton content="Rule Author" />
-                  <RuleMaintainer />
+                  <RuleMaintainer rule={rule} updateRule={this.updateRule} active={active}/>
                   <Addbutton content="Rule Maintainer" />
                 </GuideLine>
 
@@ -445,7 +445,7 @@ export default class EditorV2 extends React.Component {
                 </Text>
                 <Box p={2}></Box>
                 <GuideLine>
-                  <DataSource />
+                  <DataSource rule={rule} updateRule={this.updateRule} active={active} />
                   <Addbutton content="Jurisdiction" />
                   <Time label="Start Time" />
                   <Time label="End Time" />

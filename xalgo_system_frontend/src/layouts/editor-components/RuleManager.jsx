@@ -31,7 +31,7 @@ function RuleManager({ rule, updateRule, active }) {
   }
 
   //controls the modal toggle
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
   const [modal, setModal] = React.useState(false);
 
 
@@ -106,8 +106,8 @@ function RuleManager({ rule, updateRule, active }) {
             />
             <Box padding={1} />
             <Button variant="blue" onClick={() => {
-                setIsOpen(false);
                 saveContent();
+                setIsOpen(false);
             }}>Save</Button>
           </Box>
       ) : (
@@ -149,8 +149,8 @@ function RuleManager({ rule, updateRule, active }) {
             </Flex>
             <Box padding={1} />
             <InfoRow color="#F9F8F4" label="ID" content="Vqp4nv8eGprI"/>
-            <InfoRow color="#fff" label="Name" content="Calvin"/>
-            <InfoRow color="#F9F8F4" label="Email" content="hello@calvin.ooo"/>
+            <InfoRow color="#fff" label="Name" content={name}/>
+            <InfoRow color="#F9F8F4" label="Email" content={email}/>
           </Box>
       )}
     </div>
