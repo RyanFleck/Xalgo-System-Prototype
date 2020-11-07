@@ -416,7 +416,7 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <GuideLine>
                   <RuleManager />
-                  <Addbutton content="Rule Manager" />
+                  <Addbutton rule={rule} updateRule={this.updateRule} active={active} content="Rule Manager" />
                   <RuleAuthor />
                   <Addbutton content="Rule Author" />
                   <RuleMaintainer />

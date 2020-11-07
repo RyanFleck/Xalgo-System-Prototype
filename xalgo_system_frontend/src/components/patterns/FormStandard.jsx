@@ -28,7 +28,10 @@ function FormStandard({
   return (
     <Stack gap={4}>
       <Modal isOpen={isOpen}>
-        <Infobox content={description} onClick={() => setIsOpen(false)} />
+        <div>
+          <Infobox content={description} onClick={() => setIsOpen(false)} />
+          <Box p={1} />
+        </div>
       </Modal>
       <Flex alignItems="center">
         <Text color="textb">{name}</Text>
