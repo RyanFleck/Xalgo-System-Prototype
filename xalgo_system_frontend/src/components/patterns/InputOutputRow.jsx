@@ -33,7 +33,7 @@ function rotateValue(tfb, inputCondition = true) {
 }
 
 function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondition }) {
-  const { participle, attribute, subject, operation, value } = rowData;
+  const { participle, attribute, subject, operation, value } = rowData.context;
   const sentence = [
     'The',
     participle || 'participle',

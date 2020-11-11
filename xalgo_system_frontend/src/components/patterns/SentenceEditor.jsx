@@ -47,8 +47,8 @@ export default function SentenceEditor(props) {
 
   if (active && !modified) {
     console.log(`Editing ${modalEditingInput ? 'input' : 'output'} sentence ${index}`);
-    if (participle !== sentence.participle) setParticiple(sentence.participle);
-    if (attribute !== sentence.attribute) setAttribute(sentence.attribute);
+    if (participle !== sentence.context.participle) setParticiple(sentence.context.participle);
+    if (attribute !== sentence.context.attribute) setAttribute(sentence.context.attribute);
     if (subject !== sentence.subject) setSubject(sentence.subject);
     if (operation !== sentence.operation) setOperation(sentence.operation);
     if (value !== sentence.value) setValue(sentence.value);
@@ -166,15 +166,15 @@ export default function SentenceEditor(props) {
             ? ruleCopy.input_conditions[index]
             : ruleCopy.output_assertions[index];
           // participle,
-          sentenceCopy.participle = participle;
+          sentenceCopy.context.participle = participle;
           // attribute,
-          sentenceCopy.attribute = attribute;
+          sentenceCopy.context.attribute = attribute;
           // subject,
-          sentenceCopy.subject = subject;
+          sentenceCopy.context.subject = subject;
           // operation,
-          sentenceCopy.operation = operation;
+          sentenceCopy.context.operation = operation;
           // value,
-          sentenceCopy.value = value;
+          sentenceCopy.context.value = value;
 
           updateRule(ruleCopy);
         }}

@@ -41,8 +41,8 @@ function SentenceConstructorField({ contentField, small }) {
  */
 function enforceContentSchema(content, updateContent) {
   if (
-    !content.participle ||
-    !content.attribute ||
+    !content.context.participle ||
+    !content.context.attribute ||
     !content.subject ||
     !content.operation ||
     !content.value
@@ -78,13 +78,13 @@ function SentenceConstructor({ content, updateContent }) {
             <Text color="primary">A</Text>
             <Box padding={1} />
             <Text>The</Text>
-            <SentenceConstructorField contentField={content.particple} />
-            <SentenceConstructorField contentField={content.attribute} />
+            <SentenceConstructorField contentField={content.context.particple} />
+            <SentenceConstructorField contentField={content.context.attribute} />
             <Text>of the</Text>
-            <SentenceConstructorField contentField={content.subject} />
+            <SentenceConstructorField contentField={content.context.subject} />
             <Text>is</Text>
-            <SentenceConstructorField contentField={content.operation} small />
-            <SentenceConstructorField contentField={content.value} />
+            <SentenceConstructorField contentField={content.context.operation} small />
+            <SentenceConstructorField contentField={content.context.value} />
           </Flex>
           <Flex>
             <Modal isOpen={isOpen}>
