@@ -10,6 +10,8 @@ function Metadata({ rule, updateRule, active }) {
 
   // 1. Set a state for each element that must be filled.
   const [url, setUrl] = useState('');
+  const [version, setVersion] =  useState('');
+  const [criticality, setCriticality] = useState('');
 
   // Don't touch this.
   if (active && !modified) {
@@ -17,6 +19,9 @@ function Metadata({ rule, updateRule, active }) {
 
     // 2. Ensure each field is set according to the current rule state.
     if (url !== rule.metadata.rule.url) setUrl(rule.metadata.rule.url);
+    if (version !== rule.metadata.rule.version) setVersion(rule.metadata.rule.version);
+    if (criticality !== rule.metadata.rule.criticality) setCriticality(rule.metadata.rule.criticality);
+
   }
 
   function saveContent() {
@@ -24,6 +29,8 @@ function Metadata({ rule, updateRule, active }) {
     const newRule = deepCopy(rule);
     console.log(`Saving ${sectionName} to state.`);
     newRule.metadata.rule.url = url;
+    newRule.metadata.rule.version = version;
+    newRule.metadata.rule.criticality = criticality;
     updateRule(newRule);
     setModified(false);
   }
@@ -49,19 +56,31 @@ function Metadata({ rule, updateRule, active }) {
         <FormStandard
           name="Rule Version"
           placeholder="1.0"
-          description={RuleSchema.metadata.rule.__description}
+          description={RuleSchema.metadata.rule.__version}
+          value={version}
+          onChange={(e) => {
+            setVersion(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
           name="Xalgo Version"
-          description="hello world is asking the following things"
+          description="Not in Schema"
           options={[{ value: '1.0', label: '1.0' }]}
         />
         <Box padding={1} />
         <FormDropdown
           name="Rule Criticality"
-          description="hello world is asking the following things"
-          options={[{ value: 'Experimental', label: 'Experimental' }]}
+          description={RuleSchema.metadata.rule.__criticality}
+          options={[
+            { value: 'Experimental', label: 'Experimental' }
+          ]}
+          value={criticality}
+          onChange={(e) => {
+            setCriticality(e.target.value);
+            setModified(true);
+          }}
         />
       </GuideLine>
       <Box padding={1} />

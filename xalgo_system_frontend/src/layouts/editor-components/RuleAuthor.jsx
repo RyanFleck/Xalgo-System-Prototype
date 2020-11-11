@@ -22,16 +22,16 @@ function RuleAuthor({ rule, updateRule, active }) {
   }
 
   
-  /*function saveContent() {
+  function saveContent() {
     console.log(`Saving ${sectionName} to state.`);
     rule.metadata.rule.authors[0].name = name;
     rule.metadata.rule.authors[0].email = email;
     updateRule(rule);
     setModified(false);
-  }*/
+  }
 
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <SubButton content="Rule Author"/>
       <Box p={1} />
       <GuideLine>

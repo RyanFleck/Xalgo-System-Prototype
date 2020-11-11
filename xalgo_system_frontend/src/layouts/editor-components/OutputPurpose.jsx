@@ -1,29 +1,39 @@
 import React, { useState } from 'react';
-// import { RuleSchema } from 'xalgo-rule-processor';
+import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 import { Box, GuideLine, FormDropdown, Text } from '../../components';
 
 function OutputPurpose({ rule, updateRule, active, section, }) {
   // 0. Fill out the section name.
-  const sectionName = 'Rule Information';
+  const sectionName = 'Output Purpose';
   // const sectionDesc = 'Begin your rule by providing a title and concise description.';
-  const [modified] = useState(false);
+  const [modified, setModified] = useState(false);
 
   // 1. Set a state for each element that must be filled.
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  /*
+  const [conformance, setConformance] = useState('');
+  const [primaryVerb, setPrimaryVerb] = useState('');
+  */
+  const [actionVerb, setActionVerb] = useState('');
 
   // Don't touch this.
   if (active && !modified) {
     console.log(`${sectionName} section is being edited.`);
 
     // 2. Ensure each field is set according to the current rule state.
-    if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
-    if (desc !== rule.metadata.rule.description) setDesc(rule.metadata.rule.description);
+    if (actionVerb !== rule.output_purpose.action_verb) setActionVerb(rule.output_purpose.action_verb);
+  }
+
+  function saveContent() {
+    const newRule = deepCopy(rule);
+    console.log(`Saving ${sectionName} to state.`);
+    newRule.output_purpose.action_verb = actionVerb;
+    updateRule(newRule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <Box padding={1} />
       <Text>Purpose</Text>
       <Box padding={1} />
@@ -60,12 +70,17 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
         <Box padding={1} />
         <FormDropdown
           name="What is the primary action verb?"
-          description="What is the primary action verb?"
+          description={RuleSchema.output_purpose.__action_verb}
           options={[
             { value: 'be', label: 'be' },
             { value: 'do', label: 'do' },
             { value: 'have', label: 'have' },
           ]}
+          value={actionVerb}
+          onChange={(e) => {
+            setActionVerb(e.target.value);
+            setModified(true);
+          }} 
         />
         <Box padding={1} />
         <FormDropdown

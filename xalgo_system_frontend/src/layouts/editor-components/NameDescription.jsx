@@ -38,7 +38,7 @@ function NameDescription({ rule, updateRule, active }) {
       <Box padding={1} />
       <GuideLine>
         <FormStandard
-          name="Rule Title"
+          name="Rule Name"
           description={RuleSchema.metadata.rule.__title}
           value={title}
           onChange={(e) => {

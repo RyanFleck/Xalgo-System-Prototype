@@ -29,7 +29,7 @@ function InputSources({ rule, updateRule, active }) {
       <GuideLine>
         <FormDropdown
           name="Document Type"
-          description="hello world is asking the following things"
+          description="Not in Schema"
           options={[
             { value: 'is.xalgo', label: 'is.xalgo' },
             { value: 'lookup.xalgo', label: 'lookup.xalgo' }

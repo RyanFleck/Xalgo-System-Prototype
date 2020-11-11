@@ -22,21 +22,21 @@ function DataSource({ rule, updateRule, active }) {
   }
 
   
-  /*function saveContent() {
+  function saveContent() {
     console.log(`Saving ${sectionName} to state.`);
     rule.input_context.jurisdiction[0].country = country;
     rule.input_context.jurisdiction[0].subcountry = subCountry;
     updateRule(rule);
     setModified(false);
-  }*/
+  }
 
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <SubButton content="Jurisdiction"/>
       <Box p={1} />
       <GuideLine>
         <FormStandard 
-          name="Name" 
+          name="Country Jurisdiction" 
           description={RuleSchema.input_context.jurisdiction[0].__country}
           value={country}
           onChange={(e) => {
@@ -45,7 +45,7 @@ function DataSource({ rule, updateRule, active }) {
           }} 
         />
         <Box padding={1} />
-        <FormStandard name="Email" 
+        <FormStandard name="Sub-country Jurisdiction" 
           description={RuleSchema.input_context.jurisdiction[0].__subcountry}
           value={subCountry}
           onChange={(e) => {

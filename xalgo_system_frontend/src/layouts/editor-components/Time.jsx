@@ -193,7 +193,7 @@ function Time({ rule, updateRule, active, section, label }) {
         <Box padding={1} />
         <FormDropdown
                     name="Time Zone"
-                    description="hello world is asking the following things"
+                    description={RuleSchema.input_context.__timezone}
                     options={[
                       { value: 'UTC−12:00', label: 'UTC−12:00' },
                       { value: 'UTC−11:00', label: 'UTC−11:00' },
