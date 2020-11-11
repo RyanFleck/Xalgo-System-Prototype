@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2020-11-11)
+### Fix
+* Password function in user factory. ([`b8fc8f6`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/b8fc8f6d513ad59ad33e0788d4dd5ce3f6abd484))
+
+### Documentation
+* Update README with CI and coverage badges. ([`f3cf6ad`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/f3cf6ad5e5b9cb08be9b9811fa932f98536f8758))
+
 ## v0.2.0 (2020-11-11)
 ### Feature
 * Add semantic release and codecov ([`2995c6c`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/2995c6c791f22511ca56577e32f72b9f99a35ef5))
