@@ -1,5 +1,5 @@
 // libraries
-import { Router, Redirect } from '@reach/router';
+import { Router } from '@reach/router';
 import React from 'react';
 
 // rm-components
