@@ -789,7 +789,7 @@ export default class EditorV1 extends React.Component {
                           { value: 'Common Law or Case Law', label: 'Common Law or Case Law' },
                           { value: 'Statute or Legislation', label: 'Statute or Legislation' },
                           { value: 'International Law', label: 'International Law' },
-                          { value: 'Operational Patern', label: 'Operational Patern' },
+                          { value: 'Operational Patern', label: 'Operational Pattern' },
                         ]}
                       />
                       <Box padding={2} />
