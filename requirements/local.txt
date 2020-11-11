@@ -26,6 +26,8 @@ pylint-django==2.3.0  # https://github.com/PyCQA/pylint-django
 pytest==6.0.2  # https://github.com/pytest-dev/pytest
 pytest-django==3.10.0  # https://github.com/pytest-dev/pytest-django
 pytest-sugar==0.9.4  # https://github.com/Frozenball/pytest-sugar
+pytest-cov==2.10.1  # https://pypi.org/project/pytest-cov/
+coverage==5.3  # https://pypi.org/project/coverage/
 
 # Documentation
 # ------------------------------------------------------------------------------
