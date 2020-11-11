@@ -408,7 +408,7 @@ export default class EditorV2 extends React.Component {
                   <Box p={2}></Box>
                   <GuideLine>
                     <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
-                    <Metadata />
+                    <Metadata rule={rule} updateRule={this.updateRule} active={active} />
                   </GuideLine>
 
                   {/* Rule Manager */}

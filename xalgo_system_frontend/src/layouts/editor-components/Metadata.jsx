@@ -4,36 +4,43 @@ import { Box, GuideLine, FormStandard, Text, FormDropdown } from '../../componen
 
 function Metadata({ rule, updateRule, active }) {
   // 0. Fill out the section name.
-  const sectionName = 'Rule Information';
+  const sectionName = 'Rule Metadata';
   // const sectionDesc = 'Begin your rule by providing a title and concise description.';
   const [modified, setModified] = useState(false);
 
   // 1. Set a state for each element that must be filled.
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [url, setUrl] = useState('');
 
   // Don't touch this.
   if (active && !modified) {
     console.log(`${sectionName} section is being edited.`);
 
     // 2. Ensure each field is set according to the current rule state.
-    if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
-    if (desc !== rule.metadata.rule.description) setDesc(rule.metadata.rule.description);
+    if (url !== rule.metadata.rule.url) setUrl(rule.metadata.rule.url);
+  }
+
+  function saveContent() {
+    console.log(`Saving ${sectionName} to state.`);
+    // rule.metadata.rule.title = title;
+    rule.metadata.rule.url = url;
+    updateRule(rule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
   return (
-    <div>
+    <div onMouseLeave={saveContent}>
       <Box padding={1} />
       <Text>Rule Metadata</Text>
       <Box padding={1} />
       <GuideLine>
         <FormStandard
-          name="Rule URL"
-          description={RuleSchema.metadata.rule.__description}
-          value={title}
+          name="Full Rule Text URL"
+          description={RuleSchema.metadata.rule.__url}
+          type="url"
+          value={url}
           onChange={(e) => {
-            setTitle(e.target.value);
+            setUrl(e.target.value);
             setModified(true);
           }}
         />

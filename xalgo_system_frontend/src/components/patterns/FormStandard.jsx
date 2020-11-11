@@ -22,6 +22,7 @@ function FormStandard({
   placeholder,
   errormessage,
   longInput = false,
+  type = 'text',
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -51,9 +52,16 @@ function FormStandard({
               onBlur={onBlur}
               placeholder={placeholder}
               variant="error"
+              type={type}
             />
           ) : (
-            <Input value={value} onChange={onChange} onBlur={onBlur} placeholder={placeholder} />
+            <Input
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              placeholder={placeholder}
+              type={type}
+            />
           )}
           {errormessage ? <ErrorMessage message={errormessage} /> : null}
         </div>
@@ -66,6 +74,7 @@ function FormStandard({
               onBlur={onBlur}
               placeholder={placeholder}
               variant="error"
+              type={type}
             />
           ) : (
             <InputField
@@ -73,6 +82,7 @@ function FormStandard({
               onChange={onChange}
               onBlur={onBlur}
               placeholder={placeholder}
+              type={type}
             />
           )}
           {errormessage ? <ErrorMessage message={errormessage} /> : null}

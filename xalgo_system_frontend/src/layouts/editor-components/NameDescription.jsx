@@ -56,6 +56,17 @@ function NameDescription({ rule, updateRule, active }) {
           }}
           longInput
         />
+        <Box padding={1} />
+        <Text>
+          <b>Rule UUID:</b> {rule.path}
+        </Text>
+        <Text>
+          <b>Public Link:</b> {/* Hardcoded, TODO: Get URL from environment. */}
+          <a
+            target="_blank"
+            href={`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
+          >{`https://xalgo-system.herokuapp.com/rule/${rule.path}`}</a>
+        </Text>
       </GuideLine>
       <Box padding={1} />
     </div>
