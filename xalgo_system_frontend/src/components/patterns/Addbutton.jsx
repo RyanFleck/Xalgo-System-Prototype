@@ -8,9 +8,9 @@ export default function Addbutton(props) {
       <Box padding={1} />
       <Button variant="invisiblewide" onClick={onClick}>
         <Flex alignItems="center" justifyContent="flex-start">
-          <Icon name="add" fill="#A3D8BE"/>
+          <Text color="text">{content || 'New Field'}</Text>
           <Box padding={1} />
-          <Text variant="formtitle" color="text">{content || 'New Field'}</Text>
+          <Icon name="add" fill="#A3D8BE"/>
         </Flex>
       </Button>
       <Box padding={1} />
