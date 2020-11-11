@@ -1,5 +1,5 @@
 // libraries
-import { Router } from '@reach/router';
+import { Router, Redirect } from '@reach/router';
 import React from 'react';
 
 // rm-components
@@ -70,7 +70,6 @@ export default class Application extends React.Component {
       <ScrollUp>
         <Theme>
           <Navigation authenticated={authenticated} username={username} user={user} />
-
           <Box style={baseBoxStyle}>
             <Router primary={false} basepath="/apps/rm">
               <Landing

@@ -55,8 +55,12 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const fullheight = {
   minHeight: '80vh',
   minWidth: '500px',
-  maxWidth: '800px',
+  maxWidth: 'calc(100% - 80px)',
   // overflowX:
+};
+
+const constrainWidth = {
+  maxWidth: '800px',
 };
 
 const overflowTable = {
@@ -395,85 +399,86 @@ export default class EditorV2 extends React.Component {
 
             <Box p={4}>
               <div style={fullheight}>
-                {/* Rule Name */}
-                {/* Rule Name */}
-                {/* Rule Name */}
+                <div style={constrainWidth}>
+                  {/* Rule Name */}
+                  {/* Rule Name */}
+                  {/* Rule Name */}
 
-                <Text variant="formtitle">About the Rule</Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
-                  <Metadata />
-                </GuideLine>
+                  <Text variant="formtitle">About the Rule</Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
+                    <Metadata />
+                  </GuideLine>
 
-                {/* Rule Manager */}
-                {/* Rule Manager */}
-                {/* Rule Manager */}
-                {/* Rule Manager */}
+                  {/* Rule Manager */}
+                  {/* Rule Manager */}
+                  {/* Rule Manager */}
+                  {/* Rule Manager */}
 
-                <Box p={2}></Box>
-                <Text variant="formtitle">Management, Authorship & Maintenance</Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <RuleManager rule={rule} updateRule={this.updateRule} active={active} />
-                  <Addbutton  content="Rule Manager" />
-                  <RuleAuthor rule={rule} updateRule={this.updateRule} active={active} />
-                  <Addbutton content="Rule Author" />
-                  <RuleMaintainer rule={rule} updateRule={this.updateRule} active={active}/>
-                  <Addbutton content="Rule Maintainer" />
-                </GuideLine>
+                  <Box p={2}></Box>
+                  <Text variant="formtitle">Management, Authorship & Maintenance</Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <RuleManager rule={rule} updateRule={this.updateRule} active={active} />
+                    <Addbutton content="Rule Manager" />
+                    <RuleAuthor rule={rule} updateRule={this.updateRule} active={active} />
+                    <Addbutton content="Rule Author" />
+                    <RuleMaintainer rule={rule} updateRule={this.updateRule} active={active} />
+                    <Addbutton content="Rule Maintainer" />
+                  </GuideLine>
 
-                {/* Daata Sources */}
-                {/* Daata Sources */}
-                {/* Daata Sources */}
+                  {/* Data Sources */}
+                  {/* Data Sources */}
+                  {/* Data Sources */}
 
-                <Box p={2}></Box>
-                <Text variant="formtitle">Origins of Data that this Rule Depends Upon</Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <InputSources />
-                  <Addbutton content="Input Source" />
-                </GuideLine>
+                  <Box p={2}></Box>
+                  <Text variant="formtitle">Origins of Data that this Rule Depends Upon</Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <InputSources />
+                    <Addbutton content="Input Source" />
+                  </GuideLine>
 
-                {/* Input: contexts */}
-                {/* Input: contexts */}
-                {/* Input: contexts */}
+                  {/* Input: contexts */}
+                  {/* Input: contexts */}
+                  {/* Input: contexts */}
 
-                <Box p={2}></Box>
-                <Text variant="formtitle">
-                  Where and when this Rule is Asserted to be in Effect
-                </Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <DataSource rule={rule} updateRule={this.updateRule} active={active} />
-                  <Addbutton content="Jurisdiction" />
-                  <Time label="Start Time" />
-                  <Time label="End Time" />
-                </GuideLine>
+                  <Box p={2}></Box>
+                  <Text variant="formtitle">
+                    Where and when this Rule is Asserted to be in Effect
+                  </Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <DataSource rule={rule} updateRule={this.updateRule} active={active} />
+                    <Addbutton content="Jurisdiction" />
+                    <Time label="Start Time" />
+                    <Time label="End Time" />
+                  </GuideLine>
 
-                {/* Input: filters */}
-                {/* Input: filters */}
-                {/* Input: filters */}
+                  {/* Input: filters */}
+                  {/* Input: filters */}
+                  {/* Input: filters */}
 
-                <Box p={2}></Box>
-                <Text variant="formtitle">
-                  External Data Values for which this Rule is Deemed to be Applicable
-                </Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <StandardRoleName />
-                  <Addbutton content="Standard Role Name" />
-                  <InvolvedProduct />
-                  <Addbutton content="Involved Product or Service" />
-                </GuideLine>
+                  <Box p={2}></Box>
+                  <Text variant="formtitle">
+                    External Data Values for which this Rule is Deemed to be Applicable
+                  </Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <StandardRoleName />
+                    <Addbutton content="Standard Role Name" />
+                    <InvolvedProduct />
+                    <Addbutton content="Involved Product or Service" />
+                  </GuideLine>
 
-                {/* Input Output Table */}
-                {/* Input Output Table */}
-                {/* Input Output Table */}
-                {/* Input Output Table */}
-                {/* Input Output Table */}
-                {/* Input Output Table */}
-
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                </div>
                 <Box p={2}></Box>
                 <Text variant="formtitle">Input Output Table</Text>
                 <Box p={2}></Box>
@@ -592,14 +597,16 @@ export default class EditorV2 extends React.Component {
                 {/* output purpose */}
                 {/* output purpose */}
 
-                <Box p={2}></Box>
-                <Text variant="formtitle">Output Attributes</Text>
-                <Box p={2}></Box>
-                <GuideLine>
-                  <OutputPurpose />
-                  <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
-                </GuideLine>
-                <Box p={2}></Box>
+                <div style={constrainWidth}>
+                  <Box p={2}></Box>
+                  <Text variant="formtitle">Output Attributes</Text>
+                  <Box p={2}></Box>
+                  <GuideLine>
+                    <OutputPurpose />
+                    <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
+                  </GuideLine>
+                  <Box p={2}></Box>
+                </div>
               </div>
             </Box>
             {/* End of the editor */}
