@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.2 (2020-11-11)
+### Fix
+* Correctly persist tabular data to rule body. ([`4c52534`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/4c5253443e9ec230645b3434b0d12d5ecc805455))
+
 ## v0.2.1 (2020-11-11)
 ### Fix
 * Password function in user factory. ([`b8fc8f6`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/b8fc8f6d513ad59ad33e0788d4dd5ce3f6abd484))
