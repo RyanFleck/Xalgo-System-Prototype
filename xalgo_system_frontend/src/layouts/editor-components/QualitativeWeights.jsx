@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 //import { RuleSchema } from 'xalgo-rule-processor';
 import { Box, GuideLine, FormSlider, FormDropdown, Text } from '../../components';
+import {
+  deepCopy,
+  //RuleSchema
+} from 'xalgo-rule-processor';
 
 function QualitativeWeights({ rule, updateRule, active, section }) {
   // 0. Fill out the section name.
@@ -41,16 +45,17 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
   }
 
   function saveContent() {
+    const newRule = deepCopy(rule);
     console.log(`Saving ${sectionName} to state.`);
     // rule.metadata.rule.title = title;
     console.log(
       `Saving weights => group: ${ruleGroup} character: ${character} enforcement: ${enforcement} consequences: ${consequences}`
     );
-    rule.output_weight.rule_group = ruleGroup;
-    rule.output_weight.character_of_obligation = character;
-    rule.output_weight.enforcement_measures = enforcement;
-    rule.output_weight.consequences = consequences;
-    updateRule(rule);
+    newRule.output_weight.rule_group = ruleGroup;
+    newRule.output_weight.character_of_obligation = character;
+    newRule.output_weight.enforcement_measures = enforcement;
+    newRule.output_weight.consequences = consequences;
+    updateRule(newRule);
     setModified(false);
   }
 

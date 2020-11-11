@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { RuleSchema } from 'xalgo-rule-processor';
 import { Box, GuideLine, FormStandard, Text } from '../../components';
+import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 
 function NameDescription({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -22,10 +22,11 @@ function NameDescription({ rule, updateRule, active }) {
   }
 
   function saveContent() {
+    const newRule = deepCopy(rule);
     console.log(`Saving ${sectionName} to state.`);
-    rule.metadata.rule.title = title;
-    rule.metadata.rule.description = desc;
-    updateRule(rule);
+    newRule.metadata.rule.title = title;
+    newRule.metadata.rule.description = desc;
+    updateRule(newRule);
     setModified(false);
   }
 
@@ -64,6 +65,7 @@ function NameDescription({ rule, updateRule, active }) {
           <b>Public Link:</b> {/* Hardcoded, TODO: Get URL from environment. */}
           <a
             target="_blank"
+            rel="noreferrer noopener"
             href={`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
           >{`https://xalgo-system.herokuapp.com/rule/${rule.path}`}</a>
         </Text>

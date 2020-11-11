@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { RuleSchema } from 'xalgo-rule-processor';
 import { Box, GuideLine, FormStandard, Text, FormDropdown } from '../../components';
+import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 
 function Metadata({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -20,10 +20,11 @@ function Metadata({ rule, updateRule, active }) {
   }
 
   function saveContent() {
+    // Remember not to modify the rule prop.
+    const newRule = deepCopy(rule);
     console.log(`Saving ${sectionName} to state.`);
-    // rule.metadata.rule.title = title;
-    rule.metadata.rule.url = url;
-    updateRule(rule);
+    newRule.metadata.rule.url = url;
+    updateRule(newRule);
     setModified(false);
   }
 

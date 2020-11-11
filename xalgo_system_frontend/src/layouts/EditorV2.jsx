@@ -235,7 +235,9 @@ export default class EditorV2 extends React.Component {
     }, 100);
   }
 
-  updateRule(content) {
+  updateRule(content, force = false) {
+    if (!content) return;
+
     let newRuleContent = content;
     console.log(
       `Editor.jsx: Updating Rule Content:
@@ -256,18 +258,30 @@ export default class EditorV2 extends React.Component {
 
     let body_enforced = this.enforceRuleJSONSchema(newRuleContent);
 
-    // Finally, save.
-    this.setState({ active: false, rule: body_enforced }, () => {
-      console.log('Editor.jsx: Updated content.');
-      this.setState({ active: true, modalOpen: false }, () => {
-        this.persistRuleToStorage();
+    console.log("\nSO this is what's what:");
+    console.log(`Old: ${this.state.rule.metadata.rule.url}`);
+    console.log(`New: ${body_enforced.metadata.rule.url}`);
+
+    // Check if equal
+    if (
+      force ||
+      JSON.stringify(this.state.rule, null, 1) !== JSON.stringify(body_enforced, null, 1)
+    ) {
+      console.log('Change in rule content detected, saving to server...');
+      // Finally, save.
+      this.setState({ active: false, rule: body_enforced }, () => {
+        this.setState({ active: true, modalOpen: false }, () => {
+          this.persistRuleToStorage();
+        });
       });
-    });
+    } else {
+      console.log('No change in rule content detected.');
+    }
   }
 
   resetRule() {
     if (window.confirm(`Are you sure you'd like to RESET Rule ${this.state.uuid}?`)) {
-      this.updateRule(deepCopy(emptyRule));
+      this.updateRule(deepCopy(emptyRule), true);
       toast.warning('Rule reset!');
       this.props.navigate(`/apps/rm/editor/${this.state.uuid}`);
     }
@@ -283,6 +297,7 @@ export default class EditorV2 extends React.Component {
     console.log('Editor.jsx: Persisting rule to storage...');
     let body_enforced = this.enforceRuleJSONSchema(this.state.rule, showmsg);
     console.log(body_enforced);
+    console.log('Running an AXIOS PATCH operation to update rule content...');
     Axios.patch(
       `/rules/content/${this.state.primary_content_uuid}/`,
       {
@@ -295,7 +310,7 @@ export default class EditorV2 extends React.Component {
       }
     )
       .then((res) => {
-        console.log('Data pushed.');
+        console.log('Data pushed to backend successfully.');
         if (showmsg) toast(`Content UUID ${res.data.id} was saved successfully.`);
       })
       .catch((err) => {
@@ -327,7 +342,7 @@ export default class EditorV2 extends React.Component {
   }
 
   addCase() {
-    this.updateRule(addNewCase(this.state.rule));
+    this.updateRule(addNewCase(this.state.rule), true);
   }
 
   /**
