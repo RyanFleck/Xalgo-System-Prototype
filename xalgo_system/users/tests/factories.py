@@ -13,19 +13,18 @@ class UserFactory(DjangoModelFactory):
 
     @post_generation
     def password(self, create: bool, extracted: Sequence[Any], **kwargs):
-        password = (
-            extracted
-            if extracted
-            else Faker(
-                "password",
-                length=42,
-                special_chars=True,
-                digits=True,
-                upper_case=True,
-                lower_case=True,
-            ).generate(extra_kwargs={})
-        )
-        self.set_password(password)
+        locale = "en_US"
+        faked_password = Faker(
+            "password",
+            length=42,
+            special_chars=True,
+            digits=True,
+            upper_case=True,
+            lower_case=True,
+            locale=locale,
+        ).generate({"locale": locale})
+
+        self.set_password(extracted if extracted else faked_password)
 
     class Meta:
         model = get_user_model()
