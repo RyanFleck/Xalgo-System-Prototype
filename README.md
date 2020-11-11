@@ -2,6 +2,7 @@
 
 ![CI](https://github.com/RyanFleck/Xalgo-System-Prototype/workflows/CI/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype/branch/master/graph/badge.svg)](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype)
+[![Updates](https://pyup.io/repos/github/RyanFleck/Xalgo-System-Prototype/shield.svg)](https://pyup.io/repos/github/RyanFleck/Xalgo-System-Prototype/)
 
 This React/Django system is the fourth prototype in the series of visual rule editors, and the most complete.
 It contains the the code to deploy a frontend and backed from the same
@@ -22,8 +23,6 @@ Write unit tests to make this sunburst graph of unit test coverage look better:
 
 ![Sunburst graph, unit test coverage](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype/commit/d70d621b3ceb60d8b21fb04c3b462248e981b8cf/graphs/sunburst.svg)
 
-
-
 ## Usage
 
 Casual users can simply browse to <https://xalgo-system.herokuapp.com/>, create and verify an account, then begin testing.
@@ -31,7 +30,6 @@ Casual users can simply browse to <https://xalgo-system.herokuapp.com/>, create 
 The account verification email may arrive in your junk mail:
 
 ![](readme/junk-mail.png)
-
 
 ## Resources
 
