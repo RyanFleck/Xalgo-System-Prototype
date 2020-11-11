@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.0 (2020-11-11)
+### Feature
+* Improve saving algorithm. ([`dcbbe24`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/dcbbe24ea08bc17efea39dd16408fe37f9679298))
+
 ## v0.2.2 (2020-11-11)
 ### Fix
 * Correctly persist tabular data to rule body. ([`4c52534`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/4c5253443e9ec230645b3434b0d12d5ecc805455))
