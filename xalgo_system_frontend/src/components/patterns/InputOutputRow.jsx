@@ -12,6 +12,7 @@ const ruleLeft = {
 
 const halfWidth = {
   minWidth: '500px',
+  maxWidth: '500px',
 };
 
 const bottomLine = {
@@ -19,6 +20,11 @@ const bottomLine = {
   minWidth: '100%',
   display: 'block',
 };
+
+const littlepad = {
+  paddingTop: '1em',
+  paddingBottom: '1em',
+}
 
 function rotateValue(tfb, inputCondition = true) {
   let retval = '';
@@ -50,36 +56,9 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
       <Flex alignItems="center">
         <div style={halfWidth}>
           <Flex>
-            <Button
-              variant="invisible"
-              onClick={() => {
-                const ruleCopy = deepCopy(rule);
-                if (
-                  inputCondition &&
-                  isArray(ruleCopy.input_conditions) &&
-                  ruleCopy.input_conditions.length > 1
-                ) {
-                  console.log('Removing input condition...');
-                  ruleCopy.input_conditions.splice(index, 1);
-                  updateRule(ruleCopy);
-                } else if (
-                  isArray(ruleCopy.output_assertions) &&
-                  ruleCopy.output_assertions.length > 1
-                ) {
-                  console.log('Removing output assertion...');
-                  ruleCopy.output_assertions.splice(index, 1);
-                  updateRule(ruleCopy);
-                } else {
-                  toast.error(
-                    'A rule must have at least one input condition and output assertion.'
-                  );
-                }
-              }}
-            >
-              <Icon name="ex" fill="#ED9C91" />
-            </Button>
-            <Box padding={2} />
-            <Text color="textb">{sentence}</Text>
+            <div style={littlepad}>
+              <Text color="textb">{sentence}</Text>
+            </div>
             <Box padding={2} />
             <Button
               variant="invisible"
@@ -89,6 +68,7 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
             >
               <Icon name="edit" fill="textb" size={14} />
             </Button>
+            <Box padding={2} />
           </Flex>
         </div>
         <Box>
@@ -135,6 +115,34 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
               );
             })}
             <div style={ruleLeft}></div>
+            <Button
+              variant="invisible"
+              onClick={() => {
+                const ruleCopy = deepCopy(rule);
+                if (
+                  inputCondition &&
+                  isArray(ruleCopy.input_conditions) &&
+                  ruleCopy.input_conditions.length > 1
+                ) {
+                  console.log('Removing input condition...');
+                  ruleCopy.input_conditions.splice(index, 1);
+                  updateRule(ruleCopy);
+                } else if (
+                  isArray(ruleCopy.output_assertions) &&
+                  ruleCopy.output_assertions.length > 1
+                ) {
+                  console.log('Removing output assertion...');
+                  ruleCopy.output_assertions.splice(index, 1);
+                  updateRule(ruleCopy);
+                } else {
+                  toast.error(
+                    'A rule must have at least one input condition and output assertion.'
+                  );
+                }
+              }}
+            >
+              <Icon name="ex" fill="#ED9C91" />
+            </Button>
           </Flex>
         </Box>
       </Flex>

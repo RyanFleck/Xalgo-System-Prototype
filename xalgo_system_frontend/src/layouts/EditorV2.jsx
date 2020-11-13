@@ -497,8 +497,7 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                 <Text variant="formtitle">Input Output Table</Text>
                 <Box p={2}></Box>
-                <GuideLine>
-                  <Box>
+                  <Box p={4} border="1px solid" borderColor="oline" borderRadius="base">
                     <div style={overflowTable}>
                       <div style={bottomLine}>
                         <Flex alignItems="center">
@@ -603,7 +602,6 @@ export default class EditorV2 extends React.Component {
                       <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
                     </div>
                   </Box>
-                </GuideLine>
 
                 {/* output purpose */}
                 {/* output purpose */}
