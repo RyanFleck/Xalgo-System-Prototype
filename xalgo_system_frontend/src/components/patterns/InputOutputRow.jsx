@@ -3,28 +3,35 @@ import { deepCopy } from 'xalgo-rule-processor';
 import { isArray } from 'xalgo-rule-processor/dist/types';
 import { toast } from 'react-toastify';
 
-import { Text, Box, Flex, Button, Icon, Badge } from '..';
+import { Text, Box, Flex, Button, Icon, Badge, Dropdown } from '..';
 
 const ruleLeft = {
   borderLeft: '1px solid #E7E7E7',
   padding: '1em',
+  alignSelf: 'stretch',
+  borderBottom: '1px solid #E7E7E7',
 };
 
 const halfWidth = {
   minWidth: '500px',
   maxWidth: '500px',
-};
-
-const bottomLine = {
-  borderBottom: '1px solid #E7E7E7',
-  minWidth: '100%',
-  display: 'block',
-};
-
-const littlepad = {
   paddingTop: '1em',
   paddingBottom: '1em',
+  borderBottom: '1px solid #E7E7E7',
+};
+
+const center = {
+  alignSelf: 'center',
+  width: '140px',
 }
+
+const standard = {
+  width: 'auto,'
+}
+
+//row collapsed
+
+const collapse = false;
 
 function rotateValue(tfb, inputCondition = true) {
   let retval = '';
@@ -52,13 +59,11 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
   ].join(' ');
 
   return (
-    <div style={bottomLine}>
-      <Flex alignItems="center">
+    <div>
+      <Flex alignItems="stretch">
         <div style={halfWidth}>
-          <Flex>
-            <div style={littlepad}>
+          <Flex alignItems="flex-start">
               <Text color="textb">{sentence}</Text>
-            </div>
             <Box padding={2} />
             <Button
               variant="invisible"
@@ -71,80 +76,95 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
             <Box padding={2} />
           </Flex>
         </div>
-        <Box>
-          <Flex>
-            {rowData.cases.map((rowValue, i) => {
-              let variant = inputCondition ? 'both' : 'lightblue';
-              if (rowValue.value.toLowerCase() === 't') {
-                variant = 'blue';
-              } else if (rowValue.value.toLowerCase() === 'f') {
-                variant = 'lightblue';
-              } else if (rowValue.value.toLowerCase() === 'b') {
-                variant = 'both';
-              }
 
-              return (
-                <div style={ruleLeft} key={i}>
-                  <Button
-                    variant="invisible"
-                    onClick={() => {
-                      // Updates the case.
-                      const ruleCopy = deepCopy(rule);
-                      if (inputCondition) {
-                        ruleCopy.input_conditions[index].cases[i].value = rotateValue(
-                          ruleCopy.input_conditions[index].cases[i].value,
-                          inputCondition
-                        );
-                      } else {
-                        // Output assertion
-                        ruleCopy.output_assertions[index].cases[i].value = rotateValue(
-                          ruleCopy.output_assertions[index].cases[i].value,
-                          inputCondition
-                        );
-                      }
-                      updateRule(ruleCopy);
-                    }}
-                  >
-                    {inputCondition ? (
-                      <Badge variant={variant}>{rowValue.value || 'B'}</Badge>
-                    ) : (
-                      <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
-                    )}
-                  </Button>
-                </div>
-              );
-            })}
-            <div style={ruleLeft}></div>
-            <Button
-              variant="invisible"
-              onClick={() => {
-                const ruleCopy = deepCopy(rule);
-                if (
-                  inputCondition &&
-                  isArray(ruleCopy.input_conditions) &&
-                  ruleCopy.input_conditions.length > 1
-                ) {
-                  console.log('Removing input condition...');
-                  ruleCopy.input_conditions.splice(index, 1);
-                  updateRule(ruleCopy);
-                } else if (
-                  isArray(ruleCopy.output_assertions) &&
-                  ruleCopy.output_assertions.length > 1
-                ) {
-                  console.log('Removing output assertion...');
-                  ruleCopy.output_assertions.splice(index, 1);
-                  updateRule(ruleCopy);
-                } else {
-                  toast.error(
-                    'A rule must have at least one input condition and output assertion.'
-                  );
+              {rowData.cases.map((rowValue, i) => {
+                let variant = inputCondition ? 'both' : 'lightblue';
+                if (rowValue.value.toLowerCase() === 't') {
+                  variant = 'blue';
+                } else if (rowValue.value.toLowerCase() === 'f') {
+                  variant = 'lightblue';
+                } else if (rowValue.value.toLowerCase() === 'b') {
+                  variant = 'both';
                 }
-              }}
-            >
-              <Icon name="ex" fill="#ED9C91" />
-            </Button>
-          </Flex>
-        </Box>
+
+                return (
+                  <div style={ruleLeft} key={i}>
+                    <Button
+                      variant="invisible"
+                      onClick={() => {
+                        // Updates the case.
+                        const ruleCopy = deepCopy(rule);
+                        if (inputCondition) {
+                          ruleCopy.input_conditions[index].cases[i].value = rotateValue(
+                            ruleCopy.input_conditions[index].cases[i].value,
+                            inputCondition
+                          );
+                        } else {
+                          // Output assertion
+                          ruleCopy.output_assertions[index].cases[i].value = rotateValue(
+                            ruleCopy.output_assertions[index].cases[i].value,
+                            inputCondition
+                          );
+                        }
+                        updateRule(ruleCopy);
+                      }}
+                    >
+                      <div style={collapse ? (center) : (standard)}>
+                        <Flex alignItems="center">
+                          {inputCondition ? (
+                            <Badge variant={variant}>{rowValue.value || 'B'}</Badge>
+                          ) : (
+                            <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
+                          )}
+                          
+                          {collapse ? (
+                            <Flex>
+                              <Box p={2}/>
+                              <Dropdown>
+                                <option>True</option>
+                                <option>False</option>
+                                <option>Both</option>
+                              </Dropdown>
+                            </Flex>
+                          ) : (
+                            <div></div>
+                          )}
+                        </Flex>
+                      </div>
+                    </Button>
+                  </div>
+                );
+              })}
+        <div style={ruleLeft}>
+          <Button
+                variant="invisible"
+                onClick={() => {
+                  const ruleCopy = deepCopy(rule);
+                  if (
+                    inputCondition &&
+                    isArray(ruleCopy.input_conditions) &&
+                    ruleCopy.input_conditions.length > 1
+                  ) {
+                    console.log('Removing input condition...');
+                    ruleCopy.input_conditions.splice(index, 1);
+                    updateRule(ruleCopy);
+                  } else if (
+                    isArray(ruleCopy.output_assertions) &&
+                    ruleCopy.output_assertions.length > 1
+                  ) {
+                    console.log('Removing output assertion...');
+                    ruleCopy.output_assertions.splice(index, 1);
+                    updateRule(ruleCopy);
+                  } else {
+                    toast.error(
+                      'A rule must have at least one input condition and output assertion.'
+                    );
+                  }
+                }}
+              >
+                <Icon name="ex" fill="#ED9C91" />
+              </Button>
+            </div>
       </Flex>
     </div>
   );

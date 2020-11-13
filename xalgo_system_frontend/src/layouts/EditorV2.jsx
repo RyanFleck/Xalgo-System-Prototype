@@ -71,23 +71,32 @@ const overflowTable = {
 const ruleLeft = {
   borderLeft: '1px solid #E7E7E7',
   padding: '1em',
-};
+  borderBottom: '1px solid #E7E7E7',
+}
+
+const ruleLeftOnly = {
+  borderLeft: '1px solid #E7E7E7',
+  padding: '1em',
+}
 
 const ruleLeftalt = {
   borderLeft: '1px solid #E7E7E7',
   padding: '0.75em',
+  borderBottom: '1px solid #E7E7E7',
 };
 
 const halfWidth = {
   minWidth: '500px',
-};
-
-const bottomLine = {
   borderBottom: '1px solid #E7E7E7',
 };
 
+const halfWidthOnly = {
+  minWidth: '500px',
+};
+
 const rowWidth = {
-  width: '60px',
+  width: 'auto',
+  borderBottom: '1px solid #E7E7E7',
 };
 
 const fixpos = {
@@ -499,11 +508,10 @@ export default class EditorV2 extends React.Component {
                 <Box p={2}></Box>
                   <Box p={4} border="1px solid" borderColor="oline" borderRadius="base">
                     <div style={overflowTable}>
-                      <div style={bottomLine}>
-                        <Flex alignItems="center">
+                        <Flex alignItems="stretch">
                           <div style={halfWidth}>
                             <Flex>
-                              <Text>Input Conditions</Text>
+                              <Text variant="formtitle">Input Conditions</Text>
                             </Flex>
                           </div>
                           <Box>
@@ -532,7 +540,7 @@ export default class EditorV2 extends React.Component {
                             </Button>
                           </div>
                         </Flex>
-                      </div>
+                     
 
                       {/* Input Conditions Data */}
                       {rule.input_conditions.map((val, key) => (
@@ -548,32 +556,31 @@ export default class EditorV2 extends React.Component {
                         </Box>
                       ))}
 
-                      <Flex alignItems="center">
-                        <div style={halfWidth}>
+                      <Flex alignItems="stretch">
+                        <div style={halfWidthOnly}>
                           <Addbutton
+                            content="Add Input Condition"
                             onClick={() => {
                               /* This function must add a new Input Condition */
                               this.updateRule(addNewInputCondition(rule));
                             }}
                           />
                         </div>
-                        <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} />
                         <div style={rowWidth} />
                       </Flex>
-                      <Flex alignItems="center">
-                        <div style={halfWidth} />
-                        <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                      <Flex alignItems="stretchr">
+                        <div style={halfWidthOnly} />
+                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} />
                       </Flex>
-                      <div style={bottomLine}>
-                        <Flex alignItems="center">
+                        <Flex alignItems="stretchr">
                           <div style={halfWidth}>
                             <Flex>
-                              <Text>Output Assertions</Text>
+                              <Text variant="formtitle">Output Assertions</Text>
                             </Flex>
                           </div>
                           <BlankRows rule={rule} ruleLeft={ruleLeft} />
                         </Flex>
-                      </div>
                       {rule.output_assertions.map((val, key) => (
                         <Box key={key}>
                           <InputOutputRow
@@ -586,9 +593,10 @@ export default class EditorV2 extends React.Component {
                           />
                         </Box>
                       ))}
-                      <Flex alignItems="center">
+                      <Flex alignItems="stretch">
                         <div style={halfWidth}>
                           <Addbutton
+                            content="Add Output Assertion"
                             onClick={() => {
                               /* Must add a new output assertion. */
                               this.updateRule(addNewOutputAssertion(rule));
