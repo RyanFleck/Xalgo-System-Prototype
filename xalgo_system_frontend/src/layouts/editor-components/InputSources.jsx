@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormStandard, SubButton, FormDropdown } from '../../components';
+import { Box, FormStandard, FormDropdown, Text } from '../../components';
 
 function InputSources({ rule, updateRule, active }) {
     // 0. Fill out the section name.
@@ -24,9 +24,9 @@ function InputSources({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div>
-      <SubButton content="Input Source" />
-      <Box padding={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Input Source</Text>
+        <Box padding={1} />
         <FormDropdown
           name="Document Type"
           description="Not in Schema"
@@ -37,8 +37,7 @@ function InputSources({ rule, updateRule, active }) {
         />
         <Box padding={1} />
         <FormStandard name="Unique Identifier" description={RuleSchema.metadata.rule.__description} />
-      </GuideLine>
-      <Box padding={1} />
+      </Box>
     </div>
   );
 }

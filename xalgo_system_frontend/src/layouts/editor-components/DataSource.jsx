@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, FormStandard, GuideLine, SubButton} from '../../components';
+import { Box, FormStandard, Text } from '../../components';
 
 function DataSource({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -32,9 +32,9 @@ function DataSource({ rule, updateRule, active }) {
 
   return (
     <div onMouseLeave={saveContent}>
-      <SubButton content="Jurisdiction"/>
-      <Box p={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Jurisdiction</Text>
+        <Box p={1} />
         <FormStandard 
           name="Country Jurisdiction" 
           description={RuleSchema.input_context.jurisdiction[0].__country}
@@ -53,7 +53,8 @@ function DataSource({ rule, updateRule, active }) {
             setModified(true);
           }}  
         />
-      </GuideLine>
+      
+      </Box>
     </div>
   );
 }

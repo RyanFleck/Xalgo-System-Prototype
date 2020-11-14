@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormStandard, SubButton, } from '../../components';
+import { Box, FormStandard, Text } from '../../components';
 
 function StandardRoleName({ rule, updateRule, active }) {
     // 0. Fill out the section name.
@@ -35,9 +35,9 @@ function StandardRoleName({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div /*onMouseLeave={saveContent}*/>
-      <SubButton content="Standard Role Name" />
-      <Box padding={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Standard Role Name</Text>
+        <Box padding={1} />
         <FormStandard 
           name="ISIC Industry Code" 
           description={RuleSchema.input_filters.standard_role_name[0].__isic_industry_code}
@@ -57,8 +57,7 @@ function StandardRoleName({ rule, updateRule, active }) {
             setModified(true);
           }} 
         />
-      </GuideLine>
-      <Box padding={1} />
+      </Box>
     </div>
   );
 }

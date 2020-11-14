@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormSlider, FormDropdown, Text } from '../../components';
+import { Box, FormSlider, FormDropdown, Text } from '../../components';
 import {
   deepCopy,
   //RuleSchema
@@ -62,10 +62,9 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
   // 3. Return a rendering of the component.
   return (
     <div onMouseLeave={saveContent}>
-      <Box padding={1} />
-      <Text>Qualitative Weights</Text>
-      <Box padding={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Qualitative Weights</Text>
+        <Box padding={1} />
         <FormDropdown
           name="Select the rule group that most applies."
           description="hello world is asking the following things"
@@ -136,8 +135,7 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
             setConsequences(parseInt(e));
           }}
         />
-      </GuideLine>
-      <Box padding={1} />
+      </Box>
     </div>
   );
 }

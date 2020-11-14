@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormDropdown, Text } from '../../components';
+import { Box, FormDropdown, Text } from '../../components';
 
 function OutputPurpose({ rule, updateRule, active, section, }) {
   // 0. Fill out the section name.
@@ -34,10 +34,9 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
   // 3. Return a rendering of the component.
   return (
     <div onMouseLeave={saveContent}>
-      <Box padding={1} />
-      <Text>Purpose</Text>
-      <Box padding={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Purpose</Text>
+        <Box padding={1} />
         <FormDropdown
           name="Who has responsibility for conformance?"
           description="Who has responsibility for conformance?"
@@ -103,8 +102,7 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
             { value: 'empirical', label: 'empirical' },
           ]}
         />
-      </GuideLine>
-      <Box padding={1} />
+      </Box>
     </div>
   );
 }

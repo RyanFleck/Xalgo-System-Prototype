@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, FormStandard, IdDisplay, SubButton, GuideLine } from '../../components';
+import { Box, FormStandard, IdDisplay, Text} from '../../components';
 
 function RuleAuthor({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -32,9 +32,9 @@ function RuleAuthor({ rule, updateRule, active }) {
 
   return (
     <div onMouseLeave={saveContent}>
-      <SubButton content="Rule Author"/>
-      <Box p={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Rule Author</Text>
+        <Box p={1} />
         <IdDisplay message="Vqp4nv8eGprI" />
         <Box padding={1} />
         <FormStandard 
@@ -55,7 +55,7 @@ function RuleAuthor({ rule, updateRule, active }) {
             setModified(true);
           }}  
         />
-      </GuideLine>
+      </Box>
     </div>
     
   );

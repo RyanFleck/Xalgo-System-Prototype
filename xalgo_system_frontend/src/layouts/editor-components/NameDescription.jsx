@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, GuideLine, FormStandard, Text } from '../../components';
+import { Box, FormStandard, Text } from '../../components';
 import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 
 function NameDescription({ rule, updateRule, active }) {
@@ -33,44 +33,44 @@ function NameDescription({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div onMouseLeave={saveContent}>
-      <Box padding={1} />
-      <Text>Name & Description</Text>
-      <Box padding={1} />
-      <GuideLine>
-        <FormStandard
-          name="Rule Name"
-          description={RuleSchema.metadata.rule.__title}
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-            setModified(true);
-          }}
-        />
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Name & Description</Text>
         <Box padding={1} />
-        <FormStandard
-          name="Rule Description"
-          description={RuleSchema.metadata.rule.__description}
-          value={desc}
-          onChange={(e) => {
-            setDesc(e.target.value);
-            setModified(true);
-          }}
-          longInput
-        />
-        <Box padding={1} />
-        <Text>
-          <b>Rule UUID:</b> {rule.path}
-        </Text>
-        <Text>
-          <b>Public Link:</b> {/* Hardcoded, TODO: Get URL from environment. */}
-          <a
-            target="_blank"
-            rel="noreferrer noopener"
-            href={`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
-          >{`https://xalgo-system.herokuapp.com/rule/${rule.path}`}</a>
-        </Text>
-      </GuideLine>
-      <Box padding={1} />
+          <FormStandard
+            name="Rule Name"
+            description={RuleSchema.metadata.rule.__title}
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setModified(true);
+            }}
+          />
+          <Box padding={1} />
+          <FormStandard
+            name="Rule Description"
+            description={RuleSchema.metadata.rule.__description}
+            value={desc}
+            onChange={(e) => {
+              setDesc(e.target.value);
+              setModified(true);
+            }}
+            longInput
+          />
+          {/*
+          <Box padding={1} />
+          <Text>
+            <b>Rule UUID:</b> {rule.path}
+          </Text>
+          <Text>
+            <b>Public Link:</b> 
+            <a
+              target="_blank"
+              rel="noreferrer noopener"
+              href={`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
+            >{`https://xalgo-system.herokuapp.com/rule/${rule.path}`}</a>
+          </Text>
+          */}
+      </Box>
     </div>
   );
 }

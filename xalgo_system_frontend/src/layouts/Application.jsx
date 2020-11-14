@@ -30,6 +30,7 @@ const baseBoxStyle = {
   marginTop: '73px',
   left: '0px',
   width: '100%',
+  background: '#F9FBFE',
 };
 
 // Primary Component

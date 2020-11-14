@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, FormStandard, IdDisplay, GuideLine, SubButton } from '../../components';
+import { Box, FormStandard, IdDisplay, Text } from '../../components';
 
 function RuleManager({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -32,30 +32,30 @@ function RuleManager({ rule, updateRule, active }) {
 
   return (
     <div onMouseLeave={saveContent}>
-      <SubButton content="Rule Manager"/>
-      <Box p={1} />
-      <GuideLine>
-        <IdDisplay message="Vqp4nv8eGprI" />
-            <Box padding={1} />
-            <FormStandard 
-              name="Name" 
-              description={RuleSchema.metadata.rule.manager[0].__name}
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                setModified(true);
-              }} 
-            />
-            <Box padding={1} />
-            <FormStandard name="Email" 
-              description={RuleSchema.metadata.rule.manager[0].__email}
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setModified(true);
-              }}  
-            />
-          </GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Rule Manager</Text>
+        <Box p={1} />
+          <IdDisplay message="Vqp4nv8eGprI" />
+              <Box padding={1} />
+              <FormStandard 
+                name="Name" 
+                description={RuleSchema.metadata.rule.manager[0].__name}
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setModified(true);
+                }} 
+              />
+              <Box padding={1} />
+              <FormStandard name="Email" 
+                description={RuleSchema.metadata.rule.manager[0].__email}
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setModified(true);
+                }}  
+              />
+      </Box>
     </div>
   );
 }

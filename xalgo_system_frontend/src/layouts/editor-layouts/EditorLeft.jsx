@@ -22,7 +22,6 @@ const holdTop = {
   position: 'fixed',
   top: '75px',
   right: '0px',
-  background: '#F9F8F4',
   height: '100vh',
 };
 

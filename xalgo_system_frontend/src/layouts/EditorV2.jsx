@@ -25,7 +25,7 @@ import {
   InputOutputRow,
   SentenceEditor,
   Icon,
-  GuideLine,
+  Grid,
 } from '../components';
 
 import {
@@ -55,12 +55,12 @@ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const fullheight = {
   minHeight: '80vh',
   minWidth: '500px',
-  maxWidth: 'calc(100% - 80px)',
+  maxWidth: 'calc(100% - 90px)',
   // overflowX:
 };
 
 const constrainWidth = {
-  maxWidth: '800px',
+  maxWidth: '100%',
 };
 
 const overflowTable = {
@@ -461,223 +461,245 @@ export default class EditorV2 extends React.Component {
                   {/* Rule Name */}
                   {/* Rule Name */}
 
-                  <Text variant="formtitle">About the Rule</Text>
+                  <Text variant="subtitle">About the Rule</Text>
                   <Box p={2}></Box>
-                  <GuideLine>
-                    <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
-                    <Metadata rule={rule} updateRule={this.updateRule} active={active} />
-                  </GuideLine>
+
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em"> 
+                    <Box gridArea="1 / 1 / 2 / 3">
+                      <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
+                    </Box> 
+                    <Box gridArea="2 / 1 / 3 / 2">
+                      <Metadata rule={rule} updateRule={this.updateRule} active={active} />
+                    </Box>
+                  </Grid>
 
                   {/* Rule Manager */}
                   {/* Rule Manager */}
                   {/* Rule Manager */}
                   {/* Rule Manager */}
 
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">Management, Authorship & Maintenance</Text>
                   <Box p={2}></Box>
-                  <Text variant="formtitle">Management, Authorship & Maintenance</Text>
-                  <Box p={2}></Box>
-                  <GuideLine>
-                    <RuleManager rule={rule} updateRule={this.updateRule} active={active} />
-                    <Addbutton content="Rule Manager" />
-                    <RuleAuthor rule={rule} updateRule={this.updateRule} active={active} />
-                    <Addbutton content="Rule Author" />
-                    <RuleMaintainer rule={rule} updateRule={this.updateRule} active={active} />
-                    <Addbutton content="Rule Maintainer" />
-                  </GuideLine>
+
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <div>
+                      <RuleManager rule={rule} updateRule={this.updateRule} active={active} />
+                      <Addbutton content="Rule Manager" />
+                    </div>
+                    <div>
+                      <RuleAuthor rule={rule} updateRule={this.updateRule} active={active} />
+                      <Addbutton content="Rule Author" />
+                    </div>
+                    <div>
+                      <RuleMaintainer rule={rule} updateRule={this.updateRule} active={active} />
+                      <Addbutton content="Rule Maintainer" />
+                    </div>
+                  </Grid>
 
                   {/* Data Sources */}
                   {/* Data Sources */}
                   {/* Data Sources */}
 
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">Origins of Data that this Rule Depends Upon</Text>
                   <Box p={2}></Box>
-                  <Text variant="formtitle">Origins of Data that this Rule Depends Upon</Text>
-                  <Box p={2}></Box>
-                  <GuideLine>
-                    <InputSources />
-                    <Addbutton content="Input Source" />
-                  </GuideLine>
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <div>
+                      <InputSources />
+                      <Addbutton content="Input Source" />
+                    </div>
+                  </Grid>
+
 
                   {/* Input: contexts */}
                   {/* Input: contexts */}
                   {/* Input: contexts */}
 
-                  <Box p={2}></Box>
-                  <Text variant="formtitle">
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">
                     Where and when this Rule is Asserted to be in Effect
                   </Text>
                   <Box p={2}></Box>
-                  <GuideLine>
-                    <DataSource rule={rule} updateRule={this.updateRule} active={active} />
-                    <Addbutton content="Jurisdiction" />
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <div>
+                      <DataSource rule={rule} updateRule={this.updateRule} active={active} />
+                      <Addbutton content="Jurisdiction" />
+                    </div>
                     <Time label="Start Time" />
                     <Time label="End Time" />
-                  </GuideLine>
+                  </Grid>
 
                   {/* Input: filters */}
                   {/* Input: filters */}
                   {/* Input: filters */}
 
-                  <Box p={2}></Box>
-                  <Text variant="formtitle">
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">
                     External Data Values for which this Rule is Deemed to be Applicable
                   </Text>
                   <Box p={2}></Box>
-                  <GuideLine>
-                    <StandardRoleName />
-                    <Addbutton content="Standard Role Name" />
-                    <InvolvedProduct />
-                    <Addbutton content="Involved Product or Service" />
-                  </GuideLine>
-
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
-                </div>
-                <Box p={2}></Box>
-                <Text variant="formtitle">Input Output Table</Text>
-                <Box p={2}></Box>
-                  <Box p={4} border="1px solid" borderColor="oline" borderRadius="base">
-                    { collapse ? (
-                       <Button
-                       onClick={this.handleCollapse} 
-                        >
-                          Collapse Table
-                        </Button>
-                    ) : (
-                      <Button
-                       onClick={this.handleExpand} 
-                        >
-                          Expand Table
-                        </Button>
-                    )}   
-                    <Box p={2}/>
-                    <div style={overflowTable}>
-                        <Flex alignItems="stretch">
-                          <div style={halfWidth}>
-                            <Flex>
-                              <Text variant="formtitle">Input Conditions</Text>
-                            </Flex>
-                          </div>
-                          <Box>
-                            <Flex>
-                              {/* Input Conditions/Output Assertions Case Headings */}
-                              {rule.input_conditions[0].cases.map((rowValue, i) => {
-                                return (
-                                  <div style={ruleLeft} key={i}>
-                                    <div>
-                                      {collapse ? (
-                                        <div style={column}>
-                                            <Flex justifyContent="space-between" alignItems="center">
-                                              <div style={heightAdjust} />
-                                              <Text variant="formtitle">Input Scenario {rowValue.case}</Text>
-                                              <Button
-                                                variant="invisible"
-                                                onClick={() => {
-                                                  toast('Unimplemented.');
-                                                }}
-                                              >
-                                                <Icon name="toggle" fill="#494D59" />
-                                              </Button>
-                                            </Flex>
-                                        </div>
-                                      ) : (
-                                        <Button
-                                          variant="invisible"
-                                          onClick={() => {
-                                            toast('Unimplemented.');
-                                          }}
-                                        >
-                                          <ColumnLabel rowLabel={rowValue.case || '?'} />
-                                        </Button>
-                                      )}
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                              <div style={ruleLeftalt} />
-                            </Flex>
-                          </Box>
-                          <div style={rowWidth}>
-                            <Button variant="invisible" onClick={this.addCase}>
-                              <Icon name="add" fill="#A3D8BE" />
-                            </Button>
-                          </div>
-                        </Flex>
-                     
-
-                      {/* Input Conditions Data */}
-                      {rule.input_conditions.map((val, key) => (
-                        <Box key={key}>
-                          <InputOutputRow
-                            rowData={val}
-                            rule={rule}
-                            updateRule={this.updateRule}
-                            editRow={this.editInputCondition}
-                            index={key}
-                            inputCondition
-                            columnState={collapse}
-                          />
-                        </Box>
-                      ))}
-
-                      <Flex alignItems="stretch">
-                        <div style={halfWidthOnly}>
-                          <Addbutton
-                            content="Add Input Condition"
-                            onClick={() => {
-                              /* This function must add a new Input Condition */
-                              this.updateRule(addNewInputCondition(rule));
-                            }}
-                          />
-                        </div>
-                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
-                        <div style={rowWidth} />
-                      </Flex>
-                      <Flex alignItems="stretch">
-                        <div style={halfWidthOnly} />
-                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
-                      </Flex>
-                        <Flex alignItems="stretch">
-                          <div style={halfWidth}>
-                            <Flex>
-                              <Text variant="formtitle">Output Assertions</Text>
-                            </Flex>
-                          </div>
-                          <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column} />
-                        </Flex>
-                      {rule.output_assertions.map((val, key) => (
-                        <Box key={key}>
-                          <InputOutputRow
-                            rowData={val}
-                            rule={rule}
-                            updateRule={this.updateRule}
-                            editRow={this.editOutputAssertion}
-                            index={key}
-                            inputCondition={false}
-                            columnState={collapse}
-                          />
-                        </Box>
-                      ))}
-                      <Flex alignItems="stretch">
-                        <div style={halfWidth}>
-                          <Addbutton
-                            content="Add Output Assertion"
-                            onClick={() => {
-                              /* Must add a new output assertion. */
-                              this.updateRule(addNewOutputAssertion(rule));
-                            }}
-                          />
-                        </div>
-                        <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column}/>
-                      </Flex>
-                      <Box padding={1} />
-                      <Box padding={1} />
-                      <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <div>
+                      <StandardRoleName />
+                      <Addbutton content="Standard Role Name" />
                     </div>
-                  </Box>
+                    <div>
+                      <InvolvedProduct />
+                      <Addbutton content="Involved Product or Service" />
+                    </div>
+                  </Grid>
+
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                  {/* Input Output Table */}
+                <Box p={4}></Box>
+                <Text variant="subtitle">Input Output Table</Text>
+                <Box p={2}></Box>
+                <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                  <Box p={4} border="1px solid" borderColor="oline" borderRadius="base" bg="#fff" gridArea="1 / 1 / 2 / 4">
+                      { collapse ? (
+                        <Button
+                        onClick={this.handleCollapse} 
+                          >
+                            Collapse Table
+                          </Button>
+                      ) : (
+                        <Button
+                        onClick={this.handleExpand} 
+                          >
+                            Expand Table
+                          </Button>
+                      )}   
+                      <Box p={2}/>
+                      <div style={overflowTable}>
+                          <Flex alignItems="stretch">
+                            <div style={halfWidth}>
+                              <Flex>
+                                <Text variant="formtitle">Input Conditions</Text>
+                              </Flex>
+                            </div>
+                            <Box>
+                              <Flex>
+                                {/* Input Conditions/Output Assertions Case Headings */}
+                                {rule.input_conditions[0].cases.map((rowValue, i) => {
+                                  return (
+                                    <div style={ruleLeft} key={i}>
+                                      <div>
+                                        {collapse ? (
+                                          <div style={column}>
+                                              <Flex justifyContent="space-between" alignItems="center">
+                                                <div style={heightAdjust} />
+                                                <Text variant="formtitle">Input Scenario {rowValue.case}</Text>
+                                                <Button
+                                                  variant="invisible"
+                                                  onClick={() => {
+                                                    toast('Unimplemented.');
+                                                  }}
+                                                >
+                                                  <Icon name="toggle" fill="#494D59" />
+                                                </Button>
+                                              </Flex>
+                                          </div>
+                                        ) : (
+                                          <Button
+                                            variant="invisible"
+                                            onClick={() => {
+                                              toast('Unimplemented.');
+                                            }}
+                                          >
+                                            <ColumnLabel rowLabel={rowValue.case || '?'} />
+                                          </Button>
+                                        )}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                                <div style={ruleLeftalt} />
+                              </Flex>
+                            </Box>
+                            <div style={rowWidth}>
+                              <Button variant="invisible" onClick={this.addCase}>
+                                <Icon name="add" fill="#A3D8BE" />
+                              </Button>
+                            </div>
+                          </Flex>
+                      
+
+                        {/* Input Conditions Data */}
+                        {rule.input_conditions.map((val, key) => (
+                          <Box key={key}>
+                            <InputOutputRow
+                              rowData={val}
+                              rule={rule}
+                              updateRule={this.updateRule}
+                              editRow={this.editInputCondition}
+                              index={key}
+                              inputCondition
+                              columnState={collapse}
+                            />
+                          </Box>
+                        ))}
+
+                        <Flex alignItems="stretch">
+                          <div style={halfWidthOnly}>
+                            <Addbutton
+                              content="Add Input Condition"
+                              onClick={() => {
+                                /* This function must add a new Input Condition */
+                                this.updateRule(addNewInputCondition(rule));
+                              }}
+                            />
+                          </div>
+                          <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
+                          <div style={rowWidth} />
+                        </Flex>
+                        <Flex alignItems="stretch">
+                          <div style={halfWidthOnly} />
+                          <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
+                        </Flex>
+                          <Flex alignItems="stretch">
+                            <div style={halfWidth}>
+                              <Flex>
+                                <Text variant="formtitle">Output Assertions</Text>
+                              </Flex>
+                            </div>
+                            <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column} />
+                          </Flex>
+                        {rule.output_assertions.map((val, key) => (
+                          <Box key={key}>
+                            <InputOutputRow
+                              rowData={val}
+                              rule={rule}
+                              updateRule={this.updateRule}
+                              editRow={this.editOutputAssertion}
+                              index={key}
+                              inputCondition={false}
+                              columnState={collapse}
+                            />
+                          </Box>
+                        ))}
+                        <Flex alignItems="stretch">
+                          <div style={halfWidth}>
+                            <Addbutton
+                              content="Add Output Assertion"
+                              onClick={() => {
+                                /* Must add a new output assertion. */
+                                this.updateRule(addNewOutputAssertion(rule));
+                              }}
+                            />
+                          </div>
+                          <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column}/>
+                        </Flex>
+                        <Box padding={1} />
+                        <Box padding={1} />
+                        <Flex justifyContent="flex-end">{/* the modal button will go here */}</Flex>
+                      </div>
+                    </Box>
+                  </Grid>
 
                 {/* output purpose */}
                 {/* output purpose */}
@@ -686,14 +708,17 @@ export default class EditorV2 extends React.Component {
                 {/* output purpose */}
                 {/* output purpose */}
 
-                <div style={constrainWidth}>
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">Output Attributes</Text>
                   <Box p={2}></Box>
-                  <Text variant="formtitle">Output Attributes</Text>
-                  <Box p={2}></Box>
-                  <GuideLine>
-                    <OutputPurpose />
-                    <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
-                  </GuideLine>
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <Box>
+                      <OutputPurpose />
+                    </Box>
+                    <Box gridArea="1 / 2 / 2 / 4">
+                      <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
+                    </Box>
+                  </Grid>
                   <Box p={2}></Box>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, GuideLine, FormStandard, Flex, Dropdown, Text, FormDropdown } from '../../components';
+import { Box, FormStandard, Flex, Dropdown, Text, FormDropdown } from '../../components';
 
 function Time({ rule, updateRule, active, section, label }) {
   // 0. Fill out the section name.
@@ -24,16 +24,14 @@ function Time({ rule, updateRule, active, section, label }) {
   // 3. Return a rendering of the component.
   return (
     <div>
-      <Box padding={1} />
-      <Text>{label}</Text>
-      <Box padding={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">{label}</Text>
+        <Box padding={1} />
         <FormStandard name="Date" description={RuleSchema.metadata.rule.__description} />
         <Box padding={1} />
         <Flex alignItems="center">
-          <Text color="textb">Hour</Text>
-          <Box padding={1} />
           <Dropdown>
+            <option>Hour</option>
             <option>00</option>
             <option>01</option>
             <option>02</option>
@@ -60,9 +58,8 @@ function Time({ rule, updateRule, active, section, label }) {
             <option>23</option>
           </Dropdown>
           <Box padding={1} />
-          <Text color="textb">Minute</Text>
-          <Box padding={1} />
           <Dropdown>
+            <option>Minute</option>
             <option>00</option>
             <option>01</option>
             <option>02</option>
@@ -125,10 +122,9 @@ function Time({ rule, updateRule, active, section, label }) {
             <option>59</option>
           </Dropdown>
           <Box padding={1} />
-          <Text color="textb">Second</Text>
-          <Box padding={1} />
           <Dropdown>
-          <option>00</option>
+            <option>Second</option>
+            <option>00</option>
             <option>01</option>
             <option>02</option>
             <option>03</option>
@@ -235,8 +231,7 @@ function Time({ rule, updateRule, active, section, label }) {
                       { value: 'UTC+14:00', label: 'UTC+14:00' },
                     ]}
                   />
-      </GuideLine>
-      <Box padding={1} />
+      </Box>
     </div>
   );
 }

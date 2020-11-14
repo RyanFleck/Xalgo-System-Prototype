@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, GuideLine, FormStandard, Text, FormDropdown } from '../../components';
+import { Box, FormStandard, Text, FormDropdown } from '../../components';
 import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 
 function Metadata({ rule, updateRule, active }) {
@@ -38,52 +38,50 @@ function Metadata({ rule, updateRule, active }) {
   // 3. Return a rendering of the component.
   return (
     <div onMouseLeave={saveContent}>
-      <Box padding={1} />
-      <Text>Rule Metadata</Text>
-      <Box padding={1} />
-      <GuideLine>
-        <FormStandard
-          name="Full Rule Text URL"
-          description={RuleSchema.metadata.rule.__url}
-          type="url"
-          value={url}
-          onChange={(e) => {
-            setUrl(e.target.value);
-            setModified(true);
-          }}
-        />
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Rule Metadata</Text>
         <Box padding={1} />
-        <FormStandard
-          name="Rule Version"
-          placeholder="1.0"
-          description={RuleSchema.metadata.rule.__version}
-          value={version}
-          onChange={(e) => {
-            setVersion(e.target.value);
-            setModified(true);
-          }}
-        />
-        <Box padding={1} />
-        <FormDropdown
-          name="Xalgo Version"
-          description="Not in Schema"
-          options={[{ value: '1.0', label: '1.0' }]}
-        />
-        <Box padding={1} />
-        <FormDropdown
-          name="Rule Criticality"
-          description={RuleSchema.metadata.rule.__criticality}
-          options={[
-            { value: 'Experimental', label: 'Experimental' }
-          ]}
-          value={criticality}
-          onChange={(e) => {
-            setCriticality(e.target.value);
-            setModified(true);
-          }}
-        />
-      </GuideLine>
-      <Box padding={1} />
+          <FormStandard
+            name="Full Rule Text URL"
+            description={RuleSchema.metadata.rule.__url}
+            type="url"
+            value={url}
+            onChange={(e) => {
+              setUrl(e.target.value);
+              setModified(true);
+            }}
+          />
+          <Box padding={1} />
+          <FormStandard
+            name="Rule Version"
+            placeholder="1.0"
+            description={RuleSchema.metadata.rule.__version}
+            value={version}
+            onChange={(e) => {
+              setVersion(e.target.value);
+              setModified(true);
+            }}
+          />
+          <Box padding={1} />
+          <FormDropdown
+            name="Xalgo Version"
+            description="Not in Schema"
+            options={[{ value: '1.0', label: '1.0' }]}
+          />
+          <Box padding={1} />
+          <FormDropdown
+            name="Rule Criticality"
+            description={RuleSchema.metadata.rule.__criticality}
+            options={[
+              { value: 'Experimental', label: 'Experimental' }
+            ]}
+            value={criticality}
+            onChange={(e) => {
+              setCriticality(e.target.value);
+              setModified(true);
+            }}
+          />
+      </Box>
     </div>
   );
 }

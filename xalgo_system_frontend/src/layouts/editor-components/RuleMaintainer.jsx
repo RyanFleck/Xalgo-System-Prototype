@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { RuleSchema } from 'xalgo-rule-processor';
-import { Box, FormStandard, IdDisplay, GuideLine, SubButton } from '../../components';
+import { Box, FormStandard, IdDisplay, Text } from '../../components';
 
 function RuleMaintainer({ rule, updateRule, active }) {
   // 0. Fill out the section name.
@@ -36,9 +36,9 @@ function RuleMaintainer({ rule, updateRule, active }) {
 
   return (
     <div>
-      <SubButton content="Rule Maintainer"/>
-      <Box p={1} />
-      <GuideLine>
+      <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
+        <Text variant="formtitle">Rule Maintainer</Text>
+        <Box p={1} />
         <IdDisplay message="Vqp4nv8eGprI" />
               <Box padding={1} />
               <FormStandard 
@@ -59,7 +59,7 @@ function RuleMaintainer({ rule, updateRule, active }) {
                   setModified(true);
                 }}  
               />
-        </GuideLine>
+      </Box>
     </div>
   );
 }
