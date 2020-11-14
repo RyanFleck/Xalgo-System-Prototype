@@ -22,16 +22,15 @@ const halfWidth = {
 
 const center = {
   alignSelf: 'center',
-  width: '140px',
+  width: '120px',
 }
 
 const standard = {
-  width: 'auto,'
+  width: '0px',
+  height: '45px',
 }
 
 //row collapsed
-
-const collapse = false;
 
 function rotateValue(tfb, inputCondition = true) {
   let retval = '';
@@ -45,9 +44,10 @@ function rotateValue(tfb, inputCondition = true) {
   return retval;
 }
 
-function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondition }) {
+function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondition, columnState }) {
   const { participle, attribute, subject, operation, value } = rowData.context;
-  const sentence = [
+  const collapse = columnState;
+    const sentence = [
     'The',
     participle || 'participle',
     attribute || 'attribute',
@@ -89,49 +89,50 @@ function InputOutputRow({ rowData, rule, updateRule, editRow, index, inputCondit
 
                 return (
                   <div style={ruleLeft} key={i}>
-                    <Button
-                      variant="invisible"
-                      onClick={() => {
-                        // Updates the case.
-                        const ruleCopy = deepCopy(rule);
-                        if (inputCondition) {
-                          ruleCopy.input_conditions[index].cases[i].value = rotateValue(
-                            ruleCopy.input_conditions[index].cases[i].value,
-                            inputCondition
-                          );
-                        } else {
-                          // Output assertion
-                          ruleCopy.output_assertions[index].cases[i].value = rotateValue(
-                            ruleCopy.output_assertions[index].cases[i].value,
-                            inputCondition
-                          );
-                        }
-                        updateRule(ruleCopy);
-                      }}
-                    >
+                    <Flex>
+                      <Button
+                        variant="invisible"
+                        onClick={() => {
+                          // Updates the case.
+                          const ruleCopy = deepCopy(rule);
+                          if (inputCondition) {
+                            ruleCopy.input_conditions[index].cases[i].value = rotateValue(
+                              ruleCopy.input_conditions[index].cases[i].value,
+                              inputCondition
+                            );
+                          } else {
+                            // Output assertion
+                            ruleCopy.output_assertions[index].cases[i].value = rotateValue(
+                              ruleCopy.output_assertions[index].cases[i].value,
+                              inputCondition
+                            );
+                          }
+                          updateRule(ruleCopy);
+                        }}
+                      >
+                        {inputCondition ? (
+                              <Badge variant={variant}>{rowValue.value || 'B'}</Badge>
+                            ) : (
+                              <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
+                            )}
+                      </Button>
                       <div style={collapse ? (center) : (standard)}>
-                        <Flex alignItems="center">
-                          {inputCondition ? (
-                            <Badge variant={variant}>{rowValue.value || 'B'}</Badge>
-                          ) : (
-                            <Badge variant={variant}>{rowValue.value || 'F'}</Badge>
-                          )}
-                          
-                          {collapse ? (
-                            <Flex>
-                              <Box p={2}/>
-                              <Dropdown>
-                                <option>True</option>
-                                <option>False</option>
-                                <option>Both</option>
-                              </Dropdown>
-                            </Flex>
-                          ) : (
-                            <div></div>
-                          )}
-                        </Flex>
+                          <Flex alignItems="center">
+                            {collapse ? (
+                              <Flex>
+                                <Box p={2}/>
+                                <Dropdown>
+                                  <option>True</option>
+                                  <option>False</option>
+                                  <option>Both</option>
+                                </Dropdown>
+                              </Flex>
+                            ) : (
+                              <div></div>
+                            )}
+                          </Flex>
                       </div>
-                    </Button>
+                    </Flex>
                   </div>
                 );
               })}

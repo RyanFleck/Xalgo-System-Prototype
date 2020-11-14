@@ -1,17 +1,39 @@
 import React from 'react';
-import { Box, Flex, Badge } from '../../components';
+import { Flex } from '../../components';
 
-export default function BlankRows({ rule, ruleLeft }) {
+const small = {
+  width: '34px',
+  height: '24px',
+}
+
+const stretch = {
+  alignSelf: 'stretch'
+}
+
+const column = {
+  width: '154px',
+  height: '24px',
+}
+
+
+export default function BlankRows({ rule, ruleLeft, columnState}) {
+
+  const collapse = columnState;
+
   return (
-    <Box>
+    <div style={stretch}>
       <Flex>
         {rule.input_conditions[0].cases.map((rowValue, i) => (
           <div style={ruleLeft} key={i}>
-            <Badge variant="invisible">X</Badge>
+            { collapse ? (
+              <div style={column} />
+            ) : (
+              <div style={small} />
+            )}
           </div>
         ))}
         <div style={ruleLeft} />
       </Flex>
-    </Box>
+    </div>
   );
 }

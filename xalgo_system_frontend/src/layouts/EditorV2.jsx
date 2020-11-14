@@ -112,6 +112,15 @@ const modalhold = {
   marginBottom: '-90vh',
 };
 
+const column = {
+  width: '154px',
+}
+
+const heightAdjust = {
+  height: '38px',
+  width: '0px',
+}
+
 // This empty rule is the schema without any __descriptions.
 // Temporarily start with three cases.
 const emptyRule = generateNewRule();
@@ -136,6 +145,7 @@ export default class EditorV2 extends React.Component {
       rule_loaded: false,
       uuid: '',
       primary_content_uuid: '',
+      collapse: true,
     };
 
     this.getRuleFromStorage = this.getRuleFromStorage.bind(this);
@@ -153,11 +163,24 @@ export default class EditorV2 extends React.Component {
     this.addCase = this.addCase.bind(this);
 
     this.enforceRuleJSONSchema = this.enforceRuleJSONSchema.bind(this);
+
+    this.handleCollapse = this.handleCollapse.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
   }
 
   componentDidMount() {
     console.log('Starting Editor V2');
     this.getRuleFromStorage();
+  }
+
+  //table collapse
+
+  handleCollapse() {
+    this.setState({collapse: false});
+  }
+
+  handleExpand() {
+    this.setState({collapse: true});
   }
 
   /**
@@ -354,6 +377,8 @@ export default class EditorV2 extends React.Component {
     this.updateRule(addNewCase(this.state.rule), true);
   }
 
+  
+
   /**
    * ==================================
    * Rendering Method, end of functions
@@ -372,7 +397,10 @@ export default class EditorV2 extends React.Component {
       modalOpen,
       modalEditingIndex,
       modalEditingInput,
+      collapse,
     } = this.state;
+
+   //const collapse = true;
 
     return (
       <div>
@@ -507,6 +535,20 @@ export default class EditorV2 extends React.Component {
                 <Text variant="formtitle">Input Output Table</Text>
                 <Box p={2}></Box>
                   <Box p={4} border="1px solid" borderColor="oline" borderRadius="base">
+                    { collapse ? (
+                       <Button
+                       onClick={this.handleCollapse} 
+                        >
+                          Collapse Table
+                        </Button>
+                    ) : (
+                      <Button
+                       onClick={this.handleExpand} 
+                        >
+                          Expand Table
+                        </Button>
+                    )}   
+                    <Box p={2}/>
                     <div style={overflowTable}>
                         <Flex alignItems="stretch">
                           <div style={halfWidth}>
@@ -520,14 +562,33 @@ export default class EditorV2 extends React.Component {
                               {rule.input_conditions[0].cases.map((rowValue, i) => {
                                 return (
                                   <div style={ruleLeft} key={i}>
-                                    <Button
-                                      variant="invisible"
-                                      onClick={() => {
-                                        toast('Unimplemented.');
-                                      }}
-                                    >
-                                      <ColumnLabel rowLabel={rowValue.case || '?'} />
-                                    </Button>
+                                    <div>
+                                      {collapse ? (
+                                        <div style={column}>
+                                            <Flex justifyContent="space-between" alignItems="center">
+                                              <div style={heightAdjust} />
+                                              <Text variant="formtitle">Input Scenario {rowValue.case}</Text>
+                                              <Button
+                                                variant="invisible"
+                                                onClick={() => {
+                                                  toast('Unimplemented.');
+                                                }}
+                                              >
+                                                <Icon name="toggle" fill="#494D59" />
+                                              </Button>
+                                            </Flex>
+                                        </div>
+                                      ) : (
+                                        <Button
+                                          variant="invisible"
+                                          onClick={() => {
+                                            toast('Unimplemented.');
+                                          }}
+                                        >
+                                          <ColumnLabel rowLabel={rowValue.case || '?'} />
+                                        </Button>
+                                      )}
+                                    </div>
                                   </div>
                                 );
                               })}
@@ -552,6 +613,7 @@ export default class EditorV2 extends React.Component {
                             editRow={this.editInputCondition}
                             index={key}
                             inputCondition
+                            columnState={collapse}
                           />
                         </Box>
                       ))}
@@ -566,20 +628,20 @@ export default class EditorV2 extends React.Component {
                             }}
                           />
                         </div>
-                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} />
+                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
                         <div style={rowWidth} />
                       </Flex>
-                      <Flex alignItems="stretchr">
+                      <Flex alignItems="stretch">
                         <div style={halfWidthOnly} />
-                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} />
+                        <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
                       </Flex>
-                        <Flex alignItems="stretchr">
+                        <Flex alignItems="stretch">
                           <div style={halfWidth}>
                             <Flex>
                               <Text variant="formtitle">Output Assertions</Text>
                             </Flex>
                           </div>
-                          <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                          <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column} />
                         </Flex>
                       {rule.output_assertions.map((val, key) => (
                         <Box key={key}>
@@ -590,6 +652,7 @@ export default class EditorV2 extends React.Component {
                             editRow={this.editOutputAssertion}
                             index={key}
                             inputCondition={false}
+                            columnState={collapse}
                           />
                         </Box>
                       ))}
@@ -603,7 +666,7 @@ export default class EditorV2 extends React.Component {
                             }}
                           />
                         </div>
-                        <BlankRows rule={rule} ruleLeft={ruleLeft} />
+                        <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column}/>
                       </Flex>
                       <Box padding={1} />
                       <Box padding={1} />
