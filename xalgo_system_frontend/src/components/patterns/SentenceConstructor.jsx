@@ -9,6 +9,8 @@ const fillBox = {
   minWidth: 80,
   marginLeft: 4,
   marginRight: 4,
+  marginTop: 4,
+  height: 18,
 };
 
 const smallFillBox = {
@@ -16,6 +18,8 @@ const smallFillBox = {
   minWidth: 20,
   marginLeft: 4,
   marginRight: 4,
+  marginTop: 4,
+  height: 18,
 };
 
 /**

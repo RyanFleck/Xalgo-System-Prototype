@@ -64,7 +64,7 @@ export default function SentenceEditor(props) {
       <Box padding={2} />
       <Box>
         <Flex justifyContent="space-between">
-          <Flex>
+          <Flex flexWrap="wrap">
             <Text>The</Text>
             <SentenceConstructorField contentField={participle} />
             <SentenceConstructorField contentField={attribute} />
