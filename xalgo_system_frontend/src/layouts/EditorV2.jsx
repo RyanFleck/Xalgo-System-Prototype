@@ -166,6 +166,7 @@ export default class EditorV2 extends React.Component {
 
     this.handleCollapse = this.handleCollapse.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
+
   }
 
   componentDidMount() {
@@ -402,6 +403,8 @@ export default class EditorV2 extends React.Component {
 
    //const collapse = true;
 
+  
+
     return (
       <div>
         <EditorLeft
@@ -410,6 +413,8 @@ export default class EditorV2 extends React.Component {
           deleteFunction={this.deleteRule}
           resetFunction={this.resetRule}
           saveFunction={this.persistRuleToStorage}
+          rule={rule}
+          downloadRule={this.downloadRule}
         />
         {this.state.rule_loaded ? (
           <div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 // rm-components
 import Box from '../../components/layout/Box';
@@ -42,8 +43,32 @@ const horizontalRule = {
   top: '90px',
 };
 
+const linkhold = {
+  width: '220px',
+  display: 'block',
+  overflowX: 'scroll',
+  overflowY: 'none',
+}
+
+const long = {
+  width: '650px',
+}
+
+const line = {
+  height: '18px',
+  borderLeft: '1px solid #E7E7E7',
+  marginLeft: '1em',
+  marginRight: '1em',
+}
+
+const horizontalLine = {
+  width: '100%',
+  borderBottom: '1px solid #494D59'
+}
+
+
 // Primary Component
-function EditorLeft({ description, deleteFunction, resetFunction, saveFunction }) {
+function EditorLeft({ description, deleteFunction, resetFunction, saveFunction, rule, downloadRule }) {
   // To set one of these panels as open by default, start with the state true.
   const [isOpen, setIsOpen] = React.useState(false); // Settings
   const [isOpenb, setIsOpenb] = React.useState(false); // Guide
@@ -118,19 +143,43 @@ function EditorLeft({ description, deleteFunction, resetFunction, saveFunction }
                   </Button>
                 </Flex>
                 <Box p={1} />
-                <Button variant="invisiblewide">
+                <Button variant="invisiblewide" onClick={downloadRule}>
                   <div style={helpAlign}>
                     <div style={littlePadding} />
                     <Flex justifyContent="space-between">
-                      <Flex alignItems="center">
                         <Text color="oline">Download Rule as JSON</Text>
-                      </Flex>
-                      <Box />
-                      <Flex alignItems="center" />
+                        <Icon name="download" fill="#E7E7E7"/>
                     </Flex>
                     <div style={littlePadding} />
                   </div>
                 </Button>
+                <Box p={2} />
+                <div style={horizontalLine} />
+                <Box p={2} />
+                <Flex alignItems="center">
+                  <Text color="oline">Share Rule</Text>
+                  <Box p={2} />
+                  <Box bg="#fff" border="1px sollid" borderColor="oline" borderRadius="base" p={2}>
+                    <Flex>
+                      <div style={linkhold}>
+                        <div class="noscrollbar" style={long}>
+                          <Text>
+                            {`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
+                          </Text>
+                        </div>
+                      </div>
+                      <div style={line}></div>
+                      <Button variant="invisible" onClick={() =>  {
+                        navigator.clipboard.writeText(`https://xalgo-system.herokuapp.com/rule/${rule.path}`);
+                        toast('Coppied to your clipboard! 📎');
+                      }} >
+                        <Icon name="copy" fill="#494D59"/>
+                      </Button>
+                    </Flex>
+                  </Box>
+                </Flex>
+                <Box p={2} />
+                <div style={horizontalLine} />
                 <Box p={2} />
                 <Button variant="invisiblewide" onClick={resetFunction}>
                   <div style={helpAlign}>
@@ -149,11 +198,8 @@ function EditorLeft({ description, deleteFunction, resetFunction, saveFunction }
                   <div style={helpAlign}>
                     <div style={littlePadding} />
                     <Flex justifyContent="space-between">
-                      <Flex alignItems="center">
                         <Text color="error">Delete Rule</Text>
-                      </Flex>
-                      <Box />
-                      <Flex alignItems="center" />
+                        <Icon name="trash" fill="#ED9C91"/>
                     </Flex>
                     <div style={littlePadding} />
                   </div>
