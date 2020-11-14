@@ -42,6 +42,7 @@ import {
   InvolvedProduct,
   OutputPurpose,
   QualitativeWeights,
+  Entity
 } from './editor-components';
 import { ClockLoader } from 'react-spinners';
 import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
@@ -119,6 +120,14 @@ const column = {
 const heightAdjust = {
   height: '38px',
   width: '0px',
+}
+
+const topguide = {
+  position: 'fixed',
+  padding: '2em',
+  background: '#F9FBFE',
+  width: '100%',
+  zIndex: '1',
 }
 
 // This empty rule is the schema without any __descriptions.
@@ -416,6 +425,13 @@ export default class EditorV2 extends React.Component {
           rule={rule}
           downloadRule={this.downloadRule}
         />
+         <div style={topguide}>
+          <Flex>
+            <Text variant="formtitle">{rule.metadata.rule.title}</Text>
+            <Box p={1} />
+            <Text>{rule.path}</Text>
+          </Flex>
+        </div>
         {this.state.rule_loaded ? (
           <div>
             {/* Modal used by input/output tables. */}
@@ -453,7 +469,7 @@ export default class EditorV2 extends React.Component {
                 </div>
               </div>
             ) : null}
-
+            
             <Box p={4}>
               <div style={fullheight}>
                 <div style={constrainWidth}>
@@ -461,6 +477,7 @@ export default class EditorV2 extends React.Component {
                   {/* Rule Name */}
                   {/* Rule Name */}
 
+                  <Box p={4}></Box>
                   <Text variant="subtitle">About the Rule</Text>
                   <Box p={2}></Box>
 
@@ -470,6 +487,10 @@ export default class EditorV2 extends React.Component {
                     </Box> 
                     <Box gridArea="2 / 1 / 3 / 2">
                       <Metadata rule={rule} updateRule={this.updateRule} active={active} />
+                    </Box>
+                    <Box gridArea="2 / 2 / 3 / 3">
+                      <Entity rule={rule} updateRule={this.updateRule} active={active} />
+                      <Addbutton content="Rule Maintainer" />
                     </Box>
                   </Grid>
 

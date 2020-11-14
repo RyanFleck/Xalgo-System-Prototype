@@ -23,6 +23,7 @@ const holdTop = {
   top: '75px',
   right: '0px',
   height: '100vh',
+  zIndex: '5',
 };
 
 const holdModal = {

@@ -13,3 +13,4 @@ export {default as InvolvedProduct } from './InvolvedProduct';
 export {default as OutputPurpose } from './OutputPurpose';
 export {default as QualitativeWeights} from './QualitativeWeights';
 export {default as Metadata } from './Metadata';
+export {default as Entity } from './Entity';
