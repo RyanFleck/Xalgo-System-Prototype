@@ -22,6 +22,12 @@ const smallFillBox = {
   height: 18,
 };
 
+const heightcomp = {
+  height: '18px',
+  width: '12px',
+  background: 'red',
+}
+
 /**
  * Displays content parameters in the condensed sentence/view of the component.
  * @param {String} contentField the text content of a field.
@@ -32,7 +38,10 @@ function SentenceConstructorField({ contentField, small }) {
   }
   return (
     <div style={small ? smallFillBox : fillBox}>
-      <Text>{contentField}</Text>
+      <Flex>
+        <div style={heightcomp}></div>
+        <Text>{contentField}</Text>
+      </Flex>
     </div>
   );
 }
