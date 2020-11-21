@@ -434,8 +434,11 @@ export default class EditorV2 extends React.Component {
         <div style={topguide}>
           <Flex>
             <Text variant="formtitle">{rule.metadata.rule.title}</Text>
+            <Box p={2} />
+            <Text>
+              <code>{rule.uuid}</code>
+            </Text>
             <Box p={1} />
-            <Text>{rule.path}</Text>
           </Flex>
         </div>
         {this.state.rule_loaded ? (
@@ -477,8 +480,14 @@ export default class EditorV2 extends React.Component {
             ) : null}
 
             <Box p={4}>
+              {/* ================================================================ */}
+              {/* ================================================================ */}
+              {/* ================================================================ */}
+
               <div style={fullheight}>
                 <div style={constrainWidth}>
+                  {/* ================================================================ */}
+                  {/* Rule Name */}
                   {/* Rule Name */}
                   {/* Rule Name */}
                   {/* Rule Name */}
@@ -500,6 +509,7 @@ export default class EditorV2 extends React.Component {
                     </Box>
                   </Grid>
 
+                  {/* ================================================================ */}
                   {/* Rule Manager */}
                   {/* Rule Manager */}
                   {/* Rule Manager */}
@@ -524,6 +534,8 @@ export default class EditorV2 extends React.Component {
                     </div>
                   </Grid>
 
+                  {/* ================================================================ */}
+                  {/* Data Sources */}
                   {/* Data Sources */}
                   {/* Data Sources */}
                   {/* Data Sources */}
@@ -538,6 +550,8 @@ export default class EditorV2 extends React.Component {
                     </div>
                   </Grid>
 
+                  {/* ================================================================ */}
+                  {/* Input: contexts */}
                   {/* Input: contexts */}
                   {/* Input: contexts */}
                   {/* Input: contexts */}
@@ -556,6 +570,8 @@ export default class EditorV2 extends React.Component {
                     <Time label="End Time" />
                   </Grid>
 
+                  {/* ================================================================ */}
+                  {/* Input: filters */}
                   {/* Input: filters */}
                   {/* Input: filters */}
                   {/* Input: filters */}
@@ -576,12 +592,12 @@ export default class EditorV2 extends React.Component {
                     </div>
                   </Grid>
 
+                  {/* ================================================================ */}
                   {/* Input Output Table */}
                   {/* Input Output Table */}
                   {/* Input Output Table */}
                   {/* Input Output Table */}
-                  {/* Input Output Table */}
-                  {/* Input Output Table */}
+
                   <Box p={4}></Box>
                   <Text variant="subtitle">Input Output Table</Text>
                   <Box p={2}></Box>
@@ -747,8 +763,7 @@ export default class EditorV2 extends React.Component {
                     </Box>
                   </Grid>
 
-                  {/* output purpose */}
-                  {/* output purpose */}
+                  {/* ================================================================ */}
                   {/* output purpose */}
                   {/* output purpose */}
                   {/* output purpose */}
@@ -772,6 +787,10 @@ export default class EditorV2 extends React.Component {
                   <Box p={2}></Box>
                 </div>
               </div>
+
+              {/* ================================================================ */}
+              {/* ================================================================ */}
+              {/* ================================================================ */}
             </Box>
             {/* End of the editor */}
           </div>

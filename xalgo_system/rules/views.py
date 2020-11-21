@@ -60,18 +60,41 @@ class RuleContentViewSet(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         data = serializer.validated_data
 
-        # Check incoming data and update parent rule if needed.
-        print(f"Updating rule content for rule {pk}\nNew data:\n")
-        print(data)
+        # Update rule title if one is provided.
+        self.update_parent_name_and_description(data, parent)
+        data_enforced = self.enforce_uuids(data, inst, parent)
 
+        # Return the updated data blob to be persisted to the db.
+        updated = serializer.update(inst, data_enforced)
+        return Response(serializer.to_representation(updated))
+
+    @staticmethod
+    def enforce_uuids(data: dict, inst: RuleContent, parent: Rule):
+        body = data.get("body", dict)
+        metadata = body.get("metadata", dict)
+        rule = metadata.get("rule", dict)
+
+        uuid = body.get("uuid", None)
+        stored_uuid = str(parent.id)
+        content_uuid = rule.get("content_uuid", None)
+        stored_conent_uuid = str(inst.id)
+
+        if uuid != stored_uuid:
+            data["body"]["uuid"] = stored_uuid
+
+        if content_uuid != stored_conent_uuid:
+            data["body"]["metadata"]["rule"]["content_uuid"] = stored_conent_uuid
+
+        return data
+
+    @staticmethod
+    def update_parent_name_and_description(data: dict, parent: Rule):
+        """If the name or description have changed, update the parent rule."""
         body = data.get("body", dict)
         metadata = body.get("metadata", dict)
         rule = metadata.get("rule", dict)
         title = rule.get("title", None)
         description = rule.get("description", None)
-
-        # Update rule title if one is provided.
-        # In the future, we'll need to check if this is the latest content version.
         modified_parent = False
 
         if title and title != parent.name:
@@ -82,12 +105,9 @@ class RuleContentViewSet(ModelViewSet):
             modified_parent = True
             parent.description = description
 
+        # In the future, we'll need to check if this is the latest content version.
         if modified_parent:
             parent.save()
-
-        # Return the updated data blob to be persisted to the db.
-        updated = serializer.update(inst, data)
-        return Response(serializer.to_representation(updated))
 
 
 class SingleRuleView(TemplateView):
