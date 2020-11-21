@@ -777,7 +777,7 @@ export default class EditorV2 extends React.Component {
           </div>
         ) : (
           <div className="loading-rule-data">
-            <div style={{ padding: '4rem' }}>
+            <div style={{ padding: '4rem', paddingTop: '8rem' }}>
               <ClockLoader size={100} />
             </div>
           </div>

@@ -4,6 +4,7 @@ from typing import Any, Dict
 from django.views.generic import TemplateView
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from xalgo_system.rules.models import Rule, RuleContent
@@ -45,6 +46,48 @@ class RuleContentViewSet(ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
+
+    def update(self, request, *args, **kwargs):
+
+        # Get required parameters to update the model.
+        pk = kwargs.pop("pk")
+        inst = self.get_queryset().get(pk=pk)
+        parent = getattr(inst, "parent_rule")
+        partial = kwargs.pop("partial", False)
+
+        # Get serializer and ensure incoming data is valid.
+        serializer = self.serializer_class(inst, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        # Check incoming data and update parent rule if needed.
+        print(f"Updating rule content for rule {pk}\nNew data:\n")
+        print(data)
+
+        body = data.get("body", dict)
+        metadata = body.get("metadata", dict)
+        rule = metadata.get("rule", dict)
+        title = rule.get("title", None)
+        description = rule.get("description", None)
+
+        # Update rule title if one is provided.
+        # In the future, we'll need to check if this is the latest content version.
+        modified_parent = False
+
+        if title and title != parent.name:
+            modified_parent = True
+            parent.name = title
+
+        if description and description != parent.description:
+            modified_parent = True
+            parent.description = description
+
+        if modified_parent:
+            parent.save()
+
+        # Return the updated data blob to be persisted to the db.
+        updated = serializer.update(inst, data)
+        return Response(serializer.to_representation(updated))
 
 
 class SingleRuleView(TemplateView):
