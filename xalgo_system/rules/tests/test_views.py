@@ -2,7 +2,12 @@ import pytest
 from rest_framework.test import APIRequestFactory
 
 from xalgo_system.rules.models import Rule, RuleContent
-from xalgo_system.rules.views import RuleContentViewSet, RuleViewSet
+from xalgo_system.rules.views import (
+    RuleContentViewSet,
+    RuleViewSet,
+    single_rule_json_view,
+)
+from xalgo_system.users.models import User
 
 pytestmark = pytest.mark.django_db
 
@@ -72,4 +77,24 @@ class TestRuleContentViewSet:
         request.user = user
         view.request = request
         res = view(request, pk=str(rule.primary_content.id), data=data)
+        assert res.status_code == 200
+
+
+class TestSingleRuleJSONView:
+    def test_get(self, user: User):
+        # Create test content object.
+        # TODO: Replace with a factory.
+        rule = Rule(rule_creator=user)
+        content = RuleContent(parent_rule=rule)
+        rule.save()
+        content.save()
+        rule.primary_content = content
+        rule.save()
+
+        requests = APIRequestFactory()
+        url = reversed("rules_json")
+
+        # A regular request should work.
+        request = requests.get(url)
+        res = single_rule_json_view(request, rule_id=str(rule.id))
         assert res.status_code == 200

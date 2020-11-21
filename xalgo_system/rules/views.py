@@ -1,12 +1,14 @@
 import json
 from typing import Any, Dict
 
+from django.http import JsonResponse
 from django.views.generic import TemplateView
 from rest_framework import mixins
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.parsers import JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from xalgo_system.rules.models import Rule, RuleContent
@@ -131,3 +133,14 @@ class SingleRuleView(TemplateView):
 
 
 single_rule_view = SingleRuleView.as_view()
+
+
+class SingleRuleJSONView(APIView):
+    """Displays the rule info and primary content of a single rule."""
+
+    def get(self, request, rule_id: str, *args, **kwargs) -> JsonResponse:
+        rule = Rule.objects.get(id=rule_id)
+        return JsonResponse(data=rule.primary_content.body)
+
+
+single_rule_json_view = SingleRuleJSONView.as_view()
