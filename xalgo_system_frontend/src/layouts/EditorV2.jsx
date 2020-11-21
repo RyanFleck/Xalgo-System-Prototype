@@ -47,6 +47,8 @@ import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
 import { RuleSchema } from 'xalgo-rule-processor/dist/schema';
 import { objectEmpty } from 'xalgo-rule-processor/dist/utilities';
 
+import { downloadRule } from './Dashboard';
+
 axiosRetry(Axios, { retries: 5, retryDelay: axiosRetry.exponentialDelay });
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -429,16 +431,32 @@ export default class EditorV2 extends React.Component {
           resetFunction={this.resetRule}
           saveFunction={this.persistRuleToStorage}
           rule={rule}
-          downloadRule={this.downloadRule}
+          downloadRule={downloadRule}
+          csrfToken={this.props.token}
         />
         <div style={topguide}>
           <Flex>
-            <Text variant="formtitle">{rule.metadata.rule.title}</Text>
-            <Box p={2} />
-            <Text>
-              <code>{rule.uuid}</code>
-            </Text>
-            <Box p={1} />
+            {this.state.rule_loaded ? (
+              <Flex>
+                <Text variant="formtitle">{rule.metadata.rule.title}</Text>
+                <Box p={2} />
+                <Text>
+                  <Button
+                    variant="invisible"
+                    onClick={() => {
+                      downloadRule(rule.uuid, this.props.token);
+                    }}
+                  >
+                    <code>{rule.uuid}</code>
+                  </Button>
+                </Text>
+                <Box p={1} />
+              </Flex>
+            ) : (
+              <Flex>
+                <Text>Loading...</Text>
+              </Flex>
+            )}
           </Flex>
         </div>
         {this.state.rule_loaded ? (

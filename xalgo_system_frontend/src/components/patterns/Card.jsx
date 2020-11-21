@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Flex, Icon, Box, Button } from '..';
 import { Link } from '@reach/router';
 
-export default function Card({ name, uuid, editLink, downloadRule, deleteRule }) {
+export default function Card({ name, uuid, editLink, downloadRule, deleteRule, csrfToken }) {
   return (
     <Box p={2} bg="bg" border="1px solid" borderColor="oline" borderRadius="base" marginBottom={3}>
       <Flex alignItems="flex-start" justifyContent="space-between">
@@ -18,11 +18,11 @@ export default function Card({ name, uuid, editLink, downloadRule, deleteRule })
         <Button
           variant="invisible"
           onClick={() => {
-            deleteRule(uuid);
+            deleteRule(uuid, csrfToken);
           }}
         >
           <Flex alignItems="center">
-            <Icon name="trash" fill="#ED9C91" size={14}/>
+            <Icon name="trash" fill="#ED9C91" size={14} />
             <Text color="error">Delete</Text>
           </Flex>
         </Button>
@@ -32,11 +32,11 @@ export default function Card({ name, uuid, editLink, downloadRule, deleteRule })
         <Button
           variant="invisible"
           onClick={() => {
-            downloadRule(uuid);
+            downloadRule(uuid, csrfToken);
           }}
         >
           <Flex alignItems="center">
-            <Icon name="download" size={14}/>
+            <Icon name="download" size={14} />
             <Text color="primary">Download</Text>
           </Flex>
         </Button>
@@ -44,7 +44,7 @@ export default function Card({ name, uuid, editLink, downloadRule, deleteRule })
         <Button variant="invisible">
           <Link to={editLink || ''}>
             <Flex alignItems="center">
-              <Icon name="edit" size={14}/>
+              <Icon name="edit" size={14} />
               <Text color="primary">Edit</Text>
             </Flex>
           </Link>

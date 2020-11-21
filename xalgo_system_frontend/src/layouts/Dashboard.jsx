@@ -7,7 +7,6 @@ import Flex from '../components/layout/Flex';
 
 import Intro from './components/Intro';
 
-
 // rm-components
 import Text from '../components/primitives/Text';
 import ScrollUp from './components/ScrollUp';
@@ -21,6 +20,42 @@ const hold = {
   zIndex: '5',
 };
 
+export function downloadRule(uuid, csrfToken) {
+  let rule_name = 'rule';
+  console.log(`Downloading ${uuid}`);
+  Axios.get(`/rules/json/${uuid}/`, {
+    headers: {
+      'X-CSRFToken': csrfToken,
+    },
+  }).then((res) => {
+    if (res && res.status && res.status === 200) {
+      const data = res.data;
+      console.log(data);
+      rule_name = data.metadata.rule.title;
+      const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: 'text/plain;charset=utf-8',
+      });
+      FileSaver.saveAs(blob, `${slugify(rule_name.toLowerCase())}.xa.json`);
+    }
+  });
+}
+
+export function deleteRule(uuid, csrfToken) {
+  console.log(`Deleting ${uuid} token ${this.props.token}`);
+  if (window.confirm(`Delete rule ${uuid}?`)) {
+    Axios.delete(`/rules/rule/${uuid}/`, {
+      headers: {
+        'X-CSRFToken': csrfToken,
+      },
+    }).then((res) => {
+      if (res && res.status && res.status === 204) {
+        console.log('Rule Deleted.');
+        this.getRules();
+      }
+    });
+  }
+}
+
 // Primary Component
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -32,61 +67,10 @@ export default class Dashboard extends React.Component {
     };
 
     this.getRules = this.getRules.bind(this);
-    this.downloadRule = this.downloadRule.bind(this);
-    this.deleteRule = this.deleteRule.bind(this);
   }
 
   componentDidMount() {
     this.getRules();
-  }
-
-  downloadRule(uuid) {
-    let rule_name = 'rule';
-    console.log(`Downloading ${uuid}`);
-    Axios.get(`/rules/rule/${uuid}/`, {
-      headers: {
-        'X-CSRFToken': this.props.token,
-      },
-    }).then((res) => {
-      if (res && res.status && res.status === 200) {
-        console.log('Rule Get.');
-        console.log(`Content object has uuid ${res.data.primary_content}`);
-        console.log(res);
-        rule_name = res.data.name;
-        Axios.get(`/rules/content/${res.data.primary_content}/`, {
-          headers: {
-            'X-CSRFToken': this.props.token,
-          },
-        }).then((res) => {
-          if (res && res.status && res.status === 200) {
-            console.log('Content Get.');
-            console.log(`Content object has body:`);
-            console.log(res.data.body);
-            const data = res.data.body;
-            const blob = new Blob([JSON.stringify(data, null, 2)], {
-              type: 'text/plain;charset=utf-8',
-            });
-            FileSaver.saveAs(blob, `${slugify(rule_name.toLowerCase())}.xa.json`);
-          }
-        });
-      }
-    });
-  }
-
-  deleteRule(uuid) {
-    console.log(`Deleting ${uuid} token ${this.props.token}`);
-    if (window.confirm(`Delete rule ${uuid}?`)) {
-      Axios.delete(`/rules/rule/${uuid}/`, {
-        headers: {
-          'X-CSRFToken': this.props.token,
-        },
-      }).then((res) => {
-        if (res && res.status && res.status === 204) {
-          console.log('Rule Deleted.');
-          this.getRules();
-        }
-      });
-    }
   }
 
   getRules() {
@@ -122,7 +106,7 @@ export default class Dashboard extends React.Component {
           <Grid gridTemplateRows="auto" height="100vh">
             <Box>
               <Grid gridTemplateColumns="500px auto" height="100%">
-                <Intro name={ user.email }/>
+                <Intro name={user.email} />
                 <Box p={4} height="auto">
                   <Text variant="formtitle">My Rules</Text>
                   <Box p={2} />
@@ -135,8 +119,9 @@ export default class Dashboard extends React.Component {
                             uuid={e.id}
                             name={e.name}
                             editLink={`/apps/rm/editor/${e.id}`}
-                            deleteRule={this.deleteRule}
-                            downloadRule={this.downloadRule}
+                            deleteRule={deleteRule}
+                            downloadRule={downloadRule}
+                            csrfToken={this.props.token}
                           />
                         );
                       })}

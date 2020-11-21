@@ -48,27 +48,34 @@ const linkhold = {
   display: 'block',
   overflowX: 'scroll',
   overflowY: 'none',
-}
+};
 
 const long = {
   width: '650px',
-}
+};
 
 const line = {
   height: '18px',
   borderLeft: '1px solid #E7E7E7',
   marginLeft: '1em',
   marginRight: '1em',
-}
+};
 
 const horizontalLine = {
   width: '100%',
-  borderBottom: '1px solid #494D59'
-}
-
+  borderBottom: '1px solid #494D59',
+};
 
 // Primary Component
-function EditorLeft({ description, deleteFunction, resetFunction, saveFunction, rule, downloadRule }) {
+function EditorLeft({
+  description,
+  deleteFunction,
+  resetFunction,
+  saveFunction,
+  rule,
+  downloadRule,
+  csrfToken,
+}) {
   // To set one of these panels as open by default, start with the state true.
   const [isOpen, setIsOpen] = React.useState(false); // Settings
   const [isOpenb, setIsOpenb] = React.useState(false); // Guide
@@ -143,12 +150,17 @@ function EditorLeft({ description, deleteFunction, resetFunction, saveFunction, 
                   </Button>
                 </Flex>
                 <Box p={1} />
-                <Button variant="invisiblewide" onClick={downloadRule}>
+                <Button
+                  variant="invisiblewide"
+                  onClick={() => {
+                    downloadRule(rule.uuid, csrfToken);
+                  }}
+                >
                   <div style={helpAlign}>
                     <div style={littlePadding} />
                     <Flex justifyContent="space-between">
-                        <Text color="oline">Download Rule as JSON</Text>
-                        <Icon name="download" fill="#E7E7E7"/>
+                      <Text color="oline">Download Rule as JSON</Text>
+                      <Icon name="download" fill="#E7E7E7" />
                     </Flex>
                     <div style={littlePadding} />
                   </div>
@@ -162,18 +174,21 @@ function EditorLeft({ description, deleteFunction, resetFunction, saveFunction, 
                   <Box bg="#fff" border="1px sollid" borderColor="oline" borderRadius="base" p={2}>
                     <Flex>
                       <div style={linkhold}>
-                        <div class="noscrollbar" style={long}>
-                          <Text>
-                            {`https://xalgo-system.herokuapp.com/rule/${rule.path}`}
-                          </Text>
+                        <div className="noscrollbar" style={long}>
+                          <Text>{`https://xalgo-system.herokuapp.com/rule/${rule.path}`}</Text>
                         </div>
                       </div>
                       <div style={line}></div>
-                      <Button variant="invisible" onClick={() =>  {
-                        navigator.clipboard.writeText(`https://xalgo-system.herokuapp.com/rule/${rule.path}`);
-                        toast('Coppied to your clipboard! 📎');
-                      }} >
-                        <Icon name="copy" fill="#494D59"/>
+                      <Button
+                        variant="invisible"
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            `https://xalgo-system.herokuapp.com/rule/${rule.path}`
+                          );
+                          toast('Coppied to your clipboard! 📎');
+                        }}
+                      >
+                        <Icon name="copy" fill="#494D59" />
                       </Button>
                     </Flex>
                   </Box>
@@ -198,8 +213,8 @@ function EditorLeft({ description, deleteFunction, resetFunction, saveFunction, 
                   <div style={helpAlign}>
                     <div style={littlePadding} />
                     <Flex justifyContent="space-between">
-                        <Text color="error">Delete Rule</Text>
-                        <Icon name="trash" fill="#ED9C91"/>
+                      <Text color="error">Delete Rule</Text>
+                      <Icon name="trash" fill="#ED9C91" />
                     </Flex>
                     <div style={littlePadding} />
                   </div>
