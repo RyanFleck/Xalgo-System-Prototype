@@ -11,8 +11,6 @@ import {
   addNewCase,
   addNewInputCondition,
   addNewOutputAssertion,
-  prettyJSON,
-  // RuleSchema,
 } from 'xalgo-rule-processor';
 import EditorLeft from './editor-layouts/EditorLeft';
 import ColumnLabel from '../components/patterns/ColumnLabel';
@@ -154,7 +152,7 @@ export default class EditorV2 extends React.Component {
       rule_loaded: false,
       uuid: '',
       primary_content_uuid: '',
-      collapse: true,
+      collapse: false,
     };
 
     this.getRuleFromStorage = this.getRuleFromStorage.bind(this);
