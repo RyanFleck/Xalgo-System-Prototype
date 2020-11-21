@@ -42,7 +42,7 @@ import {
   InvolvedProduct,
   OutputPurpose,
   QualitativeWeights,
-  Entity
+  Entity,
 } from './editor-components';
 import { ClockLoader } from 'react-spinners';
 import { enforceSchemaWithTables } from 'xalgo-rule-processor/dist/processing';
@@ -73,12 +73,12 @@ const ruleLeft = {
   borderLeft: '1px solid #E7E7E7',
   padding: '1em',
   borderBottom: '1px solid #E7E7E7',
-}
+};
 
 const ruleLeftOnly = {
   borderLeft: '1px solid #E7E7E7',
   padding: '1em',
-}
+};
 
 const ruleLeftalt = {
   borderLeft: '1px solid #E7E7E7',
@@ -115,12 +115,12 @@ const modalhold = {
 
 const column = {
   width: '154px',
-}
+};
 
 const heightAdjust = {
   height: '38px',
   width: '0px',
-}
+};
 
 const topguide = {
   position: 'fixed',
@@ -128,7 +128,7 @@ const topguide = {
   background: '#F9FBFE',
   width: '100%',
   zIndex: '1',
-}
+};
 
 // This empty rule is the schema without any __descriptions.
 // Temporarily start with three cases.
@@ -175,22 +175,23 @@ export default class EditorV2 extends React.Component {
 
     this.handleCollapse = this.handleCollapse.bind(this);
     this.handleExpand = this.handleExpand.bind(this);
-
   }
 
   componentDidMount() {
-    console.log('Starting Editor V2');
+    console.log('EditorV2::componentDidMount()');
     this.getRuleFromStorage();
   }
 
   //table collapse
 
   handleCollapse() {
-    this.setState({collapse: false});
+    console.log('EditorV2::handleCollapse()');
+    this.setState({ collapse: false });
   }
 
   handleExpand() {
-    this.setState({collapse: true});
+    console.log('EditorV2::handleExpand()');
+    this.setState({ collapse: true });
   }
 
   /**
@@ -200,6 +201,7 @@ export default class EditorV2 extends React.Component {
    */
 
   enforceRuleJSONSchema(new_rule_body, warn = false) {
+    console.log('EditorV2::enforceRuleJSONSchema()');
     try {
       console.log('Enforcing rule schema...');
       let enforced_body = enforceSchemaWithTables(RuleSchema, new_rule_body);
@@ -214,11 +216,13 @@ export default class EditorV2 extends React.Component {
   }
 
   getRuleFromStorage() {
+    console.log('EditorV2::getRuleFromStorage()');
     console.log(`Loading rule ${this.props.ruleUUID} using editor version v0.4-2`);
     let rule_data = {};
     let content_data = {};
 
     function ruleDownloadError(error) {
+      console.log('EditorV2::ruleDownloadError()');
       console.error(error);
       toast.error(
         'You may not have access to this rule, or it does not exist within the database.'
@@ -278,13 +282,15 @@ export default class EditorV2 extends React.Component {
   }
 
   updateRule(content, force = false) {
-    if (!content) return;
+    console.log('EditorV2::updateRule()');
+    if (!content) {
+      console.log('No content was provided to update the rule with.');
+      return false;
+    }
 
     let newRuleContent = content;
-    console.log(
-      `Editor.jsx: Updating Rule Content:
-      \nContent:\n${prettyJSON(newRuleContent)}`
-    );
+    console.log('Editor.jsx: Updating Rule Content:');
+    console.log(newRuleContent);
 
     if (newRuleContent.input_conditions.length === 0)
       newRuleContent = addNewInputCondition(newRuleContent);
@@ -300,16 +306,12 @@ export default class EditorV2 extends React.Component {
 
     let body_enforced = this.enforceRuleJSONSchema(newRuleContent);
 
-    console.log("\nSO this is what's what:");
-    console.log(`Old: ${this.state.rule.metadata.rule.url}`);
-    console.log(`New: ${body_enforced.metadata.rule.url}`);
-
     // Check if equal
     if (
       force ||
       JSON.stringify(this.state.rule, null, 1) !== JSON.stringify(body_enforced, null, 1)
     ) {
-      console.log('Change in rule content detected, saving to server...');
+      console.log('EditorV2::updateRule() -> Change in rule content detected, saving to server...');
       // Finally, save.
       this.setState({ active: false, rule: body_enforced }, () => {
         this.setState({ active: true, modalOpen: false }, () => {
@@ -317,11 +319,14 @@ export default class EditorV2 extends React.Component {
         });
       });
     } else {
-      console.log('No change in rule content detected.');
+      console.log('EditorV2::updateRule() -> No change in rule content detected.');
     }
+
+    return true;
   }
 
   resetRule() {
+    console.log('EditorV2::resetRule()');
     if (window.confirm(`Are you sure you'd like to RESET Rule ${this.state.uuid}?`)) {
       this.updateRule(deepCopy(emptyRule), true);
       toast.warning('Rule reset!');
@@ -330,14 +335,16 @@ export default class EditorV2 extends React.Component {
   }
 
   deleteRule() {
+    console.log('EditorV2::deleteRule()');
     if (window.confirm(`Are you sure you'd like to DELETE Rule ${this.state.uuid}?`)) {
       toast.error('Unimplemented.');
     }
   }
 
   persistRuleToStorage(showmsg = false) {
-    console.log('Editor.jsx: Persisting rule to storage...');
+    console.log('EditorV2::persistRuleToStorage()');
     let body_enforced = this.enforceRuleJSONSchema(this.state.rule, showmsg);
+    console.log('Enforced body:');
     console.log(body_enforced);
     console.log('Running an AXIOS PATCH operation to update rule content...');
     Axios.patch(
@@ -368,14 +375,17 @@ export default class EditorV2 extends React.Component {
    */
 
   editInputCondition(key) {
+    console.log('EditorV2::editInputCondition()');
     this.editSentence(key, true);
   }
 
   editOutputAssertion(key) {
+    console.log('EditorV2::editOutputAssertion()');
     this.editSentence(key, false);
   }
 
   editSentence(key, inputConditions = false) {
+    console.log('EditorV2::editSentence()');
     this.setState({
       modalOpen: true,
       modalEditingInput: inputConditions,
@@ -384,10 +394,9 @@ export default class EditorV2 extends React.Component {
   }
 
   addCase() {
+    console.log('EditorV2::addCase()');
     this.updateRule(addNewCase(this.state.rule), true);
   }
-
-  
 
   /**
    * ==================================
@@ -400,6 +409,7 @@ export default class EditorV2 extends React.Component {
    */
 
   render() {
+    console.log('EditorV2::render()');
     const {
       rule,
       //SampleInvolvedParties,
@@ -410,9 +420,7 @@ export default class EditorV2 extends React.Component {
       collapse,
     } = this.state;
 
-   //const collapse = true;
-
-  
+    //const collapse = true;
 
     return (
       <div>
@@ -425,7 +433,7 @@ export default class EditorV2 extends React.Component {
           rule={rule}
           downloadRule={this.downloadRule}
         />
-         <div style={topguide}>
+        <div style={topguide}>
           <Flex>
             <Text variant="formtitle">{rule.metadata.rule.title}</Text>
             <Box p={1} />
@@ -469,7 +477,7 @@ export default class EditorV2 extends React.Component {
                 </div>
               </div>
             ) : null}
-            
+
             <Box p={4}>
               <div style={fullheight}>
                 <div style={constrainWidth}>
@@ -481,10 +489,10 @@ export default class EditorV2 extends React.Component {
                   <Text variant="subtitle">About the Rule</Text>
                   <Box p={2}></Box>
 
-                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em"> 
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
                     <Box gridArea="1 / 1 / 2 / 3">
                       <NameDescription rule={rule} updateRule={this.updateRule} active={active} />
-                    </Box> 
+                    </Box>
                     <Box gridArea="2 / 1 / 3 / 2">
                       <Metadata rule={rule} updateRule={this.updateRule} active={active} />
                     </Box>
@@ -532,7 +540,6 @@ export default class EditorV2 extends React.Component {
                     </div>
                   </Grid>
 
-
                   {/* Input: contexts */}
                   {/* Input: contexts */}
                   {/* Input: contexts */}
@@ -577,78 +584,78 @@ export default class EditorV2 extends React.Component {
                   {/* Input Output Table */}
                   {/* Input Output Table */}
                   {/* Input Output Table */}
-                <Box p={4}></Box>
-                <Text variant="subtitle">Input Output Table</Text>
-                <Box p={2}></Box>
-                <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
-                  <Box p={4} border="1px solid" borderColor="oline" borderRadius="base" bg="#fff" gridArea="1 / 1 / 2 / 4">
-                      { collapse ? (
-                        <Button
-                        onClick={this.handleCollapse} 
-                          >
-                            Collapse Table
-                          </Button>
+                  <Box p={4}></Box>
+                  <Text variant="subtitle">Input Output Table</Text>
+                  <Box p={2}></Box>
+                  <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
+                    <Box
+                      p={4}
+                      border="1px solid"
+                      borderColor="oline"
+                      borderRadius="base"
+                      bg="#fff"
+                      gridArea="1 / 1 / 2 / 4"
+                    >
+                      {collapse ? (
+                        <Button onClick={this.handleCollapse}>Collapse Table</Button>
                       ) : (
-                        <Button
-                        onClick={this.handleExpand} 
-                          >
-                            Expand Table
-                          </Button>
-                      )}   
-                      <Box p={2}/>
+                        <Button onClick={this.handleExpand}>Expand Table</Button>
+                      )}
+                      <Box p={2} />
                       <div style={overflowTable}>
-                          <Flex alignItems="stretch">
-                            <div style={halfWidth}>
-                              <Flex>
-                                <Text variant="formtitle">Input Conditions</Text>
-                              </Flex>
-                            </div>
-                            <Box>
-                              <Flex>
-                                {/* Input Conditions/Output Assertions Case Headings */}
-                                {rule.input_conditions[0].cases.map((rowValue, i) => {
-                                  return (
-                                    <div style={ruleLeft} key={i}>
-                                      <div>
-                                        {collapse ? (
-                                          <div style={column}>
-                                              <Flex justifyContent="space-between" alignItems="center">
-                                                <div style={heightAdjust} />
-                                                <Text variant="formtitle">Input Scenario {rowValue.case}</Text>
-                                                <Button
-                                                  variant="invisible"
-                                                  onClick={() => {
-                                                    toast('Unimplemented.');
-                                                  }}
-                                                >
-                                                  <Icon name="toggle" fill="#494D59" />
-                                                </Button>
-                                              </Flex>
-                                          </div>
-                                        ) : (
-                                          <Button
-                                            variant="invisible"
-                                            onClick={() => {
-                                              toast('Unimplemented.');
-                                            }}
-                                          >
-                                            <ColumnLabel rowLabel={rowValue.case || '?'} />
-                                          </Button>
-                                        )}
-                                      </div>
+                        <Flex alignItems="stretch">
+                          <div style={halfWidth}>
+                            <Flex>
+                              <Text variant="formtitle">Input Conditions</Text>
+                            </Flex>
+                          </div>
+                          <Box>
+                            <Flex>
+                              {/* Input Conditions/Output Assertions Case Headings */}
+                              {rule.input_conditions[0].cases.map((rowValue, i) => {
+                                return (
+                                  <div style={ruleLeft} key={i}>
+                                    <div>
+                                      {collapse ? (
+                                        <div style={column}>
+                                          <Flex justifyContent="space-between" alignItems="center">
+                                            <div style={heightAdjust} />
+                                            <Text variant="formtitle">
+                                              Input Scenario {rowValue.case}
+                                            </Text>
+                                            <Button
+                                              variant="invisible"
+                                              onClick={() => {
+                                                toast('Unimplemented.');
+                                              }}
+                                            >
+                                              <Icon name="toggle" fill="#494D59" />
+                                            </Button>
+                                          </Flex>
+                                        </div>
+                                      ) : (
+                                        <Button
+                                          variant="invisible"
+                                          onClick={() => {
+                                            toast('Unimplemented.');
+                                          }}
+                                        >
+                                          <ColumnLabel rowLabel={rowValue.case || '?'} />
+                                        </Button>
+                                      )}
                                     </div>
-                                  );
-                                })}
-                                <div style={ruleLeftalt} />
-                              </Flex>
-                            </Box>
-                            <div style={rowWidth}>
-                              <Button variant="invisible" onClick={this.addCase}>
-                                <Icon name="add" fill="#A3D8BE" />
-                              </Button>
-                            </div>
-                          </Flex>
-                      
+                                  </div>
+                                );
+                              })}
+                              <div style={ruleLeftalt} />
+                            </Flex>
+                          </Box>
+                          <div style={rowWidth}>
+                            <Button variant="invisible" onClick={this.addCase}>
+                              <Icon name="add" fill="#A3D8BE" />
+                            </Button>
+                          </div>
+                        </Flex>
 
                         {/* Input Conditions Data */}
                         {rule.input_conditions.map((val, key) => (
@@ -675,21 +682,36 @@ export default class EditorV2 extends React.Component {
                               }}
                             />
                           </div>
-                          <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
+                          <BlankRows
+                            rule={rule}
+                            ruleLeft={ruleLeftOnly}
+                            columnState={collapse}
+                            column={column}
+                          />
                           <div style={rowWidth} />
                         </Flex>
                         <Flex alignItems="stretch">
                           <div style={halfWidthOnly} />
-                          <BlankRows rule={rule} ruleLeft={ruleLeftOnly} columnState={collapse} column={column}/>
+                          <BlankRows
+                            rule={rule}
+                            ruleLeft={ruleLeftOnly}
+                            columnState={collapse}
+                            column={column}
+                          />
                         </Flex>
-                          <Flex alignItems="stretch">
-                            <div style={halfWidth}>
-                              <Flex>
-                                <Text variant="formtitle">Output Assertions</Text>
-                              </Flex>
-                            </div>
-                            <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column} />
-                          </Flex>
+                        <Flex alignItems="stretch">
+                          <div style={halfWidth}>
+                            <Flex>
+                              <Text variant="formtitle">Output Assertions</Text>
+                            </Flex>
+                          </div>
+                          <BlankRows
+                            rule={rule}
+                            ruleLeft={ruleLeft}
+                            columnState={collapse}
+                            column={column}
+                          />
+                        </Flex>
                         {rule.output_assertions.map((val, key) => (
                           <Box key={key}>
                             <InputOutputRow
@@ -713,7 +735,12 @@ export default class EditorV2 extends React.Component {
                               }}
                             />
                           </div>
-                          <BlankRows rule={rule} ruleLeft={ruleLeft} columnState={collapse} column={column}/>
+                          <BlankRows
+                            rule={rule}
+                            ruleLeft={ruleLeft}
+                            columnState={collapse}
+                            column={column}
+                          />
                         </Flex>
                         <Box padding={1} />
                         <Box padding={1} />
@@ -722,12 +749,12 @@ export default class EditorV2 extends React.Component {
                     </Box>
                   </Grid>
 
-                {/* output purpose */}
-                {/* output purpose */}
-                {/* output purpose */}
-                {/* output purpose */}
-                {/* output purpose */}
-                {/* output purpose */}
+                  {/* output purpose */}
+                  {/* output purpose */}
+                  {/* output purpose */}
+                  {/* output purpose */}
+                  {/* output purpose */}
+                  {/* output purpose */}
 
                   <Box p={4}></Box>
                   <Text variant="subtitle">Output Attributes</Text>
@@ -737,7 +764,11 @@ export default class EditorV2 extends React.Component {
                       <OutputPurpose />
                     </Box>
                     <Box gridArea="1 / 2 / 2 / 4">
-                      <QualitativeWeights rule={rule} updateRule={this.updateRule} active={active} />
+                      <QualitativeWeights
+                        rule={rule}
+                        updateRule={this.updateRule}
+                        active={active}
+                      />
                     </Box>
                   </Grid>
                   <Box p={2}></Box>
