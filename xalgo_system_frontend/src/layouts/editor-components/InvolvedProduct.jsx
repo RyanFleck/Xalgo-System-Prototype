@@ -38,14 +38,14 @@ function StandardRoleName({ rule, updateRule, active }) {
       <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
         <Text variant="formtitle">Involved Product or Service</Text>
         <Box padding={1} />
-        <FormStandard 
-          name="UNSPSC Product or Service Code" 
-          description={RuleSchema.input_filters.involved_product_service[0].__nspsc_code} 
+        <FormStandard
+          name="UNSPSC Product or Service Code"
+          description={RuleSchema.input_filters.involved_product_service[0].__nspsc_code}
         />
         <Box padding={1} />
-        <FormStandard 
-          name="UNSPSC Product or Service Name" 
-          description={RuleSchema.input_filters.involved_product_service[0].__unspsc_name} 
+        <FormStandard
+          name="UNSPSC Product or Service Name"
+          description={RuleSchema.input_filters.involved_product_service[0].__unspsc_name}
         />
       </Box>
     </div>

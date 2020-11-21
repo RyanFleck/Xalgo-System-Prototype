@@ -29,7 +29,7 @@ export default class Footer extends React.Component {
   render() {
     return (
       <div style={footer}>
-        <Box px={4} py={2} backgroundColor="#439D72"> 
+        <Box px={4} py={2} backgroundColor="#439D72">
           <Grid gridTemplateColumns="auto 180px" gridGap="2.5%">
             <Flex alignItems="center">
               <Icon name="info" fill="#D0F3E2"/>
@@ -47,7 +47,7 @@ export default class Footer extends React.Component {
 
           </Grid>
         </Box>
-        <Box p={4} backgroundColor="#1E2033"> 
+        <Box p={4} backgroundColor="#1E2033">
           <Grid gridTemplateColumns="auto 180px 180px" gridGap="2.5%">
             <div>
               <a
@@ -97,7 +97,7 @@ export default class Footer extends React.Component {
             CC BY-SA 4.0 2020 Xalgorithms Foundation
             </p>
             <p style={smalltext}>
-            50 Hines Road, Suite 240, 
+            50 Hines Road, Suite 240,
             <br />
             Ottawa, Ontario, Canada K2K 2M5
             </p>

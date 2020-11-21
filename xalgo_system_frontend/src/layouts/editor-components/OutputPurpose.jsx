@@ -79,7 +79,7 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
           onChange={(e) => {
             setActionVerb(e.target.value);
             setModified(true);
-          }} 
+          }}
         />
         <Box padding={1} />
         <FormDropdown

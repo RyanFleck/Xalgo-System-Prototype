@@ -5,7 +5,7 @@ function InfoRow({ color, label, content}) {
 
     return (
     <Box p={2} backgroundColor={color} borderRadius="base">
-              <Grid gridTemplateColumns="160px auto" gridGap="1em"> 
+              <Grid gridTemplateColumns="160px auto" gridGap="1em">
                 <div>
                   <Text color="textb" textAlign="right">
                     {label}

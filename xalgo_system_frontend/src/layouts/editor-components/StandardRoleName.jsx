@@ -38,24 +38,24 @@ function StandardRoleName({ rule, updateRule, active }) {
       <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
         <Text variant="formtitle">Standard Role Name</Text>
         <Box padding={1} />
-        <FormStandard 
-          name="ISIC Industry Code" 
+        <FormStandard
+          name="ISIC Industry Code"
           description={RuleSchema.input_filters.standard_role_name[0].__isic_industry_code}
           value={code}
           onChange={(e) => {
             setCode(e.target.value);
             setModified(true);
-          }} 
+          }}
         />
         <Box padding={1} />
-        <FormStandard 
-          name="ISIC Industry Name" 
+        <FormStandard
+          name="ISIC Industry Name"
           description={RuleSchema.input_filters.standard_role_name[0].__isic_industry_name}
           value={name}
           onChange={(e) => {
             setName(e.target.value);
             setModified(true);
-          }} 
+          }}
         />
       </Box>
     </div>

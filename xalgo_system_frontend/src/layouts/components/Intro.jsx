@@ -11,7 +11,7 @@ import Button from '../../components/primitives/Button';
 
 // Primary Component
 function Intro({name}) {
-  
+
     return (
           <Box backgroundColor="#F6F5F2" p={4}>
             <Grid gridTemplateRows="auto auto auto" height="85vh">
@@ -30,7 +30,7 @@ function Intro({name}) {
                     </Text>
                     <Box p={2} />
                     <Text color="error">
-                        
+
                         <a
                         target="_blank"
                         rel="noopener noreferrer"

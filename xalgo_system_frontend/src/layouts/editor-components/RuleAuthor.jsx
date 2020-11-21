@@ -21,7 +21,7 @@ function RuleAuthor({ rule, updateRule, active }) {
     if (email !== rule.metadata.rule.authors[0].email) setEmail(rule.metadata.rule.authors[0].email);
   }
 
-  
+
   function saveContent() {
     console.log(`Saving ${sectionName} to state.`);
     rule.metadata.rule.authors[0].name = name;
@@ -37,27 +37,27 @@ function RuleAuthor({ rule, updateRule, active }) {
         <Box p={1} />
         <IdDisplay message="Vqp4nv8eGprI" />
         <Box padding={1} />
-        <FormStandard 
-          name="Name" 
+        <FormStandard
+          name="Name"
           description={RuleSchema.metadata.rule.authors[0].__name}
           value={name}
           onChange={(e) => {
             setName(e.target.value);
             setModified(true);
-          }} 
+          }}
         />
         <Box padding={1} />
-        <FormStandard name="Email" 
+        <FormStandard name="Email"
           description={RuleSchema.metadata.rule.authors[0].__email}
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
             setModified(true);
-          }}  
+          }}
         />
       </Box>
     </div>
-    
+
   );
 }
 

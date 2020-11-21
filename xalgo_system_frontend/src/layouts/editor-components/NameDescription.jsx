@@ -62,7 +62,7 @@ function NameDescription({ rule, updateRule, active }) {
             <b>Rule UUID:</b> {rule.path}
           </Text>
           <Text>
-            <b>Public Link:</b> 
+            <b>Public Link:</b>
             <a
               target="_blank"
               rel="noreferrer noopener"

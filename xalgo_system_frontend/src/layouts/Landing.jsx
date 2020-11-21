@@ -16,7 +16,7 @@ export default class Landing extends React.Component {
     super(props);
     this.state = {};
   }
-  
+
 
   render() {
     const { user } = this.props;

@@ -21,7 +21,7 @@ function DataSource({ rule, updateRule, active }) {
     if (subCountry !== rule.input_context.jurisdiction[0].subcountry) setSubCountry(rule.input_context.jurisdiction[0].subcountry);
   }
 
-  
+
   function saveContent() {
     console.log(`Saving ${sectionName} to state.`);
     rule.input_context.jurisdiction[0].country = country;
@@ -35,25 +35,25 @@ function DataSource({ rule, updateRule, active }) {
       <Box border="1px solid" borderColor="oline" borderRadius="base" p={3} bg="#fff">
         <Text variant="formtitle">Jurisdiction</Text>
         <Box p={1} />
-        <FormStandard 
-          name="Country Jurisdiction" 
+        <FormStandard
+          name="Country Jurisdiction"
           description={RuleSchema.input_context.jurisdiction[0].__country}
           value={country}
           onChange={(e) => {
             setCountry(e.target.value);
             setModified(true);
-          }} 
+          }}
         />
         <Box padding={1} />
-        <FormStandard name="Sub-country Jurisdiction" 
+        <FormStandard name="Sub-country Jurisdiction"
           description={RuleSchema.input_context.jurisdiction[0].__subcountry}
           value={subCountry}
           onChange={(e) => {
             setSubCountry(e.target.value);
             setModified(true);
-          }}  
+          }}
         />
-      
+
       </Box>
     </div>
   );
