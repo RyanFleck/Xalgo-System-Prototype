@@ -669,7 +669,35 @@ export default class EditorV2 extends React.Component {
                                         <Button
                                           variant="invisible"
                                           onClick={() => {
-                                            toast('Unimplemented.');
+                                            const col = rowValue.case.toUpperCase();
+                                            const msg = `Deleting column ${col}.`;
+                                            console.log(msg);
+                                            toast(msg);
+                                            const newRule = deepCopy(rule);
+
+                                            /* Filter ICs and OAs by letter.*/
+                                            newRule.input_conditions = newRule.input_conditions.map(
+                                              (ic) => {
+                                                ic.cases = ic.cases.filter(
+                                                  (x) => x.case.toUpperCase() !== col
+                                                );
+                                                console.log('IC Reduced:');
+                                                console.log(ic);
+                                                return ic;
+                                              }
+                                            );
+                                            newRule.output_assertions = newRule.output_assertions.map(
+                                              (ic) => {
+                                                ic.cases = ic.cases.filter(
+                                                  (x) => x.case.toUpperCase() !== col
+                                                );
+                                                console.log('OA Reduced:');
+                                                console.log(ic);
+                                                return ic;
+                                              }
+                                            );
+
+                                            this.updateRule(newRule);
                                           }}
                                         >
                                           <ColumnLabel rowLabel={rowValue.case || '?'} />
