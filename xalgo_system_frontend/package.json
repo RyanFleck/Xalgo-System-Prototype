@@ -24,7 +24,7 @@
     "slugify": "^1.4.6",
     "styled-components": "^5.2.1",
     "universal-cookie": "^4.0.4",
-    "xalgo-rule-processor": "^0.0.18"
+    "xalgo-rule-processor": "^0.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
