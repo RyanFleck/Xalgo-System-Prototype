@@ -8,6 +8,10 @@ This React/Django system is the fourth prototype in the series of visual rule ed
 It contains the the code to deploy a frontend and backed from the same
 Heroku container for easy sharing, discussion, and iteration.
 
+**Unit Test Coverage**
+
+[![Code coverage](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype/branch/master/graphs/commits.svg)](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype)
+
 ## Usage
 
 Casual users can simply browse to <https://xalgo-system.herokuapp.com/>, create and verify an account, then begin testing. The account verification email may arrive in your junk mail. For further instructions please read all the documentation written on the homepage.

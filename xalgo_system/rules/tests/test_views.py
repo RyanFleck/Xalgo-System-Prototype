@@ -97,8 +97,4 @@ class TestSingleRuleJSONView:
         # A regular request should work.
         request = requests.get(url)
         res = single_rule_json_view(request, rule_id=str(rule.id))
-
-        print(res)
-        print(res.content)
-
         assert res.status_code == 200
