@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v0.3.1 (2020-11-25)
+### Fix
+* Fix data flow in Sentence Editor. ([`eb83276`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/eb832768ec37d696507d8800762698fc23d818af))
+
+### Documentation
+* Update README ([`dacb661`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/dacb661de3d3f6498ecf7f9151d679ed6681deb7))
+
 ## v0.3.0 (2020-11-11)
 ### Feature
 * Improve saving algorithm. ([`dcbbe24`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/dcbbe24ea08bc17efea39dd16408fe37f9679298))
