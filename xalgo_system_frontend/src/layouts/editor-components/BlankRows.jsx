@@ -4,20 +4,18 @@ import { Flex } from '../../components';
 const small = {
   width: '34px',
   height: '24px',
-}
+};
 
 const stretch = {
-  alignSelf: 'stretch'
-}
+  alignSelf: 'stretch',
+};
 
 const column = {
-  width: '154px',
+  width: '160px',
   height: '24px',
-}
+};
 
-
-export default function BlankRows({ rule, ruleLeft, columnState}) {
-
+export default function BlankRows({ rule, ruleLeft, columnState }) {
   const collapse = columnState;
 
   return (
@@ -25,11 +23,7 @@ export default function BlankRows({ rule, ruleLeft, columnState}) {
       <Flex>
         {rule.input_conditions[0].cases.map((rowValue, i) => (
           <div style={ruleLeft} key={i}>
-            { collapse ? (
-              <div style={column} />
-            ) : (
-              <div style={small} />
-            )}
+            {collapse ? <div style={column} /> : <div style={small} />}
           </div>
         ))}
         <div style={ruleLeft} />

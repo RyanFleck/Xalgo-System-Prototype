@@ -114,7 +114,7 @@ const modalhold = {
 };
 
 const column = {
-  width: '154px',
+  width: '160px',
 };
 
 const heightAdjust = {
@@ -653,7 +653,7 @@ export default class EditorV2 extends React.Component {
                                           <Flex justifyContent="space-between" alignItems="center">
                                             <div style={heightAdjust} />
                                             <Text variant="formtitle">
-                                              Input Scenario {rowValue.case}
+                                              Input Scenario {rowValue.case} &nbsp;
                                             </Text>
                                             <Button
                                               variant="invisible"
