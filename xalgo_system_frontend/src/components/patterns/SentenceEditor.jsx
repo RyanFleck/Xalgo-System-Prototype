@@ -51,9 +51,9 @@ export default function SentenceEditor(props) {
     console.log(`Editing ${modalEditingInput ? 'input' : 'output'} sentence ${index}`);
     if (participle !== sentence.context.participle) setParticiple(sentence.context.participle);
     if (attribute !== sentence.context.attribute) setAttribute(sentence.context.attribute);
-    if (subject !== sentence.subject) setSubject(sentence.subject);
-    if (operation !== sentence.operation) setOperation(sentence.operation);
-    if (value !== sentence.value) setValue(sentence.value);
+    if (subject !== sentence.context.subject) setSubject(sentence.context.subject);
+    if (operation !== sentence.context.operation) setOperation(sentence.context.operation);
+    if (value !== sentence.context.value) setValue(sentence.context.value);
   }
 
   return (
