@@ -3,7 +3,7 @@ import { deepCopy } from 'xalgo-rule-processor';
 import { isArray } from 'xalgo-rule-processor/dist/types';
 import { toast } from 'react-toastify';
 
-import { Text, Box, Flex, Button, Icon, Badge, Dropdown } from '..';
+import { Text, Box, Flex, Button, Icon, Badge } from '..';
 
 const ruleLeft = {
   borderLeft: '1px solid #E7E7E7',
