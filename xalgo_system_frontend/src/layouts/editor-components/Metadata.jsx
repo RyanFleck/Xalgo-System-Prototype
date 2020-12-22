@@ -12,6 +12,7 @@ function Metadata({ rule, updateRule, active }) {
   // 1. Set a state for each element that must be filled.
   const [url, setUrl] = useState('');
   const [version, setVersion] = useState('');
+  const [XAVersion, setXAVersion] = useState('');
   const [criticality, setCriticality] = useState('');
 
   // Don't touch this.
@@ -21,6 +22,7 @@ function Metadata({ rule, updateRule, active }) {
     // 2. Ensure each field is set according to the current rule state.
     if (url !== rule.metadata.rule.url) setUrl(rule.metadata.rule.url);
     if (version !== rule.metadata.rule.content_uuid) setVersion(rule.metadata.rule.content_uuid);
+    if (XAVersion !== rule.metadata.rule.xa_version) setXAVersion(rule.metadata.rule.xa_version);
     if (criticality !== rule.metadata.rule.criticality)
       setCriticality(rule.metadata.rule.criticality);
   }
@@ -31,6 +33,7 @@ function Metadata({ rule, updateRule, active }) {
     console.log(`Saving ${sectionName} to state.`);
     newRule.metadata.rule.url = url;
     newRule.metadata.rule.content_uuid = version;
+    newRule.metadata.rule.xa_version = XAVersion;
     newRule.metadata.rule.criticality = criticality;
     updateRule(newRule);
     setModified(false);
@@ -55,9 +58,9 @@ function Metadata({ rule, updateRule, active }) {
         <Box padding={1} />
         <FormStandard
           name="Rule Version"
-          placeholder="1.0"
           description={RuleSchema.metadata.rule.__version}
           value={version}
+          disabled={true}
           onChange={(e) => {
             // TODO: Make field appear uneditable.
             toast.warning("Don't modify this. Your changes will not be persisted.");
@@ -68,14 +71,29 @@ function Metadata({ rule, updateRule, active }) {
         <Box padding={1} />
         <FormDropdown
           name="Xalgo Version"
-          description="Not in Schema"
-          options={[{ value: '1.0', label: '1.0' }]}
+          description="Rule Editor Version"
+          value={XAVersion}
+          options={[
+            { value: '0.5', label: '0.5 (current)' },
+            { value: '0.4', label: '0.4' },
+          ]}
+          onChange={(e) => {
+            const val = e.target.value;
+            console.log('Updating XA Version to ' + val);
+            console.log('Updating XA Version to ' + val);
+            setXAVersion(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
           name="Rule Criticality"
           description={RuleSchema.metadata.rule.__criticality}
-          options={[{ value: 'Experimental', label: 'Experimental' }]}
+          options={[
+            { value: 'Experimental', label: 'Experimental' },
+            { value: 'In Effect', label: 'In Effect' },
+            { value: 'Archived', label: 'Archived' },
+          ]}
           value={criticality}
           onChange={(e) => {
             setCriticality(e.target.value);

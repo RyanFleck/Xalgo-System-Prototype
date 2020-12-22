@@ -23,6 +23,7 @@ function FormStandard({
   errormessage,
   longInput = false,
   type = 'text',
+  disabled = false,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -61,6 +62,7 @@ function FormStandard({
               onBlur={onBlur}
               placeholder={placeholder}
               type={type}
+              disabled={disabled}
             />
           )}
           {errormessage ? <ErrorMessage message={errormessage} /> : null}
@@ -75,6 +77,7 @@ function FormStandard({
               placeholder={placeholder}
               variant="error"
               type={type}
+              disabled={disabled}
             />
           ) : (
             <InputField

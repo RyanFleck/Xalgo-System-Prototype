@@ -9,7 +9,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "@xalgorithms/rm-components": "^0.0.12",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "axios-retry": "^3.1.9",
     "file-saver": "^2.0.5",
     "js-cookie": "^2.2.1",
@@ -24,7 +24,7 @@
     "slugify": "^1.4.6",
     "styled-components": "^5.2.1",
     "universal-cookie": "^4.0.4",
-    "xalgo-rule-processor": "^0.1.0"
+    "xalgo-rule-processor": "0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

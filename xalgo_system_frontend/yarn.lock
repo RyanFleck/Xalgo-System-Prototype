@@ -2714,10 +2714,10 @@ axios-retry@^3.1.9:
   dependencies:
     is-retry-allowed "^1.1.0"
 
-axios@^0.21.0:
-  version "0.21.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
-  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+axios@^0.21.1:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
   dependencies:
     follow-redirects "^1.10.0"
 
@@ -4529,9 +4529,9 @@ ejs@^2.6.1:
   integrity sha512-7vmuyh5+kuUyJKePhQfRQBhXV5Ce+RnaeeQArKu1EAMpL3WbgMt5WG6uQZpEVvYSSsxMXRKOewtDk9RaTKXRlA==
 
 electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.621:
-  version "1.3.630"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.630.tgz#102e930466e53ab7fde6009c2d50b8a4574b543e"
-  integrity sha512-HSTsvqOrR3kWsoekKu0EOQXR/YOncKs3HAys9lysvIS2ec/mlfV1ZoLHSx00semK+PscVJwqcvBN4ayGPs++fA==
+  version "1.3.631"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.631.tgz#b28ebc7bfb348bb0aede2fae8888d775ddb6f5ee"
+  integrity sha512-mPEG/52142po0XK1jQkZtbMmp38MZtQ3JDFItYxV65WXyhxDYEQ54tP4rb93m0RbMlZqQ+4zBw2N7UumSgGfbA==
 
 elliptic@^6.5.3:
   version "6.5.3"
@@ -11383,9 +11383,9 @@ v8-compile-cache@^2.0.3:
   integrity sha512-gTpR5XQNKFwOd4clxfnhaqvfqMpqEwr4tOtCyz4MtYZX2JYhfr1JvBFKdS+7K/9rfpZR3VLX+YWBbKoxCgS43Q==
 
 v8-to-istanbul@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-7.0.0.tgz#b4fe00e35649ef7785a9b7fcebcea05f37c332fc"
-  integrity sha512-fLL2rFuQpMtm9r8hrAV2apXX/WqHJ6+IC4/eQVdMDGBUgH/YMV4Gv3duk3kjmyg6uiQWBAA9nJwue4iJUOkHeA==
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/v8-to-istanbul/-/v8-to-istanbul-7.1.0.tgz#5b95cef45c0f83217ec79f8fc7ee1c8b486aee07"
+  integrity sha512-uXUVqNUCLa0AH1vuVxzi+MI4RfxEOKt9pBgKwHbgH7st8Kv2P1m+jvWNnektzBh5QShF3ODgKmUFCf38LnVz1g==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^1.6.0"
@@ -11874,17 +11874,17 @@ ws@^7.2.3:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.1.tgz#a333be02696bd0e54cea0434e21dcc8a9ac294bb"
   integrity sha512-pTsP8UAfhy3sk1lSk/O/s4tjD0CRwvMnzvwr4OKGX7ZvqZtUyx4KIJB5JWbkykPoc55tixMGgTNoh3k4FkNGFQ==
 
+xalgo-rule-processor@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/xalgo-rule-processor/-/xalgo-rule-processor-0.1.1.tgz#b3d939f968cac797311b9944a480ac16a65940b5"
+  integrity sha512-5LmCimn1/z0aPlo0Qyyx7U8XHQCodRl/VcM7W+0znJJcf0YIGvbStHSGZ4JcUdZstmxxVShygxTH63pKA/kOIw==
+  dependencies:
+    chalk "^4.0.0"
+
 xalgo-rule-processor@^0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/xalgo-rule-processor/-/xalgo-rule-processor-0.0.12.tgz#f458b8202ee3bf0eda46abe5a61d89fa2c5b8daa"
   integrity sha512-/TohCm3KIcMk/IN2PElqvGfSwmS9gqveG5OuUcog8N8Oe421p02uHbpYuAWSf2FtyPhhaSP4GIh5qCdsLUL0Mg==
-  dependencies:
-    chalk "^4.0.0"
-
-xalgo-rule-processor@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/xalgo-rule-processor/-/xalgo-rule-processor-0.1.0.tgz#266f8abe694e087996761f729c8494fb02047660"
-  integrity sha512-aNEMmDguGTc2j1jDuhqirBQPIp8t+gg4kuhfNLSWEpnYB1eg52ebGkX4VSea56zrUKlSFybnVAVPol/d7qG+Zw==
   dependencies:
     chalk "^4.0.0"
 

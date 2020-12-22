@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { deepCopy, RuleSchema } from 'xalgo-rule-processor';
 import { Box, FormDropdown, Text } from '../../components';
 
-function OutputPurpose({ rule, updateRule, active, section, }) {
+function OutputPurpose({ rule, updateRule, active, section }) {
   // 0. Fill out the section name.
   const sectionName = 'Output Purpose';
   // const sectionDesc = 'Begin your rule by providing a title and concise description.';
@@ -20,15 +20,18 @@ function OutputPurpose({ rule, updateRule, active, section, }) {
     console.log(`${sectionName} section is being edited.`);
 
     // 2. Ensure each field is set according to the current rule state.
-    if (actionVerb !== rule.output_purpose.action_verb) setActionVerb(rule.output_purpose.action_verb);
+    if (actionVerb !== rule.output_purpose.action_verb)
+      setActionVerb(rule.output_purpose.action_verb);
   }
 
   function saveContent() {
-    const newRule = deepCopy(rule);
-    console.log(`Saving ${sectionName} to state.`);
-    newRule.output_purpose.action_verb = actionVerb;
-    updateRule(newRule);
-    setModified(false);
+    if (rule) {
+      const newRule = deepCopy(rule);
+      console.log(`Saving ${sectionName} to state.`);
+      newRule.output_purpose.action_verb = actionVerb;
+      updateRule(newRule);
+      setModified(false);
+    }
   }
 
   // 3. Return a rendering of the component.
