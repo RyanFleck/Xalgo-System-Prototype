@@ -4,7 +4,7 @@ coverage==5.3.1  # https://github.com/nedbat/coveragepy
 django-coverage-plugin==1.8.0  # https://github.com/nedbat/django_coverage_plugin
 
 django-debug-toolbar==3.2  # https://github.com/jazzband/django-debug-toolbar
-django-extensions==3.0.9  # https://github.com/django-extensions/django-extensions
+django-extensions==3.1.0  # https://github.com/django-extensions/django-extensions
 django-stubs==1.7.0  # https://github.com/typeddjango/django-stubs
 
 # Django
