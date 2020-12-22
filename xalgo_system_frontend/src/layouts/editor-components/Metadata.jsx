@@ -78,9 +78,6 @@ function Metadata({ rule, updateRule, active }) {
             { value: '0.4', label: '0.4' },
           ]}
           onChange={(e) => {
-            const val = e.target.value;
-            console.log('Updating XA Version to ' + val);
-            console.log('Updating XA Version to ' + val);
             setXAVersion(e.target.value);
             setModified(true);
           }}

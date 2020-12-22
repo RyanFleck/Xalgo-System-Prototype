@@ -820,7 +820,7 @@ export default class EditorV2 extends React.Component {
                   <Box p={2}></Box>
                   <Grid gridTemplateColumns="33% 33% 33%" gridGap="2em">
                     <Box>
-                      <OutputPurpose />
+                      <OutputPurpose rule={rule} updateRule={this.updateRule} active={active} />
                     </Box>
                     <Box gridArea="1 / 2 / 2 / 4">
                       <QualitativeWeights

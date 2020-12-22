@@ -27,19 +27,15 @@ function QualitativeWeights({ rule, updateRule, active, section }) {
     // 2. Ensure each field is set according to the current rule state.
     // if (title !== rule.metadata.rule.title) setTitle(rule.metadata.rule.title);
     if (ruleGroup !== rule.output_weight.rule_group) {
-      console.log(`Setting character to ${rule.output_weight.rule_group}`);
       setRuleGroup(rule.output_weight.rule_group);
     }
     if (character !== rule.output_weight.character_of_obligation) {
-      console.log(`Setting character to ${rule.output_weight.character_of_obligation}`);
       setCharacter(rule.output_weight.character_of_obligation);
     }
     if (enforcement !== rule.output_weight.enforcement_measures) {
-      console.log(`Setting enforcement to ${rule.output_weight.character_of_obligation}`);
       setEnforcement(rule.output_weight.enforcement_measures);
     }
     if (consequences !== rule.output_weight.consequences) {
-      console.log(`Setting consequences to ${rule.output_weight.consequences}`);
       setConsequences(rule.output_weight.consequences);
     }
   }

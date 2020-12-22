@@ -9,29 +9,52 @@ function OutputPurpose({ rule, updateRule, active, section }) {
   const [modified, setModified] = useState(false);
 
   // 1. Set a state for each element that must be filled.
-  /*
-  const [conformance, setConformance] = useState('');
-  const [primaryVerb, setPrimaryVerb] = useState('');
-  */
+  const [modalVerb, setModalVerb] = useState('');
   const [actionVerb, setActionVerb] = useState('');
+  const [implementation, setImplementation] = useState('');
+  const [normativeVerb, setNormativeVerb] = useState('');
+  const [responsibility, setResponsibility] = useState('');
+  const [philosophicalRationale, setPhilosophicalRationale] = useState('');
 
   // Don't touch this.
   if (active && !modified) {
     console.log(`${sectionName} section is being edited.`);
-
+    console.log(`${sectionName} section is being edited.`);
+    console.log(`${sectionName} section is being edited.`);
+    console.log(`${sectionName} section is being edited.`);
     // 2. Ensure each field is set according to the current rule state.
-    if (actionVerb !== rule.output_purpose.action_verb)
+    if (modalVerb !== rule.output_purpose.modal_verb) {
+      console.log('Updating modal verb...');
+      setModalVerb(rule.output_purpose.modal_verb);
+    }
+    if (actionVerb !== rule.output_purpose.action_verb) {
       setActionVerb(rule.output_purpose.action_verb);
+    }
+    if (implementation !== rule.output_purpose.implementation) {
+      setImplementation(rule.output_purpose.implementation);
+    }
+    if (normativeVerb !== rule.output_purpose.normative_verb) {
+      setNormativeVerb(rule.output_purpose.normative_verb);
+    }
+    if (responsibility !== rule.output_purpose.responsibility) {
+      setResponsibility(rule.output_purpose.responsibility);
+    }
+    if (philosophicalRationale !== rule.output_purpose.philosophicalRationale) {
+      setPhilosophicalRationale(rule.output_purpose.philosophicalRationale);
+    }
   }
 
   function saveContent() {
-    if (rule) {
-      const newRule = deepCopy(rule);
-      console.log(`Saving ${sectionName} to state.`);
-      newRule.output_purpose.action_verb = actionVerb;
-      updateRule(newRule);
-      setModified(false);
-    }
+    const newRule = deepCopy(rule);
+    console.log(`Saving ${sectionName} to state.`);
+    newRule.output_purpose.modal_verb = modalVerb;
+    newRule.output_purpose.action_verb = actionVerb;
+    newRule.output_purpose.implementation = implementation;
+    newRule.output_purpose.normative_verb = normativeVerb;
+    newRule.output_purpose.responsibility = responsibility;
+    newRule.output_purpose.philosophical_rationale = philosophicalRationale;
+    updateRule(newRule);
+    setModified(false);
   }
 
   // 3. Return a rendering of the component.
@@ -48,6 +71,11 @@ function OutputPurpose({ rule, updateRule, active, section }) {
             { value: 'rule-taker', label: 'rule-taker' },
             { value: 'third-party', label: 'third-party' },
           ]}
+          value={responsibility}
+          onChange={(e) => {
+            setResponsibility(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
@@ -58,6 +86,11 @@ function OutputPurpose({ rule, updateRule, active, section }) {
             { value: 'may', label: 'may' },
             { value: 'should', label: 'should' },
           ]}
+          value={normativeVerb}
+          onChange={(e) => {
+            setNormativeVerb(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
@@ -68,6 +101,11 @@ function OutputPurpose({ rule, updateRule, active, section }) {
             { value: 'negative', label: 'negative' },
             { value: 'interrogative', label: 'interrogative' },
           ]}
+          value={modalVerb}
+          onChange={(e) => {
+            setModalVerb(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
@@ -93,6 +131,11 @@ function OutputPurpose({ rule, updateRule, active, section }) {
             { value: 'practical', label: 'practical' },
             { value: 'ethical', label: 'ethical' },
           ]}
+          value={philosophicalRationale}
+          onChange={(e) => {
+            setPhilosophicalRationale(e.target.value);
+            setModified(true);
+          }}
         />
         <Box padding={1} />
         <FormDropdown
@@ -104,6 +147,11 @@ function OutputPurpose({ rule, updateRule, active, section }) {
             { value: 'declarative', label: 'declarative' },
             { value: 'empirical', label: 'empirical' },
           ]}
+          value={implementation}
+          onChange={(e) => {
+            setImplementation(e.target.value);
+            setModified(true);
+          }}
         />
       </Box>
     </div>
