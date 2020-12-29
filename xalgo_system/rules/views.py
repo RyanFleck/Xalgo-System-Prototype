@@ -4,7 +4,6 @@ from typing import Any, Dict
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 from rest_framework import mixins
-from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.parsers import JSONParser, MultiPartParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -18,7 +17,6 @@ from xalgo_system.rules.serializers import RuleContentSerializer, RuleSerializer
 class RuleViewSet(ModelViewSet):
 
     serializer_class = RuleSerializer
-    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [IsAuthenticated]
     parser_classes = (MultiPartParser, JSONParser)
 
@@ -50,7 +48,6 @@ class RuleContentViewSet(
 ):
 
     serializer_class = RuleContentSerializer
-    authentication_classes = [TokenAuthentication, SessionAuthentication]
     permission_classes = [IsAuthenticated]
     parser_classes = (MultiPartParser, JSONParser)
 

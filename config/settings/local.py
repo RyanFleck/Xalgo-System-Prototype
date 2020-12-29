@@ -66,3 +66,4 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+CORS_ORIGIN_ALLOW_ALL = True
