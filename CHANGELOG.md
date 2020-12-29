@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.4.0 (2020-12-29)
+### Feature
+* Remove React app. ([`811c136`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/811c136ea5a28346f799df6921340c8e96629b20))
+
 ## v0.3.1 (2020-11-25)
 ### Fix
 * Fix data flow in Sentence Editor. ([`eb83276`](https://github.com/RyanFleck/Xalgo-System-Prototype/commit/eb832768ec37d696507d8800762698fc23d818af))
