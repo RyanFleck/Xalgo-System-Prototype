@@ -1,7 +1,6 @@
 import logging
 
 import sentry_sdk
-from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 
@@ -171,5 +170,3 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_HEADERS = default_headers + ["Access-Control-Allow-Origin"]
