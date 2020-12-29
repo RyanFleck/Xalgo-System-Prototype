@@ -1,3 +1,0 @@
-```jsx
-<ColumnLabel rowLabel="B"/>
-```

@@ -1,15 +1,3 @@
-# First stage of build.
-FROM node:12
-
-# Create app directory
-WORKDIR /app/xalgo_system_frontend
-COPY xalgo_system_frontend/. .
-
-# Build the react app
-RUN yarn install
-RUN yarn build
-
-# Second stage of build.
 FROM python:3.8-slim-buster
 
 ENV PYTHONUNBUFFERED 1
@@ -28,6 +16,7 @@ RUN apt-get update \
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
+RUN pip install --upgrade pip
 RUN pip install -r /requirements/local.txt
 
 COPY ./compose/production/django/entrypoint /entrypoint

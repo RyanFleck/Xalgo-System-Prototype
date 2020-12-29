@@ -90,12 +90,16 @@ SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env("DJANGO_EMAIL_SUBJECT_PREFIX", default="[Xalgorithms]")
 
-# Use a Gmail account in production.
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+# Anymail Setup
+INSTALLED_APPS += ["anymail"]  # noqa F405
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+SENDGRID_API_KEY = env("SENDGRID_API_KEY")
+SENDGRID_API_URL = env("SENDGRID_API_URL", default="https://api.sendgrid.com/v3")
+ANYMAIL = {
+    "SENDGRID_API_KEY": SENDGRID_API_KEY,
+    "SENDGRID_API_URL": SENDGRID_API_URL,
+}
 
 # ADMIN
 # ------------------------------------------------------------------------------

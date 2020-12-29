@@ -1,5 +1,4 @@
 """Base settings to build other settings files upon."""
-import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -46,7 +45,7 @@ LOCALE_PATHS = [str(ROOT_DIR / "locale")]
 
 # REACT APPS
 # ------------------------------------------------------------------------------
-RM_REACT_APP_DIR = os.path.join(ROOT_DIR, "xalgo_system_frontend")
+# RM_REACT_APP_DIR = os.path.join(ROOT_DIR, "xalgo_system_frontend")
 
 # DATABASES
 # ------------------------------------------------------------------------------
@@ -89,7 +88,6 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "xalgo_system.users.apps.UsersConfig",
     # Your stuff: custom apps go here
-    "xalgo_system.react_apps.apps.ReactAppsConfig",
     "xalgo_system.jwt_auth.apps.JWTAuthConfig",
     "xalgo_system.rules.apps.RulesConfig",
 ]
@@ -161,8 +159,8 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
     str(APPS_DIR / "static"),
-    os.path.join(RM_REACT_APP_DIR, "build"),
-    os.path.join(RM_REACT_APP_DIR, "build", "static"),
+    # os.path.join(RM_REACT_APP_DIR, "build"),
+    # os.path.join(RM_REACT_APP_DIR, "build", "static"),
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -187,8 +185,8 @@ TEMPLATES = [
         # https://docs.djangoproject.com/en/dev/ref/settings/#template-dirs
         "DIRS": [
             str(APPS_DIR / "templates"),
-            os.path.join(RM_REACT_APP_DIR, "build"),
-            os.path.join(RM_REACT_APP_DIR, "build", "static"),
+            # os.path.join(RM_REACT_APP_DIR, "build"),
+            # os.path.join(RM_REACT_APP_DIR, "build", "static"),
         ],
         "OPTIONS": {
             # https://docs.djangoproject.com/en/dev/ref/settings/#template-loaders
