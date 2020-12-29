@@ -1,6 +1,7 @@
 import logging
 
 import sentry_sdk
+from corsheaders.defaults import default_headers
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 
@@ -165,8 +166,12 @@ sentry_sdk.init(
 # Your stuff...
 # ------------------------------------------------------------------------------
 CORS_ALLOWED_ORIGINS = [
-    "https://xalgo-dev-rm.vercel.app/",
-    "https://xalgo-dev-rm.netlify.app/",
     "https://xalgo-dev-rm.vercel.app",
     "https://xalgo-dev-rm.netlify.app",
+    "https://xalgo-dev-rm.vercel.app/",
+    "https://xalgo-dev-rm.netlify.app/",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = default_headers + ["Access-Control-Allow-Origin"]
