@@ -164,3 +164,7 @@ sentry_sdk.init(
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+CORS_ALLOWED_ORIGINS = [
+    "https://xalgo-dev-rm.vercel.app/",
+    "https://xalgo-dev-rm.netlify.app/",
+]
