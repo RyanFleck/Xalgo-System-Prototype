@@ -23,6 +23,8 @@ class RuleViewSet(ModelViewSet):
     parser_classes = (MultiPartParser, JSONParser)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Rule.objects.none()
         return Rule.objects.filter(rule_creator=self.request.user)
 
     def perform_create(self, serializer):
@@ -53,6 +55,8 @@ class RuleContentViewSet(
     parser_classes = (MultiPartParser, JSONParser)
 
     def get_queryset(self):
+        if getattr(self, "swagger_fake_view", False):
+            return Rule.objects.none()
         return RuleContent.objects.filter(parent_rule__rule_creator=self.request.user)
 
     def update(self, request, *args, **kwargs):
