@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from rest_framework.authtoken.views import obtain_auth_token
 
 from xalgo_system.rules.views import single_rule_view
+from xalgo_system.swagger.views import awake
 from xalgo_system.users.views import system_stats_view
 
 urlpatterns = [
@@ -53,6 +54,7 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
+    path("api/awake/", awake),
 ]
 
 if settings.DEBUG:
