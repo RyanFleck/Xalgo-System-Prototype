@@ -29,7 +29,7 @@ docker-compose -f development.yml up
 
 Use pre-commit to keep code quality up: `pre-commit install`
 
-Write unit tests to make this sunburst graph of unit test coverage look better:
+Write unit tests to make this codecov sunburst graph of unit test coverage look better:
 
 ![Sunburst graph, unit test coverage](https://codecov.io/gh/RyanFleck/Xalgo-System-Prototype/commit/d70d621b3ceb60d8b21fb04c3b462248e981b8cf/graphs/sunburst.svg)
 
