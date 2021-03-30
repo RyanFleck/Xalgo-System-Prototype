@@ -1,3 +1,12 @@
+<br />
+<br />
+
+**MOVED:** https://gitlab.com/xalgorithms-alliance/Xalgo-DevRM-v1
+
+<br />
+<br />
+<br />
+
 # Xalgorithms System v0.4 Dev Backend
 
 ![CI](https://github.com/RyanFleck/Xalgo-System-Prototype/workflows/CI/badge.svg?branch=master)
